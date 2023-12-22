@@ -1,18 +1,18 @@
-import React from 'react';
+import { forwardRef, ForwardedRef } from 'react';
 
 interface ButtonOutlineSuccessProps {
   onClick?: () => void;
   text: string;
 }
 
-const ButtonOutlineSuccess: React.FC<ButtonOutlineSuccessProps> = ({ onClick, text }) => {
+const ButtonOutlineSuccess = forwardRef(({ onClick, text }: ButtonOutlineSuccessProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button onClick={onClick} type="button" className="btn btn-outline-success">
+      <button ref={ref} onClick={onClick} type="button" className="btn btn-outline-success">
         {text}
       </button>
     </>
   );
-};
+});
 
 export default ButtonOutlineSuccess;

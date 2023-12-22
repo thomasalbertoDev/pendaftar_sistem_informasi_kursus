@@ -1,18 +1,18 @@
-import React from 'react';
+import { forwardRef, ForwardedRef } from 'react';
 
 interface ButtonOutlineInfoProps {
   onClick?: () => void;
   text: string;
 }
 
-const ButtonOutlinePrimary: React.FC<ButtonOutlineInfoProps> = ({ onClick, text }) => {
+const ButtonOutlineInfo = forwardRef(({ onClick, text }: ButtonOutlineInfoProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button onClick={onClick} type="button" className="btn btn-outline-info">
+      <button ref={ref} onClick={onClick} type="button" className="btn btn-outline-info">
         {text}
       </button>
     </>
   );
-};
+});
 
-export default ButtonOutlinePrimary;
+export default ButtonOutlineInfo;
