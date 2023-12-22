@@ -1,18 +1,18 @@
-import React from 'react';
+import { forwardRef, ForwardedRef } from 'react';
 
 interface ButtonSolidPrimaryProps {
   onClick?: () => void;
   text: string;
 }
 
-const ButtonSolidPrimary: React.FC<ButtonSolidPrimaryProps> = ({ onClick, text }) => {
+const ButtonSolidPrimary = forwardRef(({ onClick, text }: ButtonSolidPrimaryProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button onClick={onClick} type="button" className="btn btn-primary">
+      <button ref={ref} onClick={onClick} type="button" className="btn btn-primary">
         {text}
       </button>
     </>
   );
-};
+});
 
 export default ButtonSolidPrimary;

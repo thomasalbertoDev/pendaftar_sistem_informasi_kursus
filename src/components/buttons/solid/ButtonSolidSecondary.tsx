@@ -1,18 +1,18 @@
-import React from 'react';
+import { forwardRef, ForwardedRef } from 'react';
 
 interface ButtonSolidSecondaryProps {
   onClick?: () => void;
   text: string;
 }
 
-const ButtonSolidSecondary: React.FC<ButtonSolidSecondaryProps> = ({ onClick, text }) => {
+const ButtonSolidSecondary = forwardRef(({ onClick, text }: ButtonSolidSecondaryProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button onClick={onClick} type="button" className="btn btn-secondary">
+      <button ref={ref} onClick={onClick} type="button" className="btn btn-secondary">
         {text}
       </button>
     </>
   );
-};
+});
 
 export default ButtonSolidSecondary;

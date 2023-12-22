@@ -1,18 +1,18 @@
-import React from 'react';
+import { forwardRef, ForwardedRef } from 'react';
 
 interface ButtonSolidDangerProps {
   onClick?: () => void;
   text: string;
 }
 
-const ButtonSolidDanger: React.FC<ButtonSolidDangerProps> = ({ onClick, text }) => {
+const ButtonSolidDanger = forwardRef(({ onClick, text }: ButtonSolidDangerProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button onClick={onClick} type="button" className="btn btn-danger">
+      <button ref={ref} onClick={onClick} type="button" className="btn btn-danger">
         {text}
       </button>
     </>
   );
-};
+});
 
 export default ButtonSolidDanger;

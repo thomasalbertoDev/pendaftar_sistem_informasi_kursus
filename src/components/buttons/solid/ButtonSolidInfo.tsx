@@ -1,18 +1,18 @@
-import React from 'react';
+import { forwardRef, ForwardedRef } from 'react';
 
 interface ButtonSolidInfoProps {
   onClick?: () => void;
   text: string;
 }
 
-const ButtonSolidInfo: React.FC<ButtonSolidInfoProps> = ({ onClick, text }) => {
+const ButtonSolidInfo = forwardRef(({ onClick, text }: ButtonSolidInfoProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button onClick={onClick} type="button" className="btn btn-info">
+      <button ref={ref} onClick={onClick} type="button" className="btn btn-info">
         {text}
       </button>
     </>
   );
-};
+});
 
 export default ButtonSolidInfo;
