@@ -17,7 +17,7 @@ const InputUrl: React.FC<InputUrlProps> = ({ id, name, value, onChange, placehol
         <label htmlFor={label}>{label}</label>
         <input id={id} type="url" name={name} value={value} onChange={onChange} placeholder={placeholder} className={`form-input ${error ? 'error' : ''}`} required />
 
-        {error && <p className="error-message">{error}</p>}
+        {error && <span className="text-danger">{error}</span>}
       </div>
     </>
   );

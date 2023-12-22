@@ -17,7 +17,7 @@ const InputText: React.FC<InputTextProps> = ({ id, name, value, onChange, placeh
         <label htmlFor={label}>{label}</label>
         <input id={id} type="text" name={name} value={value} onChange={onChange} placeholder={placeholder} className={`form-input ${error ? 'error' : ''}`} required />
 
-        {error && <p className="error-message">{error}</p>}
+        {error && <span className="text-danger">{error}</span>}
       </div>
     </>
   );

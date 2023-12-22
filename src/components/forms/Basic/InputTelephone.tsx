@@ -17,7 +17,7 @@ const InputTelephone: React.FC<InputTelephoneProps> = ({ id, name, value, onChan
         <label htmlFor={label}>{label}</label>
         <input id={id} type="tel" name={name} value={value} onChange={onChange} placeholder={placeholder} className={`form-input ${error ? 'error' : ''}`} required />
 
-        {error && <p className="error-message">{error}</p>}
+        {error && <span className="text-danger">{error}</span>}
       </div>
     </>
   );

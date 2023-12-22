@@ -16,7 +16,7 @@ const InputRange: React.FC<InputRangeProps> = ({ id, name, value, onChange, labe
         <label htmlFor={label}>{label}</label>
         <input id={id} type="range" name={name} value={value} onChange={onChange} className={`form-input ${error ? 'error' : ''}`} required />
 
-        {error && <p className="error-message">{error}</p>}
+        {error && <span className="text-danger">{error}</span>}
       </div>
     </>
   );
