@@ -24,9 +24,6 @@ import 'tippy.js/dist/tippy.css';
 // Flatpickr
 import 'flatpickr/dist/flatpickr.css';
 
-// File upload
-import 'file-upload-with-preview/dist/file-upload-with-preview.min.css';
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Suspense>
