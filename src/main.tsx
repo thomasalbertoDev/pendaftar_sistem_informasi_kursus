@@ -21,6 +21,9 @@ import store from './store/index';
 // Tippy
 import 'tippy.js/dist/tippy.css';
 
+// Flatpickr
+import 'flatpickr/dist/flatpickr.css';
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Suspense>
