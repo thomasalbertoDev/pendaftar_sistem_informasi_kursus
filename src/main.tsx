@@ -27,6 +27,9 @@ import 'flatpickr/dist/flatpickr.css';
 // Quill
 import 'react-quill/dist/quill.snow.css';
 
+// Markdown Editor
+import 'easymde/dist/easymde.min.css';
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Suspense>
