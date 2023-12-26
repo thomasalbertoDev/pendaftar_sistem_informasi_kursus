@@ -24,6 +24,9 @@ import 'tippy.js/dist/tippy.css';
 // Flatpickr
 import 'flatpickr/dist/flatpickr.css';
 
+// Quill
+import 'react-quill/dist/quill.snow.css';
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Suspense>
