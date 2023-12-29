@@ -8,7 +8,7 @@ interface ButtonOutlineWarningProps {
 const ButtonOutlineWarning = forwardRef(({ onClick, text }: ButtonOutlineWarningProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button ref={ref} onClick={onClick} type="button" className="btn btn-outline-warning">
+      <button ref={ref} onClick={onClick} type="button" className="btn btn-outline-warning ltr:ml-4 rtl:mr-4">
         {text}
       </button>
     </>

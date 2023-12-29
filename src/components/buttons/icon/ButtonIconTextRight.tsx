@@ -11,7 +11,7 @@ interface ButtonIconTextRightProps {
 const ButtonIconTextRight = forwardRef(({ text, icon, onClick, backgroundColor }: ButtonIconTextRightProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button ref={ref} onClick={onClick} type="button" className={`btn ${backgroundColor}`}>
+      <button ref={ref} onClick={onClick} type="button" className={`btn ${backgroundColor} ltr:ml-4 rtl:mr-4`}>
         {text}
         <Icon icon={icon} />
       </button>

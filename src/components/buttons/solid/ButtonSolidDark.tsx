@@ -8,7 +8,7 @@ interface ButtonSolidDarkProps {
 const ButtonSolidDark = forwardRef(({ onClick, text }: ButtonSolidDarkProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button ref={ref} onClick={onClick} type="button" className="btn btn-dark">
+      <button ref={ref} onClick={onClick} type="button" className="btn btn-dark ltr:ml-4 rtl:mr-4">
         {text}
       </button>
     </>
