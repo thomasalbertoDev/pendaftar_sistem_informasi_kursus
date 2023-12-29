@@ -1,5 +1,5 @@
 import React from 'react';
-import IconLoader from '../../Icon/IconLoader';
+import IconLoader from '../../Icons/IconLoader';
 
 interface ButtonLoaderDefaultProps {
   text: string;

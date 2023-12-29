@@ -1,5 +1,5 @@
 import React from 'react';
-import IconX from '../../Icon/IconX';
+import IconX from '../../Icons/IconX';
 import { Icon } from '@iconify/react';
 
 interface AlertArrowedSecondaryProps {
