@@ -1,7 +1,7 @@
-import React from 'react';
 import { DataTable } from 'mantine-datatable';
+import React from 'react';
 
-interface TableBasicProps {
+interface TableCheckboxProps {
   page: number;
   onPageChange: (page: number) => void;
   recordsPerPageOptions: number[];
@@ -9,28 +9,28 @@ interface TableBasicProps {
   onRecordsPerPageChange: (pageSize: number) => void;
   data: any[];
   columns: any[];
+  sortStatus: any;
+  onSortStatusChange: (sortStatus: any) => void;
+  selectedRecords: any[];
+  onSelectedRecordsChange: (selectedRecords: any[]) => void;
 }
 
-const TableBasic: React.FC<TableBasicProps> = ({ page, onPageChange, recordsPerPageOptions, recordsPerPage, onRecordsPerPageChange, data, columns }) => {
-  // const [page, setPage] = useState(1);
-  // const PAGE_SIZES = [10, 20, 30, 50, 100];
-  // const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
-  // const initialRecords = data.slice(0, pageSize);
-  // const [recordsData, setRecordsData] = useState(initialRecords);
-
-  // useEffect(() => {
-  //   setPage(1);
-  // }, [pageSize]);
-
-  // useEffect(() => {
-  //   const from = (page - 1) * pageSize;
-  //   const to = from + pageSize;
-  //   setRecordsData(data.slice(from, to));
-  // }, [page, pageSize]);
-
+const TableCheckbox: React.FC<TableCheckboxProps> = ({
+  page,
+  onPageChange,
+  recordsPerPageOptions,
+  recordsPerPage,
+  onRecordsPerPageChange,
+  data,
+  columns,
+  sortStatus,
+  onSortStatusChange,
+  selectedRecords,
+  onSelectedRecordsChange,
+}) => {
   return (
     <>
-      <div className="panel mt-6">
+      <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-primary">
         <div className="datatables">
           <DataTable
             highlightOnHover
@@ -38,14 +38,18 @@ const TableBasic: React.FC<TableBasicProps> = ({ page, onPageChange, recordsPerP
             records={data}
             minHeight={200}
             columns={columns}
+            sortStatus={sortStatus}
             totalRecords={data.length}
             onPageChange={onPageChange}
             recordsPerPage={recordsPerPage}
+            selectedRecords={selectedRecords}
+            onSortStatusChange={onSortStatusChange}
             recordsPerPageOptions={recordsPerPageOptions}
             onRecordsPerPageChange={onRecordsPerPageChange}
-            noRecordsText="Tidak Ada Data"
+            onSelectedRecordsChange={onSelectedRecordsChange}
             className="whitespace-nowrap table-hover"
             paginationText={({ from, to, totalRecords }) => `Showing  ${from} to ${to} of ${totalRecords} entries`}
+            noRecordsText="Tidak Ada Data"
           />
         </div>
       </div>
@@ -53,4 +57,4 @@ const TableBasic: React.FC<TableBasicProps> = ({ page, onPageChange, recordsPerP
   );
 };
 
-export default TableBasic;
+export default TableCheckbox;

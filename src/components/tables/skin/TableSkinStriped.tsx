@@ -1,7 +1,7 @@
-import React from 'react';
 import { DataTable } from 'mantine-datatable';
+import React from 'react';
 
-interface TableBasicProps {
+interface TableSkinStripedProps {
   page: number;
   onPageChange: (page: number) => void;
   recordsPerPageOptions: number[];
@@ -11,12 +11,13 @@ interface TableBasicProps {
   columns: any[];
 }
 
-const TableBasic: React.FC<TableBasicProps> = ({ page, onPageChange, recordsPerPageOptions, recordsPerPage, onRecordsPerPageChange, data, columns }) => {
+const TableSkinStriped: React.FC<TableSkinStripedProps> = ({ page, onPageChange, recordsPerPageOptions, recordsPerPage, onRecordsPerPageChange, data, columns }) => {
   // const [page, setPage] = useState(1);
-  // const PAGE_SIZES = [10, 20, 30, 50, 100];
   // const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
-  // const initialRecords = data.slice(0, pageSize);
+  // const [initialRecords, setInitialRecords] = useState(rowData);
   // const [recordsData, setRecordsData] = useState(initialRecords);
+
+  // const [search, setSearch] = useState('');
 
   // useEffect(() => {
   //   setPage(1);
@@ -25,15 +26,30 @@ const TableBasic: React.FC<TableBasicProps> = ({ page, onPageChange, recordsPerP
   // useEffect(() => {
   //   const from = (page - 1) * pageSize;
   //   const to = from + pageSize;
-  //   setRecordsData(data.slice(from, to));
-  // }, [page, pageSize]);
+  //   setRecordsData([...initialRecords.slice(from, to)]);
+  // }, [page, pageSize, initialRecords]);
+
+  // useEffect(() => {
+  //   setInitialRecords(() => {
+  //     return rowData.filter((item) => {
+  //       return (
+  //         item.id.toString().includes(search.toLowerCase()) ||
+  //         item.firstName.toLowerCase().includes(search.toLowerCase()) ||
+  //         item.lastName.toLowerCase().includes(search.toLowerCase()) ||
+  //         item.email.toLowerCase().includes(search.toLowerCase()) ||
+  //         item.phone.toLowerCase().includes(search.toLowerCase())
+  //       );
+  //     });
+  //   });
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [search]);
 
   return (
     <>
-      <div className="panel mt-6">
+      <div className="panel">
         <div className="datatables">
           <DataTable
-            highlightOnHover
+            striped
             page={page}
             records={data}
             minHeight={200}
@@ -44,7 +60,7 @@ const TableBasic: React.FC<TableBasicProps> = ({ page, onPageChange, recordsPerP
             recordsPerPageOptions={recordsPerPageOptions}
             onRecordsPerPageChange={onRecordsPerPageChange}
             noRecordsText="Tidak Ada Data"
-            className="whitespace-nowrap table-hover"
+            className="whitespace-nowrap table-striped"
             paginationText={({ from, to, totalRecords }) => `Showing  ${from} to ${to} of ${totalRecords} entries`}
           />
         </div>
@@ -53,4 +69,4 @@ const TableBasic: React.FC<TableBasicProps> = ({ page, onPageChange, recordsPerP
   );
 };
 
-export default TableBasic;
+export default TableSkinStriped;
