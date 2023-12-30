@@ -7,12 +7,11 @@ interface TableBasicProps {
   recordsPerPageOptions: number[];
   recordsPerPage: number;
   onRecordsPerPageChange: (pageSize: number) => void;
-  recordsData: any[];
   data: any[];
   columns: any[];
 }
 
-const TableBasic: React.FC<TableBasicProps> = ({ page, onPageChange, recordsPerPageOptions, recordsPerPage, onRecordsPerPageChange, recordsData, data, columns }) => {
+const TableBasic: React.FC<TableBasicProps> = ({ page, onPageChange, recordsPerPageOptions, recordsPerPage, onRecordsPerPageChange, data, columns }) => {
   // const [page, setPage] = useState(1);
   // const PAGE_SIZES = [10, 20, 30, 50, 100];
   // const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
@@ -35,16 +34,16 @@ const TableBasic: React.FC<TableBasicProps> = ({ page, onPageChange, recordsPerP
         <div className="datatables">
           <DataTable
             page={page}
+            records={data}
             minHeight={200}
             columns={columns}
-            records={recordsData}
             totalRecords={data.length}
             onPageChange={onPageChange}
             recordsPerPage={recordsPerPage}
             recordsPerPageOptions={recordsPerPageOptions}
             onRecordsPerPageChange={onRecordsPerPageChange}
             highlightOnHover
-            noRecordsText="No results match your search query"
+            noRecordsText="Tidak Ada Data"
             className="whitespace-nowrap table-hover"
             paginationText={({ from, to, totalRecords }) => `Showing  ${from} to ${to} of ${totalRecords} entries`}
           />
