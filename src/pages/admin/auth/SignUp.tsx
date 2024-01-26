@@ -1,16 +1,14 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { IRootState } from '../../../store';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
+import { Link, useNavigate } from 'react-router-dom';
 
-const LoginBoxed = () => {
+const SignUp = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setPageTitle('Register Admin'));
   });
   const navigate = useNavigate();
-  const isDark = useSelector((state: IRootState) => state.themeConfig.theme) === 'dark' ? true : false;
 
   const submitForm = () => {
     navigate('/');
@@ -51,4 +49,4 @@ const LoginBoxed = () => {
   );
 };
 
-export default LoginBoxed;
+export default SignUp;
