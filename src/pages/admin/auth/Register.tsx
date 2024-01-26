@@ -7,7 +7,7 @@ import { setPageTitle } from '../../../store/themeConfigSlice';
 const LoginBoxed = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setPageTitle('Login Admin'));
+    dispatch(setPageTitle('Register Admin'));
   });
   const navigate = useNavigate();
   const isDark = useSelector((state: IRootState) => state.themeConfig.theme) === 'dark' ? true : false;
@@ -19,9 +19,13 @@ const LoginBoxed = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-cover bg-center bg-[url('/assets/images/warehouse.jpg')]">
       <div className="panel sm:w-[500px] m-6 max-w-lg w-full">
-        <h2 className="font-bold text-2xl mb-3">Login</h2>
-        <p className="mb-7">Masukkan username dan password untuk login</p>
+        <h2 className="font-bold text-2xl mb-3">Register</h2>
+        <p className="mb-7">Masukkan nama , username , dan password</p>
         <form className="space-y-5 mb-5" onSubmit={submitForm}>
+          <div>
+            <label htmlFor="nama">Nama</label>
+            <input id="usernnamaame" type="text" className="form-input" placeholder="Masukkan Nama" />
+          </div>
           <div>
             <label htmlFor="username">Username</label>
             <input id="username" type="text" className="form-input" placeholder="Masukkan Username" />
@@ -30,21 +34,16 @@ const LoginBoxed = () => {
             <label htmlFor="password">Password</label>
             <input id="password" type="password" className="form-input" placeholder="Masukkan Password" />
           </div>
-          <div>
-            <label className="cursor-pointer">
-              <input type="checkbox" className="form-checkbox" />
-              <span className="text-white-dark">Ingatkan Saya</span>
-            </label>
-          </div>
+
           <button type="submit" className="btn btn-primary w-full">
-            LOGIN
+            Register
           </button>
         </form>
 
         <p className="text-center">
-          Tidak Punya Akun?
-          <Link to="/register" className="font-bold text-primary hover:underline ltr:ml-1 rtl:mr-1">
-            Register
+          Sudah Punya Akun?
+          <Link to="/login" className="font-bold text-primary hover:underline ltr:ml-1 rtl:mr-1">
+            Login
           </Link>
         </p>
       </div>
