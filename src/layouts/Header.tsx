@@ -46,8 +46,12 @@ const Header = () => {
         <div className="relative bg-white flex w-full items-center px-5 py-2.5 dark:bg-black">
           <div className="horizontal-logo flex lg:hidden justify-between items-center ltr:mr-2 rtl:ml-2">
             <Link to="/" className="main-logo flex items-center shrink-0">
-              <img className="w-10 ltr:-ml-1 rtl:-mr-1 inline" src="/logo.png" alt="logo" />
-              <span className="text-2xl ltr:ml-3 rtl:mr-1.5  font-semibold  align-middle hidden md:inline dark:text-white-light transition-all duration-300">IntelliBook</span>
+              {themeConfig.theme === 'light' ? (
+                <img className="w-12 " src="/public/assets/images/logo_light.png" alt="logo" />
+              ) : (
+                <img className="w-12 " src="/public/assets/images/logo_dark.png" alt="logo" />
+              )}
+              <span className="text-2xl ltr:ml-3 rtl:mr-1.5  font-semibold  align-middle hidden md:inline dark:text-white-light transition-all duration-300">GudangNet</span>
             </Link>
             <button
               type="button"
@@ -121,8 +125,8 @@ const Header = () => {
                     </div>
                   </li>
                   <li>
-                    <Link to={`/profile/`} className="dark:hover:text-white-dark dark:text-white">
-                      <Icon width={22} icon="mdi:user" className="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 shrink-0 " />
+                    <Link to={`/profile/`} className=" dark:hover:text-white-dark dark:text-white">
+                      <Icon width={22} icon="mdi:user" className="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 shrink-0" />
                       {/* <IconUser className="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 shrink-0" /> */}
                       Profile
                     </Link>
