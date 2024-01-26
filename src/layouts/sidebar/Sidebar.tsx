@@ -59,7 +59,7 @@ const Sidebar = () => {
               ) : (
                 <img className="w-12 " src="/public/assets/images/logo_dark.png" alt="logo" />
               )}
-              <span className="text-2xl ltr:ml-3 rtl:mr-1.5 font-semibold align-middle lg:inline dark:text-white-light">{t('GudangNet')}</span>
+              <span className="text-2xl text-dark ltr:ml-3 rtl:mr-1.5 font-semibold align-middle lg:inline dark:text-white-light">{t('GudangNet')}</span>
             </NavLink>
 
             <button
@@ -80,7 +80,7 @@ const Sidebar = () => {
                       <div className="flex items-center">
                         {/* Ganti ini dengan ikon sesuai dengan menu */}
                         <Icon icon={menu.icon} width={22} className="group-hover:!text-primary shrink-0" />
-                        <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-white dark:group-hover:text-white-dark">{menu.title}</span>
+                        <span className="ltr:pl-3 rtl:pr-3 text-dark dark:text-white dark:group-hover:text-white-dark">{menu.title}</span>
                       </div>
                     </NavLink>
                   )}
@@ -91,7 +91,7 @@ const Sidebar = () => {
                       <div className="flex items-center">
                         {/* Ganti ini dengan ikon sesuai dengan menu */}
                         <Icon icon={menu.icon} width={22} className="group-hover:!text-primary shrink-0" />
-                        <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-white dark:group-hover:text-white-dark">{menu.title}</span>
+                        <span className="ltr:pl-3 rtl:pr-3 text-dark dark:text-white dark:group-hover:text-white-dark">{menu.title}</span>
                       </div>
 
                       <div className={currentMenu !== `kategori-${index + 1}` ? 'rtl:rotate-90 -rotate-90' : ''}>
@@ -103,7 +103,7 @@ const Sidebar = () => {
                   {/* Render child menu */}
                   {menu.child && (
                     <AnimateHeight duration={300} height={currentMenu === `kategori-${index + 1}` ? 'auto' : 0}>
-                      <ul className="sub-menu text-gray-500">
+                      <ul className="sub-menu text-dark dark:text-white dark:group-hover:text-white-dark">
                         {menu.child.map((childItem, childIndex) => (
                           <li key={childIndex}>
                             <NavLink to={childItem.childLink}>{childItem.childTitle}</NavLink>

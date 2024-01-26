@@ -51,7 +51,7 @@ const Header = () => {
               ) : (
                 <img className="w-12 " src="/public/assets/images/logo_dark.png" alt="logo" />
               )}
-              <span className="text-2xl ltr:ml-3 rtl:mr-1.5  font-semibold  align-middle hidden md:inline dark:text-white-light transition-all duration-300">GudangNet</span>
+              <span className="text-2xl ltr:ml-3 rtl:mr-1.5 text-dark font-semibold  align-middle hidden md:inline dark:text-white-light transition-all duration-300">GudangNet</span>
             </Link>
             <button
               type="button"
