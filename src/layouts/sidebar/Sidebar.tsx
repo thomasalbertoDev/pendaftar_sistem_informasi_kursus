@@ -55,9 +55,9 @@ const Sidebar = () => {
           <div className="flex justify-between items-center px-4 py-3">
             <NavLink to="/" className="main-logo flex items-center shrink-0">
               {themeConfig.theme === 'light' ? (
-                <img className="w-12 " src="/public/assets/images/logo_light.png" alt="logo" />
+                <img className="w-12 " src="/assets/images/logo_light.png" alt="logo" />
               ) : (
-                <img className="w-12 " src="/public/assets/images/logo_dark.png" alt="logo" />
+                <img className="w-12 " src="/assets/images/logo_dark.png" alt="logo" />
               )}
               <span className="text-2xl text-dark ltr:ml-3 rtl:mr-1.5 font-semibold align-middle lg:inline dark:text-white-light">{t('GudangNet')}</span>
             </NavLink>
