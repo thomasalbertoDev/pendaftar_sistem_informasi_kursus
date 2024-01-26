@@ -3,21 +3,19 @@ import React from 'react';
 interface InputCheckboxProps {
   id: string;
   name: string;
-  value: string;
-  choice: string;
-  error: string;
+  text: string;
+  checked?: boolean;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-const InputCheckbox: React.FC<InputCheckboxProps> = ({ id, name, value, choice, error }) => {
+const InputCheckbox: React.FC<InputCheckboxProps> = ({ id, name, text, checked, onChange }) => {
   return (
     <>
       <div className="mb-5">
         <label className="flex items-center cursor-pointer">
-          <input id={id} name={name} value={value} type="checkbox" className={`form-checkbox ${error ? 'border-red-500' : ''}`} defaultChecked />
-          <span className=" text-white-dark">{choice}</span>
+          <input id={id} name={name} checked={checked} onChange={onChange} type="checkbox" className="form-checkbox" />
+          <span className=" text-white-dark">{text}</span>
         </label>
-
-        {error && <span className="text-danger">{error}</span>}
       </div>
     </>
   );

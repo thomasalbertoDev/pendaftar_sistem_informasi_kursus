@@ -3,12 +3,13 @@ import { forwardRef, ForwardedRef } from 'react';
 interface ButtonSolidInfoProps {
   onClick?: () => void;
   text: string;
+  width?: string;
 }
 
-const ButtonSolidInfo = forwardRef(({ onClick, text }: ButtonSolidInfoProps, ref: ForwardedRef<HTMLButtonElement>) => {
+const ButtonSolidInfo = forwardRef(({ onClick, text, width }: ButtonSolidInfoProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button ref={ref} onClick={onClick} type="button" className="btn btn-info ltr:ml-4 rtl:mr-4">
+      <button ref={ref} onClick={onClick} type="submit" className={`btn btn-info ${width}`}>
         {text}
       </button>
     </>

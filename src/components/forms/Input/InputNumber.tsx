@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface InputTelephoneProps {
+interface InputNumberProps {
   id: string;
   name: string;
   value: number;
@@ -11,14 +11,16 @@ interface InputTelephoneProps {
   isInputFilled: string;
 }
 
-const InputTelephone: React.FC<InputTelephoneProps> = ({ id, name, value, onChange, placeholder, label, error, isInputFilled }) => {
+const InputNumber: React.FC<InputNumberProps> = ({ id, name, value, onChange, placeholder, label, error, isInputFilled }) => {
   const isFilled = value.toString() !== '';
 
   return (
     <>
       <div className="mb-5">
-        <label htmlFor={label}>{label}</label>
-        <input id={id} type="tel" name={name} value={value} onChange={onChange} placeholder={placeholder} className={`form-input ${error ? 'error' : ''} mb-1`} />
+        <label htmlFor={label} className="mb-2 dark:text-white">
+          {label}
+        </label>
+        <input id={id} type="number" name={name} value={value} onChange={onChange} placeholder={placeholder} className={`form-input ${error ? 'error' : ''} mb-1 dark:text-white`} />
 
         {error && <span className="text-danger">{error}</span>}
         {isFilled && !error && <span className="text-success">{isInputFilled}</span>}
@@ -27,4 +29,4 @@ const InputTelephone: React.FC<InputTelephoneProps> = ({ id, name, value, onChan
   );
 };
 
-export default InputTelephone;
+export default InputNumber;

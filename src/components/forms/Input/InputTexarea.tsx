@@ -9,17 +9,23 @@ interface InputTextareaProps {
   placeholder: string;
   label: string;
   error: string;
+  isInputFilled: string;
 }
 
-const InputTextarea: React.FC<InputTextareaProps> = ({ id, name, rows, value, onChange, placeholder, label, error }) => {
+const InputTextarea: React.FC<InputTextareaProps> = ({ id, name, rows, value, onChange, placeholder, label, error, isInputFilled }) => {
+  const isFilled = value !== '';
+
   return (
     <>
       <div className="mb-5">
         <label htmlFor={label}>{label}</label>
-        <textarea id={id} name={name} rows={rows} value={value} onChange={onChange} placeholder={placeholder} className={`form-textarea ${error ? 'error' : ''}`} required />
+        <textarea id={id} name={name} rows={rows} value={value} onChange={onChange} placeholder={placeholder} className={`form-textarea ${error ? 'error' : ''} mb-1`} />
 
         {error && <span className="text-danger">{error}</span>}
+        {isFilled && !error && <span className="text-success">{isInputFilled}</span>}
       </div>
     </>
   );
 };
+
+export default InputTextarea;

@@ -8,7 +8,7 @@ interface ButtonOutlineSecondaryProps {
 const ButtonOutlineSecondary = forwardRef(({ onClick, text }: ButtonOutlineSecondaryProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button ref={ref} onClick={onClick} type="button" className="btn btn-outline-secondary ltr:ml-4 rtl:mr-4">
+      <button ref={ref} onClick={onClick} type="button" className="btn btn-outline-secondary ">
         {text}
       </button>
     </>

@@ -9,7 +9,9 @@ interface TippyDefaultProps {
 const TippyDefault = forwardRef(({ content, children }: TippyDefaultProps, ref: ForwardedRef<HTMLDivElement>) => {
   return (
     <>
-      <Tippy content={content}>{children}</Tippy>
+      <Tippy content={content}>
+        <div ref={ref}>{children}</div>
+      </Tippy>
     </>
   );
 });

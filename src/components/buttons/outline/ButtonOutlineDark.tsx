@@ -8,7 +8,7 @@ interface ButtonOutlineDarkProps {
 const ButtonOutlineDark = forwardRef(({ onClick, text }: ButtonOutlineDarkProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button ref={ref} onClick={onClick} type="button" className="btn btn-outline-dark ltr:ml-4 rtl:mr-4">
+      <button ref={ref} onClick={onClick} type="button" className="btn btn-outline-dark ">
         {text}
       </button>
     </>

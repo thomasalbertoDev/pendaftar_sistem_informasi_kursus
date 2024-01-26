@@ -3,21 +3,18 @@ import React from 'react';
 interface InputRadioProps {
   id: string;
   name: string;
-  value: string;
-  choice: string;
+  text: string;
   error: string;
 }
 
-const InputRadio: React.FC<InputRadioProps> = ({ id, name, value, choice, error }) => {
+const InputRadio: React.FC<InputRadioProps> = ({ id, name, text, error }) => {
   return (
     <>
       <div className="mb-5">
         <label className="flex items-center cursor-pointer">
-          <input id={id} name={name} type="radio" value={value} className={`form-radio ${error ? 'border-red-500' : ''}`} defaultChecked />
-          <span className="text-white-dark">{choice}</span>
+          <input id={id} name={name} type="radio" className={`form-radio ${error ? 'border-red-500' : ''}`} />
+          <span className="text-white-dark">{text}</span>
         </label>
-
-        {error && <span className="text-danger">{error}</span>}
       </div>
     </>
   );

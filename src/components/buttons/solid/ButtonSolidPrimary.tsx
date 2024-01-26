@@ -3,12 +3,13 @@ import { forwardRef, ForwardedRef } from 'react';
 interface ButtonSolidPrimaryProps {
   onClick?: () => void;
   text: string;
+  width?: string;
 }
 
-const ButtonSolidPrimary = forwardRef(({ onClick, text }: ButtonSolidPrimaryProps, ref: ForwardedRef<HTMLButtonElement>) => {
+const ButtonSolidPrimary = forwardRef(({ onClick, text, width }: ButtonSolidPrimaryProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button ref={ref} onClick={onClick} type="button" className="btn btn-primary ltr:ml-4 rtl:mr-4">
+      <button ref={ref} onClick={onClick} type="submit" className={`btn btn-primary ${width}`}>
         {text}
       </button>
     </>
