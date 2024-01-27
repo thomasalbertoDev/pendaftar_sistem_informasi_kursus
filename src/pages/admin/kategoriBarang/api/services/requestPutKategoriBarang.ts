@@ -15,7 +15,7 @@ export const requestPutKategoriBarang = async (id_kategori_barang: string, nama_
       });
       toast.fire({
         icon: 'success',
-        title: `Kategori Berhasil Diedit!`,
+        title: `Kategori Barang Berhasil Diedit!`,
         padding: '10px 20px',
       });
 
@@ -31,7 +31,7 @@ export const requestPutKategoriBarang = async (id_kategori_barang: string, nama_
     });
     toast.fire({
       icon: 'error',
-      title: 'Kategori Gagal Diedit!',
+      title: 'Kategori Barang Gagal Diedit!',
       padding: '10px 20px',
     });
 
