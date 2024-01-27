@@ -23,6 +23,11 @@ const Karyawan = lazy(() => import('../pages/admin/karyawan/Index'));
 const TambahKaryawan = lazy(() => import('../pages/admin/karyawan/Form/FormAdd'));
 const EditKaryawan = lazy(() => import('../pages/admin/karyawan/Form/FormEdit'));
 
+// PEMASOK
+const Pemasok = lazy(() => import('../pages/admin/pemasok/Index'));
+const TambahPemasok = lazy(() => import('../pages/admin/pemasok/Form/FormAdd'));
+const EditPemasok = lazy(() => import('../pages/admin/pemasok/Form/FormEdit'));
+
 // LOGIN
 const Login = lazy(() => import('../pages/admin/auth/SignIn'));
 
@@ -89,6 +94,20 @@ const routes = [
   {
     path: '/karyawan/edit-karyawan/:id_karyawan',
     element: <EditKaryawan />,
+  },
+
+  // PEMASOK
+  {
+    path: '/pemasok',
+    element: <Pemasok />,
+  },
+  {
+    path: '/pemasok/tambah-pemasok',
+    element: <TambahPemasok />,
+  },
+  {
+    path: '/pemasok/edit-pemasok/:id_pemasok',
+    element: <EditPemasok />,
   },
 
   // LOGIN
