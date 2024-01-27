@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import IconTrash from '../../../../components/Icons/IconTrash';
 import IconPencil from '../../../../components/Icons/IconPencil';
 import TippyDefault from '../../../../components/tippys/default/TippyDefault';
-import IconPrinter from '../../../../components/Icons/IconPrinter';
 import FormatTanggal from '../../../../helpers/FormatTanggal';
 
 interface ColumnsProps {
@@ -142,11 +141,6 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
       render: (item: any) => (
         <>
           <div className="flex space-x-1 rtl:space-x-reverse gap-2">
-            {/* <Link to={`/karyawan/cetak-kartu-karyawan/${item.id_karyawan}`}>
-              <TippyDefault content="Cetak Kartu">
-                <IconPrinter />
-              </TippyDefault>
-            </Link> */}
             <Link to={`/karyawan/edit-karyawan/${item.id_karyawan}`}>
               <TippyDefault content="Edit">
                 <IconPencil />

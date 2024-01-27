@@ -1,15 +1,15 @@
-import { useCallback, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
-import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 import { requestGetKaryawan } from './api/services/requestGetKaryawan';
-import { debounce, set } from 'lodash';
+import { requestDeleteKaryawan } from './api/services/requestDeleteKaryawan';
+import { useCallback, useEffect, useState } from 'react';
+import Table from './Table/Index';
 import SearchBasic from '../../../components/searchs/SearchBasic';
-import { Link } from 'react-router-dom';
 import TippyDefault from '../../../components/tippys/default/TippyDefault';
 import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
-import Table from './Table/Index';
-import { requestDeleteKaryawan } from './api/services/requestDeleteKaryawan';
+import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const Index = () => {
   const dispatch = useDispatch();
