@@ -44,7 +44,7 @@ const FormEdit = () => {
         foto_karyawan: response?.data?.foto_karyawan || '',
       });
     });
-  });
+  }, []);
 
   const handleUpdate = async (values: any) => {
     const request = await requestPutKaryawan(id_karyawan ?? '', { ...values });
