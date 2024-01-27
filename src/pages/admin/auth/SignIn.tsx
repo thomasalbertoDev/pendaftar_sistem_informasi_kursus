@@ -64,7 +64,7 @@ const SignIn = () => {
                 />
               </div>
 
-              <ButtonSolidPrimary text={'Login'} width={'w-full'} onClick={() => handleSubmit(values)} />
+              <ButtonSolidPrimary text={'LOGIN'} width={'w-full'} onClick={() => handleSubmit(values)} />
             </Form>
           )}
         </Formik>
