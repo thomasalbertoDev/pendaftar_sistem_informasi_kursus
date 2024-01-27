@@ -18,6 +18,11 @@ const SatuanBarang = lazy(() => import('../pages/admin/satuanBarang/Index'));
 const TambahSatuanBarang = lazy(() => import('../pages/admin/satuanBarang/Form/FormAdd'));
 const EditSatuanBarang = lazy(() => import('../pages/admin/satuanBarang/Form/FormEdit'));
 
+// KARYAWAN
+const Karyawan = lazy(() => import('../pages/admin/karyawan/Index'));
+const TambahKaryawan = lazy(() => import('../pages/admin/karyawan/Form/FormAdd'));
+const EditKaryawan = lazy(() => import('../pages/admin/karyawan/Form/FormEdit'));
+
 // LOGIN
 const Login = lazy(() => import('../pages/admin/auth/SignIn'));
 
@@ -70,6 +75,20 @@ const routes = [
   {
     path: '/satuan-barang/edit-satuan-barang/:id_satuan_barang',
     element: <EditSatuanBarang />,
+  },
+
+  // KARYAWAN
+  {
+    path: '/karyawan',
+    element: <Karyawan />,
+  },
+  {
+    path: '/karyawan/tambah-karyawan',
+    element: <TambahKaryawan />,
+  },
+  {
+    path: '/karyawan/edit-karyawan/:id_karyawan',
+    element: <EditKaryawan />,
   },
 
   // LOGIN
