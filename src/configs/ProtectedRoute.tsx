@@ -11,12 +11,12 @@ const ProtectedRoute = ({ children }: any) => {
 
     if (decoded.exp < currentTime) {
       auth.removeToken();
-      return <Navigate to={'/auth/admin/login'} replace />;
+      return <Navigate to={'/login'} replace />;
     }
   }
 
   if (!token) {
-    return <Navigate to={'/auth/admin/login'} replace />;
+    return <Navigate to={'/login'} replace />;
   }
 
   return children;

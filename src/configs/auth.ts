@@ -26,6 +26,10 @@ class Auth {
   removeUsername = () => {
     return window.localStorage.removeItem('username');
   };
+
+  removeNama = () => {
+    return window.localStorage.removeItem('nama');
+  };
 }
 
 export default new Auth();
