@@ -8,6 +8,11 @@ const Agama = lazy(() => import('../pages/admin/agama/Index'));
 const TambahAgama = lazy(() => import('../pages/admin/agama/Form/FormAdd'));
 const EditAgama = lazy(() => import('../pages/admin/agama/Form/FormEdit'));
 
+// KATEGORI BARANG
+const KategoriBarang = lazy(() => import('../pages/admin/kategoriBarang/Index'));
+const TambahKategoriBarang = lazy(() => import('../pages/admin/kategoriBarang/Form/FormAdd'));
+const EditKategoriBarang = lazy(() => import('../pages/admin/kategoriBarang/Form/FormEdit'));
+
 // LOGIN
 const Login = lazy(() => import('../pages/admin/auth/SignIn'));
 
@@ -32,6 +37,20 @@ const routes = [
   {
     path: '/agama/edit-agama/:id_agama',
     element: <EditAgama />,
+  },
+
+  // KATEGORI BARANG
+  {
+    path: '/kategori-barang',
+    element: <KategoriBarang />,
+  },
+  {
+    path: '/kategori-barang/tambah-kategori-barang',
+    element: <TambahKategoriBarang />,
+  },
+  {
+    path: '/kategori-barang/edit-kategori-barang/:id_kategori_barang',
+    element: <EditKategoriBarang />,
   },
 
   // LOGIN
