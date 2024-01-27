@@ -7,6 +7,10 @@ class Auth {
     return window.localStorage.setItem('username', username);
   };
 
+  setNama = (nama: string) => {
+    return window.localStorage.setItem('nama', nama);
+  };
+
   getToken = () => {
     return window.localStorage.getItem('token');
   };
