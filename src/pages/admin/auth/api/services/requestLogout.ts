@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
-import auth from '../../../../configs/auth';
-import { logout } from '../api/api';
+import auth from '../../../../../configs/auth';
+import { logout } from '../api';
 
 export const requestLogout = async () => {
   try {

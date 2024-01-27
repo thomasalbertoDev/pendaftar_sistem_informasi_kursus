@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import { useEffect } from 'react';
 import { IRootState } from '../store';
-import { requestLogout } from '../pages/admin/auth/services/requestLogout';
+import { requestLogout } from '../pages/admin/auth/api/services/requestLogout';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme, toggleSidebar } from '../store/themeConfigSlice';
 import { Link, useLocation, useNavigate } from 'react-router-dom';

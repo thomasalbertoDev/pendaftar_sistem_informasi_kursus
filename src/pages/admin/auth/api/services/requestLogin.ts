@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
-import auth from '../../../../configs/auth';
-import { login } from '../api/api';
+import auth from '../../../../../configs/auth';
+import { login } from '../api';
 
 export const requestLogin = async (username: string, password: string) => {
   try {
