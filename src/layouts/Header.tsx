@@ -1,6 +1,7 @@
 import { Icon } from '@iconify/react';
 import { useEffect } from 'react';
 import { IRootState } from '../store';
+import { requestLogout } from '../pages/admin/auth/services/requestLogout';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme, toggleSidebar } from '../store/themeConfigSlice';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -10,9 +11,12 @@ import IconMenu from '../components/Icons/IconMenu';
 import IconMoon from '../components/Icons/IconMoon';
 import IconLaptop from '../components/Icons/IconLaptop';
 import IconLogout from '../components/Icons/IconLogout';
+import auth from '../configs/auth';
 
 const Header = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const selector = document.querySelector('ul.horizontal-menu a[href="' + window.location.pathname + '"]');
@@ -36,9 +40,16 @@ const Header = () => {
   }, [location]);
 
   const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl' ? true : false;
-
   const themeConfig = useSelector((state: IRootState) => state.themeConfig);
-  const dispatch = useDispatch();
+
+  const handleLogout = async () => {
+    try {
+      await requestLogout();
+      navigate('/login');
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <header className={`z-40 ${themeConfig.semidark && themeConfig.menu === 'horizontal' ? 'dark' : ''}`}>
@@ -115,20 +126,19 @@ const Header = () => {
                     <div className="flex items-center px-4 py-4">
                       <img className="rounded-md w-10 h-10 object-cover" src="/" alt="Admin Profile" />
                       <div className="ltr:pl-4 rtl:pr-4 truncate">
-                        <span className="text-xs bg-success-light rounded text-success px-1">Admin</span>
-                        <h4 className="text-base dark:text-white">Admin</h4>
+                        <span className="text-xs bg-success-light rounded text-success px-1">ADMIN</span>
+                        <h4 className="text-base dark:text-white">{auth.getUsername()}</h4>
                       </div>
                     </div>
                   </li>
                   <li>
                     <Link to={`/profile/`} className=" dark:hover:text-white-dark dark:text-white">
                       <Icon width={22} icon="mdi:user" className="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 shrink-0" />
-                      {/* <IconUser className="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 shrink-0" /> */}
                       Profile
                     </Link>
                   </li>
                   <li className="border-t border-white-light dark:border-white-light/10">
-                    <button type="button" className="dark:hover:text-white text-danger">
+                    <button type="button" className="dark:hover:text-white text-danger" onClick={handleLogout}>
                       <IconLogout className="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 rotate-90 shrink-0" />
                       Logout
                     </button>
