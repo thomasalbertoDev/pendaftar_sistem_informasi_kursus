@@ -47,8 +47,8 @@ const FormAdd = () => {
             icon: 'clarity:employee-solid',
           },
           {
-            label: 'Tambah Karwayan',
-            link: '/karyawan/tambah-karwayan',
+            label: 'Tambah Karyawan',
+            link: '/karyawan/tambah-karyawan',
           },
         ]}
       />
