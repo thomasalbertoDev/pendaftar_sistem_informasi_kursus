@@ -32,8 +32,6 @@ const FormAdd = () => {
     if (request) {
       navigate('/barang');
     }
-
-    console.log(request);
   };
 
   return (
