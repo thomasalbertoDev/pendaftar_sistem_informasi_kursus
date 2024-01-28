@@ -44,6 +44,9 @@ const TambahBarangMasuk = lazy(() => import('../pages/admin/barangMasuk/Form/For
 // LAPORAN PENGAMBILAN BARANG
 const LaporanPengambilanBarang = lazy(() => import('../pages/admin/laporanPengambilanBarang/Index'));
 
+// LAPORAN BARANG MASUK
+const LaporanBarangMasuk = lazy(() => import('../pages/admin/laporanBarangMasuk/Index'));
+
 // LOGIN
 const Login = lazy(() => import('../pages/admin/auth/SignIn'));
 
@@ -160,9 +163,16 @@ const routes = [
     element: <TambahBarangMasuk />,
   },
 
+  // LAPORAN PENGAMBILAN BARANG
   {
     path: '/laporan-pengambilan-barang',
     element: <LaporanPengambilanBarang />,
+  },
+
+  // LAPORAN BARANG MASUK
+  {
+    path: '/laporan-barang-masuk',
+    element: <LaporanBarangMasuk />,
   },
 
   // LOGIN
