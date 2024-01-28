@@ -101,12 +101,12 @@ const FormAdd = () => {
                 <InputNumber
                   id={'jumlah_pengambilan_barang'}
                   name={'jumlah_pengambilan_barang'}
-                  label={'Jumlah Pengambilan Barang Barang'}
+                  label={'Jumlah Pengambilan Barang'}
                   value={values.jumlah_pengambilan_barang}
                   onChange={handleChange}
                   error={errors.jumlah_pengambilan_barang || ''}
                   placeholder={'Masukkan Jumlah Pengambilan Barang'}
-                  isInputFilled={'Form Jumlah Pengambilan Barang Barang Sudah Terisi'}
+                  isInputFilled={'Form Jumlah Pengambilan Barang Sudah Terisi'}
                 />
               </div>
 
