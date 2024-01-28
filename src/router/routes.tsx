@@ -28,6 +28,11 @@ const Pemasok = lazy(() => import('../pages/admin/pemasok/Index'));
 const TambahPemasok = lazy(() => import('../pages/admin/pemasok/Form/FormAdd'));
 const EditPemasok = lazy(() => import('../pages/admin/pemasok/Form/FormEdit'));
 
+// BARANG
+const Barang = lazy(() => import('../pages/admin/barang/Index'));
+const TambahBarang = lazy(() => import('../pages/admin/barang/Form/FormAdd'));
+const EditBarang = lazy(() => import('../pages/admin/barang/Form/FormEdit'));
+
 // LOGIN
 const Login = lazy(() => import('../pages/admin/auth/SignIn'));
 
@@ -108,6 +113,20 @@ const routes = [
   {
     path: '/pemasok/edit-pemasok/:id_pemasok',
     element: <EditPemasok />,
+  },
+
+  // BARANG
+  {
+    path: '/barang',
+    element: <Barang />,
+  },
+  {
+    path: '/barang/tambah-barang',
+    element: <TambahBarang />,
+  },
+  {
+    path: '/barang/edit-barang/:id_barang',
+    element: <EditBarang />,
   },
 
   // LOGIN
