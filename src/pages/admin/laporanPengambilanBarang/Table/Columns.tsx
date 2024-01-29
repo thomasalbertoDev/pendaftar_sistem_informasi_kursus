@@ -48,6 +48,17 @@ const Columns = () => {
       ),
     },
     {
+      id: 'keterangan_barang',
+      key: 'nama_baketerangan_barangrang',
+      title: 'Keterangan Barang',
+      accessor: 'keterangan_barang',
+      render: (item: any) => (
+        <>
+          <span className="dark:text-white">{item.barang.keterangan_barang}</span>
+        </>
+      ),
+    },
+    {
       id: 'no_karyawan',
       key: 'no_karyawan',
       title: 'No Karyawan',
