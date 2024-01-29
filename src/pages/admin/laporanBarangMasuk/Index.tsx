@@ -1,12 +1,14 @@
 import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../../store/themeConfigSlice';
+import { downloadExcel } from 'react-export-table-to-excel';
 import { requestGetLaporanBarangMasuk } from './api/services/requestGetLaporanBarangMasuk';
 import { useCallback, useEffect, useState } from 'react';
 import Table from './Table/Index';
 import ButtonIcon from '../../../components/buttons/icon/ButtonIcon';
 import SearchBasic from '../../../components/searchs/SearchBasic';
 import TippyDefault from '../../../components/tippys/default/TippyDefault';
+import FormatTanggal from '../../../helpers/FormatTanggal';
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 
 const Index = () => {
@@ -38,6 +40,30 @@ const Index = () => {
     debounceSearch(searchQuery);
   };
 
+  const recordLaporanBarangMasuk = () => {
+    return initialRecords.map((item: any, index: any) => {
+      return {
+        index: index + 1,
+        tanggal_barang_masuk: FormatTanggal(item?.tanggal_barang_masuk),
+        kode_barang: item?.barang?.kode_barang,
+        nama_barang: item?.barang?.nama_barang,
+        pemasok: item?.barang?.pemasok?.nama_pemasok,
+        jumlah_barang_masuk: item?.jumlah_barang_masuk,
+      };
+    });
+  };
+
+  const handlePrintLaporanBarangMasuk = () => {
+    downloadExcel({
+      fileName: 'Laporan Barang Masuk',
+      sheet: 'react-export-table-to-excel',
+      tablePayload: {
+        header: ['No', 'Tanggal Barang Masuk', 'Kode Barang', 'Nama Barang', 'Pemasok', 'Jumlah Barang Masuk'],
+        body: recordLaporanBarangMasuk(),
+      },
+    });
+  };
+
   const handleRefresh = () => {
     window.location.reload();
   };
@@ -58,6 +84,9 @@ const Index = () => {
       <div className="flex justify-between items-center mt-10">
         <SearchBasic value={search} placeholder="Cari Barang..." onChange={handleSearch} width="w-1/2" />
         <div className="flex gap-3">
+          <TippyDefault content="Cetak Laporan Barang Masuk">
+            <ButtonIcon icon="mdi:printer" backgroundColor="btn-success" onClick={handlePrintLaporanBarangMasuk} />
+          </TippyDefault>
           <TippyDefault content="Refresh Halaman">
             <ButtonIcon icon="material-symbols:refresh" backgroundColor="btn-info" onClick={handleRefresh} />
           </TippyDefault>
