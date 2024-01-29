@@ -86,7 +86,7 @@ const Index = () => {
       <div className="flex justify-between items-center mt-10">
         <SearchBasic value={search} placeholder="Cari Barang..." onChange={handleSearch} width="w-1/2" />
         <div className="flex gap-3">
-          <TippyDefault content="Cetak Riwayat Pengembalian">
+          <TippyDefault content="Cetak Laporan Pengambilan Barang">
             <ButtonIcon icon="mdi:printer" backgroundColor="btn-success" onClick={handlePrintLaporanPengambilanBarang} />
           </TippyDefault>
           <TippyDefault content="Refresh Halaman">
