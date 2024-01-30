@@ -1,15 +1,15 @@
-import PerfectScrollbar from 'react-perfect-scrollbar';
-import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useLocation } from 'react-router-dom';
-import { toggleSidebar } from '../../store/themeConfigSlice';
-import AnimateHeight from 'react-animate-height';
-import { IRootState } from '../../store';
-import { useState, useEffect } from 'react';
-import IconCaretsDown from '../../components/Icons/IconCaretsDown';
-import IconCaretDown from '../../components/Icons/IconCaretDown';
-import { SidebarMenu } from './SidebarMenu';
 import { Icon } from '@iconify/react';
+import { IRootState } from '../../store';
+import { SidebarMenu } from './SidebarMenu';
+import { toggleSidebar } from '../../store/themeConfigSlice';
+import { useTranslation } from 'react-i18next';
+import { useState, useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import AnimateHeight from 'react-animate-height';
+import IconCaretDown from '../../components/Icons/IconCaretDown';
+import IconCaretsDown from '../../components/Icons/IconCaretsDown';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 const Sidebar = () => {
   const [currentMenu, setCurrentMenu] = useState<string>('');
@@ -78,7 +78,6 @@ const Sidebar = () => {
                   {!menu.child && (
                     <NavLink to={menu.link} className="group ">
                       <div className="flex items-center">
-                        {/* Ganti ini dengan ikon sesuai dengan menu */}
                         <Icon icon={menu.icon} width={22} className="group-hover:!text-primary shrink-0" />
                         <span className="ltr:pl-3 rtl:pr-3 text-dark dark:text-white dark:group-hover:text-white-dark">{menu.title}</span>
                       </div>
@@ -89,7 +88,6 @@ const Sidebar = () => {
                   {menu.child && (
                     <button type="button" className={`${currentMenu ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu(`kategori-${index + 1}`)}>
                       <div className="flex items-center">
-                        {/* Ganti ini dengan ikon sesuai dengan menu */}
                         <Icon icon={menu.icon} width={22} className="group-hover:!text-primary shrink-0" />
                         <span className="ltr:pl-3 rtl:pr-3 text-dark dark:text-white dark:group-hover:text-white-dark">{menu.title}</span>
                       </div>
