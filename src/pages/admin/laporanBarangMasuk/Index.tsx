@@ -28,7 +28,13 @@ const Index = () => {
 
   const debounceSearch = useCallback(
     debounce((searchQuery) => {
-      const filteredData = (initialRecords as any[]).filter((item) => item.barang.nama_barang.toLowerCase().includes(searchQuery.toLowerCase()));
+      const filteredData = initialRecords.filter((item: any) => {
+        const namaBarang = String(item?.barang.nama_barang || '').toLowerCase();
+        const tanggalBarangMasuk = FormatTanggal(item?.tanggal_barang_masuk || '').toLowerCase();
+        const searchLower = searchQuery.toLowerCase();
+
+        return namaBarang.includes(searchLower) || tanggalBarangMasuk.includes(searchLower);
+      });
       setInitialRecords(filteredData as never[]);
     }, 500),
     [laporanBarangMasuk]
@@ -82,7 +88,7 @@ const Index = () => {
       />
 
       <div className="flex justify-between items-center mt-10">
-        <SearchBasic value={search} placeholder="Cari Barang..." onChange={handleSearch} width="w-1/2" />
+        <SearchBasic value={search} placeholder="Cari Nama Barang Atau Tanggal Barang Masuk..." onChange={handleSearch} width="w-1/2" />
         <div className="flex gap-3">
           <TippyDefault content="Cetak Laporan Barang Masuk">
             <ButtonIcon icon="mdi:printer" backgroundColor="btn-success" onClick={handlePrintLaporanBarangMasuk} />
