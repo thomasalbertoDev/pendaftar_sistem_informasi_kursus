@@ -8,7 +8,7 @@ export const requestDeleteAllBarangMasuk = async (): Promise<any> => {
       title: 'Apakah anda yakin?',
       text: 'Ingin menyimpan data barang masuk ini ke laporan?',
       showCancelButton: true,
-      confirmButtonText: 'Hapus',
+      confirmButtonText: 'Simpan',
       padding: '2em',
       customClass: 'sweet-alerts',
     });
