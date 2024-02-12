@@ -11,7 +11,7 @@ const CheckboxDefaultPrimary: React.FC<CheckboxDefaultPrimaryProps> = ({ text, c
     <>
       <label className="inline-flex">
         <input checked={checked} type="checkbox" className="form-checkbox" onChange={onChange} />
-        <span>{text}</span>
+        <span className="text-gray-700">{text}</span>
       </label>
     </>
   );
