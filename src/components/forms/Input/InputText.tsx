@@ -20,7 +20,7 @@ const InputText: React.FC<InputTextProps> = ({ id, name, value, onChange, placeh
         <label htmlFor={label} className="mb-2 dark:text-white">
           {label}
         </label>
-        <input id={id} type="text" name={name} value={value} onChange={onChange} placeholder={placeholder} className={`form-input ${error ? 'error' : ''} mb-1 dark:text-white`} />
+        <input id={id} type="text" name={name} value={value} onChange={onChange} placeholder={placeholder} className={`form-input ${error ? 'error' : ''} mb-1 dark:text-white py-3 rounded-lg`} />
 
         {error && <span className="text-danger">{error}</span>}
         {isFilled && !error && <span className="text-success">{isInputFilled}</span>}
