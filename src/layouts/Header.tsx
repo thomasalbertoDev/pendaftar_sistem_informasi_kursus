@@ -1,12 +1,9 @@
 import { Icon } from '@iconify/react';
 import { IRootState } from '../store';
-import { requestLogout } from '../pages/admin/auth/api/services/requestLogout';
-import { requestGetAdmin } from '../pages/admin/profile/api/services/requestGetAdmin';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme, toggleSidebar } from '../store/themeConfigSlice';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import auth from '../configs/auth';
 import IconSun from '../components/Icons/IconSun';
 import Dropdown from '../components/Dropdown';
 import IconMenu from '../components/Icons/IconMenu';
@@ -17,8 +14,6 @@ import IconLogout from '../components/Icons/IconLogout';
 const Header = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [admin, setAdmin] = useState<any>({});
 
   useEffect(() => {
     const selector = document.querySelector('ul.horizontal-menu a[href="' + window.location.pathname + '"]');
@@ -43,30 +38,6 @@ const Header = () => {
 
   const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl' ? true : false;
   const themeConfig = useSelector((state: IRootState) => state.themeConfig);
-
-  useEffect(() => {
-    const getAdmin = async () => {
-      try {
-        const adminData = await requestGetAdmin();
-        if (adminData) {
-          setAdmin(adminData);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getAdmin();
-  }, []);
-
-  const handleLogout = async () => {
-    try {
-      await requestLogout();
-      navigate('/login');
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <header className={`z-40 ${themeConfig.semidark && themeConfig.menu === 'horizontal' ? 'dark' : ''}`}>
@@ -136,7 +107,7 @@ const Header = () => {
                 offset={[0, 8]}
                 placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
                 btnClassName="relative group block"
-                button={<img className="w-9 h-9 rounded-full object-cover" src={`${import.meta.env.VITE_API_URL}/${admin?.data?.foto_admin}`} alt="Admin Profile" />}
+                button={<img className="w-9 h-9 rounded-full object-cover" src='/' alt="Admin Profile" />}
               >
                 <ul className="text-dark dark:text-white-dark !py-0 w-[230px] font-semibold dark:text-white-light/90">
                   <li>
@@ -144,18 +115,18 @@ const Header = () => {
                       <img className="rounded-md w-10 h-10 object-cover" src="/" alt="Admin Profile" />
                       <div className="ltr:pl-4 rtl:pr-4 truncate">
                         <span className="text-xs bg-success-light rounded text-success px-1">ADMIN</span>
-                        <h4 className="text-base dark:text-white">{admin?.data?.nama_admin}</h4>
+                        <h4 className="text-base dark:text-white">Admin</h4>
                       </div>
                     </div>
                   </li>
                   <li>
-                    <Link to={`/profile/${admin?.data?.id_admin}`} className=" dark:hover:text-white-dark dark:text-white">
+                    <Link to={`/profile`} className=" dark:hover:text-white-dark dark:text-white">
                       <Icon width={22} icon="mdi:user" className="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 shrink-0" />
                       Profile
                     </Link>
                   </li>
                   <li className="border-t border-white-light dark:border-white-light/10">
-                    <button type="button" className="dark:hover:text-white text-danger" onClick={handleLogout}>
+                    <button type="button" className="dark:hover:text-white text-danger">
                       <IconLogout className="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 rotate-90 shrink-0" />
                       Logout
                     </button>

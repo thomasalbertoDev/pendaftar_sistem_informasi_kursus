@@ -10,56 +10,16 @@ export const SidebarMenu = [
     link: '#',
     child: [
       {
-        childTitle: 'Agama',
-        childLink: '/agama',
+        childTitle: 'Master 1',
+        childLink: '/master-1',
       },
       {
-        childTitle: 'Kategori Barang',
-        childLink: '/kategori-barang',
+        childTitle: 'Master 2',
+        childLink: '/master-2',
       },
       {
-        childTitle: 'Satuan Barang',
-        childLink: '/satuan-barang',
-      },
-    ],
-  },
-  {
-    title: 'Karyawan',
-    icon: 'clarity:employee-solid',
-    link: '/karyawan',
-  },
-  {
-    title: 'Pemasok',
-    icon: 'healthicons:city-worker',
-    link: '/pemasok',
-  },
-  {
-    title: 'Barang',
-    icon: 'solar:box-bold',
-    link: '/barang',
-  },
-  {
-    title: 'Pengambilan Barang',
-    icon: 'lets-icons:box-open-fill',
-    link: '/pengambilan-barang',
-  },
-  {
-    title: 'Barang Masuk',
-    icon: 'material-symbols:box-add-sharp',
-    link: '/barang-masuk',
-  },
-  {
-    title: 'Laporan',
-    icon: 'iconoir:book-solid',
-    link: '#',
-    child: [
-      {
-        childTitle: 'Pengambilan Barang',
-        childLink: '/laporan-pengambilan-barang',
-      },
-      {
-        childTitle: 'Barang Masuk',
-        childLink: '/laporan-barang-masuk',
+        childTitle: 'Master 3',
+        childLink: '/master-3',
       },
     ],
   },
