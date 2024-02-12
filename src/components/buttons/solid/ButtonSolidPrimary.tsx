@@ -9,7 +9,7 @@ interface ButtonSolidPrimaryProps {
 const ButtonSolidPrimary = forwardRef(({ onClick, text, width }: ButtonSolidPrimaryProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button ref={ref} onClick={onClick} type="submit" className={`btn btn-primary ${width}`}>
+      <button ref={ref} onClick={onClick} type="submit" className={`btn btn-lg btn-primary ${width}`}>
         {text}
       </button>
     </>
