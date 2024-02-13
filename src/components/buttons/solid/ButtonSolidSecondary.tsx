@@ -9,7 +9,7 @@ interface ButtonSolidSecondaryProps {
 const ButtonSolidSecondary = forwardRef(({ onClick, text, width }: ButtonSolidSecondaryProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button ref={ref} onClick={onClick} type="submit" className={`btn btn-lg btn-secondary ${width}`}>
+      <button ref={ref} onClick={onClick} type="submit" className={`btn btn-lg btn-secondary ${width} my-2`}>
         {text}
       </button>
     </>

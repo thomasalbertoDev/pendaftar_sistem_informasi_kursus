@@ -9,7 +9,7 @@ interface ButtonSolidSuccessProps {
 const ButtonSolidSuccess = forwardRef(({ onClick, text, width }: ButtonSolidSuccessProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button ref={ref} onClick={onClick} type="submit" className={`btn btn-lg btn-success ${width}`}>
+      <button ref={ref} onClick={onClick} type="submit" className={`btn btn-lg btn-success ${width} my-2`}>
         {text}
       </button>
     </>

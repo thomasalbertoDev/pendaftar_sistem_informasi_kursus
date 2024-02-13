@@ -9,7 +9,7 @@ interface ButtonSolidWarningProps {
 const ButtonSolidWarning = forwardRef(({ onClick, text, width }: ButtonSolidWarningProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button ref={ref} onClick={onClick} type="submit" className={`btn btn-lg btn-warning ${width}`}>
+      <button ref={ref} onClick={onClick} type="submit" className={`btn btn-lg btn-warning ${width} my-2`}>
         {text}
       </button>
     </>

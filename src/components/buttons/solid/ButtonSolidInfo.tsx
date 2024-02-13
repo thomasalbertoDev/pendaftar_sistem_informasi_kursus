@@ -9,7 +9,7 @@ interface ButtonSolidInfoProps {
 const ButtonSolidInfo = forwardRef(({ onClick, text, width }: ButtonSolidInfoProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button ref={ref} onClick={onClick} type="submit" className={`btn btn-lg btn-info ${width}`}>
+      <button ref={ref} onClick={onClick} type="submit" className={`btn btn-lg btn-info ${width} my-2`}>
         {text}
       </button>
     </>

@@ -9,7 +9,7 @@ interface ButtonSolidDarkProps {
 const ButtonSolidDark = forwardRef(({ onClick, text, width }: ButtonSolidDarkProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button ref={ref} onClick={onClick} type="submit" className={`btn btn-lg btn-dark ${width}`}>
+      <button ref={ref} onClick={onClick} type="submit" className={`btn btn-lg btn-dark ${width} my-2`}>
         {text}
       </button>
     </>
