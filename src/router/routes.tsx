@@ -3,8 +3,11 @@ import { lazy } from 'react';
 // DASHBOARD
 const Dashboard = lazy(() => import('../pages/dashboard/Index'));
 
-// SIGN INI
+// SIGN IN
 const SignIn = lazy(() => import('../pages/auth/SignIn'));
+
+// PROFILE
+const Profile = lazy(() => import('../pages/profile/Index'));
 
 // ERROR 404
 const Error404 = lazy(() => import('../pages/Error404'));
@@ -19,6 +22,11 @@ const routes = [
     path: '/sign-in',
     element: <SignIn />,
     layout: 'blank',
+  },
+
+  {
+    path: '/profile',
+    element: <Profile />,
   },
 
   // ERROR 404
