@@ -26,7 +26,7 @@ const DateDefault: React.FC<DateDefaultProps> = ({ id, name, label, value, place
           name={name}
           value={value}
           options={{ dateFormat: 'Y-m-d', position: isRtl ? 'auto right' : 'auto left' }}
-          className="form-input"
+          className="form-input dark:bg-white mb-1 dark:text-black py-3 rounded-lg  "
           onChange={onChange}
           placeholder={placeholder}
         />

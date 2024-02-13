@@ -24,7 +24,7 @@ const InputFile: React.FC<InputFileProps> = ({ id, name, value, onChange, label,
           name={name}
           type="file"
           onChange={onChange}
-          className={`form-input file:py-3 rounded-lg file:px-4 file:border-0 file:font-semibold p-0 file:bg-primary/90 ltr:file:mr-5 rtl:file-ml-5 file:text-white file:hover:bg-primary ${
+          className={`dark:bg-white dark:text-black form-input file:py-3 rounded-lg file:px-4 file:border-0 file:font-semibold p-0 file:bg-primary/90 ltr:file:mr-5 rtl:file-ml-5 file:text-white file:hover:bg-primary ${
             error ? 'file-input-error' : ''
           } mb-1`}
         />
