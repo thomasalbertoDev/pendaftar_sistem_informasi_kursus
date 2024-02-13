@@ -1,5 +1,6 @@
 import { Icon } from '@iconify/react';
 import { IRootState } from '../store';
+import { requestLogout } from '../api/auth/services/requestLogout';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme, toggleSidebar } from '../store/themeConfigSlice';
@@ -12,6 +13,7 @@ import IconLaptop from '../components/Icons/IconLaptop';
 import IconLogout from '../components/Icons/IconLogout';
 
 const Header = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -38,6 +40,15 @@ const Header = () => {
 
   const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl' ? true : false;
   const themeConfig = useSelector((state: IRootState) => state.themeConfig);
+
+  const handleLogout = async () => {
+    try {
+      await requestLogout();
+      navigate('/sign-in');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <header className={`z-40 ${themeConfig.semidark && themeConfig.menu === 'horizontal' ? 'dark' : ''}`}>
@@ -126,7 +137,7 @@ const Header = () => {
                     </Link>
                   </li>
                   <li className="border-t border-white-light dark:border-white-light/10">
-                    <button type="button" className="dark:hover:text-white text-danger">
+                    <button type="button" className="dark:hover:text-white text-danger" onClick={handleLogout}>
                       <IconLogout className="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 rotate-90 shrink-0" />
                       Logout
                     </button>
