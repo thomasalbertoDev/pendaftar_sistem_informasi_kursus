@@ -69,7 +69,7 @@ const Profile = () => {
                 </tr>
                 <tr className="border-none">
                   <td>Tanggal Lahir</td>
-                  <td>: &nbsp; &nbsp; {user?.data?.tanggal_lahir}</td>
+                  <td>: &nbsp; &nbsp; {FormatTanggal(user?.data?.tanggal_lahir)}</td>
                 </tr>
                 <tr className="border-none">
                   <td>Jenis Kelamin</td>
