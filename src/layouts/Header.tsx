@@ -143,7 +143,7 @@ const Header = () => {
                     </div>
                   </li>
                   <li>
-                    <Link to={`/profile`} className=" dark:hover:text-white-dark dark:text-white">
+                    <Link to={`/profile/${user?.data?.id_users}`} className=" dark:hover:text-white-dark dark:text-white">
                       <Icon width={22} icon="mdi:user" className="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 shrink-0" />
                       Profile
                     </Link>
