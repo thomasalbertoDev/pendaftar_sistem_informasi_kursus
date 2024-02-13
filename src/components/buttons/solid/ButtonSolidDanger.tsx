@@ -9,7 +9,7 @@ interface ButtonSolidDangerProps {
 const ButtonSolidDanger = forwardRef(({ onClick, text, width }: ButtonSolidDangerProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return (
     <>
-      <button ref={ref} onClick={onClick} type="submit" className={`btn btn-danger ${width}`}>
+      <button ref={ref} onClick={onClick} type="submit" className={`btn btn-lg btn-danger ${width}`}>
         {text}
       </button>
     </>
