@@ -13,6 +13,7 @@ import DateDefault from '../../components/forms/date/DateDefault';
 import TrimValue from '../../helpers/TrimValue';
 import InputNumber from '../../components/forms/Input/InputNumber';
 import { requestUpdateProfilUser } from '../../api/profile/services/requestUpdateProfilUser';
+import JenisKelaminSelect from '../../utils/JenisKelaminSelect';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -143,17 +144,33 @@ const Profile = () => {
                     </div>
                   </div>
 
-                  <div className={submitCount ? (errors.no_telepon ? 'has-error' : 'has-success') : ''}>
-                    <InputNumber
-                      id={'no_telepon'}
-                      name={'no_telepon'}
-                      label={'No Telepon (cth: 8123456789)'}
-                      value={values.no_telepon}
-                      onChange={handleChange}
-                      error={typeof errors.no_telepon === 'string' ? errors.no_telepon : ''}
-                      placeholder={'Masukkan No Telepon Anda...'}
-                      isInputFilled={'Form No Telepon Sudah Terisi'}
-                    />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className={submitCount ? (errors.no_telepon ? 'has-error' : 'has-success') : ''}>
+                      <InputNumber
+                        id={'no_telepon'}
+                        name={'no_telepon'}
+                        label={'No Telepon (cth: 8123456789)'}
+                        value={values.no_telepon}
+                        onChange={handleChange}
+                        error={typeof errors.no_telepon === 'string' ? errors.no_telepon : ''}
+                        placeholder={'Masukkan No Telepon Anda...'}
+                        isInputFilled={'Form No Telepon Sudah Terisi'}
+                      />
+                    </div>
+
+                    <div className={submitCount ? (errors.jenis_kelamin ? 'has-error' : 'has-success') : ''}>
+                      <JenisKelaminSelect
+                        id={'jenis_kelamin'}
+                        name={'jenis_kelamin'}
+                        label={'Jenis Kelamin'}
+                        error={typeof errors.jenis_kelamin === 'string' ? errors.jenis_kelamin : ''}
+                        value={values.jenis_kelamin}
+                        onChange={(value: any) => {
+                          setFieldValue('jenis_kelamin', value.value);
+                        }}
+                        isInputFilled={'Form Jenis Kelamin Sudah Terisi'}
+                      />
+                    </div>
                   </div>
 
                   <div className={submitCount ? (errors.alamat ? 'has-error' : 'has-success') : ''}>
