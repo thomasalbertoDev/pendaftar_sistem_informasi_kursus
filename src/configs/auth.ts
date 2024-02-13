@@ -11,6 +11,10 @@ class Auth {
     return window.localStorage.setItem('nama', nama);
   };
 
+  setRole = (role: string) => {
+    return window.localStorage.setItem('role', role);
+  };
+
   getToken = () => {
     return window.localStorage.getItem('token');
   };
@@ -23,6 +27,10 @@ class Auth {
     return window.localStorage.getItem('nama');
   };
 
+  getRole = () => {
+    return window.localStorage.getItem('role');
+  };
+
   removeToken = () => {
     return window.localStorage.removeItem('token');
   };
@@ -33,6 +41,10 @@ class Auth {
 
   removeNama = () => {
     return window.localStorage.removeItem('nama');
+  };
+
+  removeRole = () => {
+    return window.localStorage.removeItem('role');
   };
 }
 

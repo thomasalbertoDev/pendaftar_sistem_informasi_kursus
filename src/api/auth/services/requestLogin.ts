@@ -12,10 +12,12 @@ export const requestLogin = async (username: string, password: string) => {
       const token = data?.data?.token;
       const username = data?.data?.username;
       const nama = data?.data?.nama;
+      const role = data?.data?.role;
 
       auth.setToken(token);
       auth.setUsername(username);
       auth.setNama(nama);
+      auth.setRole(role);
 
       const toast = Swal.mixin({
         toast: true,
