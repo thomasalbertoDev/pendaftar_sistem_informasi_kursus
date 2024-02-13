@@ -11,10 +11,9 @@ const finalRoutes = routes.map((route) => {
       route.layout === 'blank' ? (
         <BlankLayout>{route.element}</BlankLayout>
       ) : (
-        // <ProtectedRoute>
-
-        // </ProtectedRoute>
-        <DefaultLayout>{route.element}</DefaultLayout>
+        <ProtectedRoute>
+          <DefaultLayout>{route.element}</DefaultLayout>
+        </ProtectedRoute>
       ),
   };
 });
