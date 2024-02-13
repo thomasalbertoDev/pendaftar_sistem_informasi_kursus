@@ -28,15 +28,7 @@ const InputPassword: React.FC<InputPasswordProps> = ({ id, name, value, onChange
       <div className="mb-5">
         <label htmlFor={label}>{label}</label>
         <div className="relative">
-          <input
-            id={id}
-            type={inputType} // Use dynamic input type
-            name={name}
-            value={value}
-            onChange={onChange}
-            placeholder={placeholder}
-            className={`form-input ${error ? 'error' : ''} py-3  rounded-lg`} // Add padding-left to accommodate the icon
-          />
+          <input id={id} type={inputType} name={name} value={value} onChange={onChange} placeholder={placeholder} className={`form-input ${error ? 'error' : ''} py-3 rounded-lg`} />
           <button type="button" className="absolute inset-y-0 right-0 px-3 py-2" onClick={toggleShowPassword}>
             {showPassword ? (
               <Icon icon="majesticons:eye-off" width="1.3rem" height="1.3rem" className="text-primary" />
