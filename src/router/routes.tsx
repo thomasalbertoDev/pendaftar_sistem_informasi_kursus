@@ -8,6 +8,7 @@ const SignIn = lazy(() => import('../pages/auth/SignIn'));
 
 // PROFILE
 const Profile = lazy(() => import('../pages/profile/Index'));
+const UpdateProfile = lazy(() => import('../pages/profile/UpdateProfile'));
 
 // ERROR 404
 const Error404 = lazy(() => import('../pages/Error404'));
@@ -27,6 +28,11 @@ const routes = [
   {
     path: '/profile',
     element: <Profile />,
+  },
+
+  {
+    path: '/profile/:id_users',
+    element: <UpdateProfile />,
   },
 
   // ERROR 404
