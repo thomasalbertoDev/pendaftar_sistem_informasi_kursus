@@ -14,6 +14,7 @@ import TrimValue from '../../helpers/TrimValue';
 import InputNumber from '../../components/forms/Input/InputNumber';
 import { requestUpdateProfilUser } from '../../api/profile/services/requestUpdateProfilUser';
 import JenisKelaminSelect from '../../utils/JenisKelaminSelect';
+import ButtonSolidDanger from '../../components/buttons/solid/ButtonSolidDanger';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -72,8 +73,8 @@ const Profile = () => {
         ]}
       />
 
-      <div className="border border-[#ebedf2] dark:border-[#191e3a] rounded-xl p-4 mb-5 mt-10 bg-white dark:bg-black">
-        <h5 className="font-semibold text-lg dark:text-white-light mb-10 mt-5 px-5">Profile Admin</h5>
+      <div className="border border-[#ebedf2] dark:border-[#191e3a] rounded-xl p-5 mb-5 mt-10 bg-white dark:bg-black">
+        <h5 className="font-semibold text-lg dark:text-white-dark mb-10 mt-5 px-5">Update Profile Admin</h5>
         <div className="flex flex-col sm:flex-row">
           <div className="ltr:sm:mr-4 rtl:sm:ml-4 w-full sm:w-2/12 mb-5">
             {imagePreview ? (
@@ -115,7 +116,7 @@ const Profile = () => {
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid md:grid-cols-2 gap-4">
                     <div className={submitCount ? (errors.tempat_lahir ? 'has-error' : 'has-success') : ''}>
                       <InputText
                         id={'tempat_lahir'}
@@ -144,7 +145,7 @@ const Profile = () => {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid md:grid-cols-2 gap-4">
                     <div className={submitCount ? (errors.no_telepon ? 'has-error' : 'has-success') : ''}>
                       <InputNumber
                         id={'no_telepon'}
@@ -173,20 +174,7 @@ const Profile = () => {
                     </div>
                   </div>
 
-                  <div className={submitCount ? (errors.alamat ? 'has-error' : 'has-success') : ''}>
-                    <InputText
-                      id={'alamat'}
-                      name={'alamat'}
-                      label={'Alamat'}
-                      value={values.alamat || ''}
-                      onChange={handleChange}
-                      error={typeof errors.alamat === 'string' ? errors.alamat : ''}
-                      placeholder={'Masukkan Alamat Anda...'}
-                      isInputFilled={'Form Alamat Sudah Terisi'}
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid md:grid-cols-2 gap-4">
                     <div className={submitCount ? (errors.instagram ? 'has-error' : 'has-success') : ''}>
                       <InputText
                         id={'instagram'}
@@ -213,22 +201,41 @@ const Profile = () => {
                     </div>
                   </div>
 
-                  <div className={submitCount ? (errors.foto_profil ? 'has-error' : 'has-success') : ''}>
-                    <InputFile
-                      id={'foto_profil'}
-                      name={'foto_profil'}
-                      label={'Foto Profil'}
-                      value={values.foto_profil || ''}
-                      error={typeof errors.foto_profil === 'string' ? errors.foto_profil : ''}
-                      onChange={(e: any) => {
-                        setFieldValue('foto_profil', e.target.files[0]);
-                        setImagePreview(URL.createObjectURL(e.target.files[0]));
-                      }}
-                      isInputFilled={'Foto Sudah Terisi'}
-                    />
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className={submitCount ? (errors.alamat ? 'has-error' : 'has-success') : ''}>
+                      <InputText
+                        id={'alamat'}
+                        name={'alamat'}
+                        label={'Alamat'}
+                        value={values.alamat || ''}
+                        onChange={handleChange}
+                        error={typeof errors.alamat === 'string' ? errors.alamat : ''}
+                        placeholder={'Masukkan Alamat Anda...'}
+                        isInputFilled={'Form Alamat Sudah Terisi'}
+                      />
+                    </div>
+
+                    <div className={submitCount ? (errors.foto_profil ? 'has-error' : 'has-success') : ''}>
+                      <InputFile
+                        id={'foto_profil'}
+                        name={'foto_profil'}
+                        label={'Foto Profil'}
+                        value={values.foto_profil || ''}
+                        error={typeof errors.foto_profil === 'string' ? errors.foto_profil : ''}
+                        onChange={(e: any) => {
+                          setFieldValue('foto_profil', e.target.files[0]);
+                          setImagePreview(URL.createObjectURL(e.target.files[0]));
+                        }}
+                        isInputFilled={'Foto Sudah Terisi'}
+                      />
+                    </div>
                   </div>
-                  <div className="flex justify-end mx-5">
-                    <ButtonSolidPrimary text={'Update Profil'} width="w-auto" onClick={() => handleUpdateProfile(values)} />
+
+                  <div className="md:flex justify-end mx-5 gap-3">
+                    <ButtonSolidPrimary text={'Update Profil'} width={'md:w-auto w-full'} onClick={() => handleUpdateProfile(values)} />
+                    <Link to={'/profile'}>
+                      <ButtonSolidDanger text={'Batal'} width={'md:w-auto w-full'} />
+                    </Link>
                   </div>
                 </Form>
               )}
