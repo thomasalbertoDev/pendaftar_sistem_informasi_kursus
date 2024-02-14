@@ -9,5 +9,5 @@ export const validationSchema = yup.object().shape({
   no_telepon: yup.string().required('No Telepon Wajib Diisi'),
   alamat: yup.string().required('Alamat Wajib Diisi'),
   instagram: yup.string().required('Instagram Wajib Diisi'),
-  whatsapp: yup.string().required('Whatsapp Wajib Diisi'),
+  whatsapp: yup.string().required('No Whatsapp Wajib Diisi'),
 });
