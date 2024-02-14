@@ -10,16 +10,36 @@ export const SidebarMenu = [
     link: '#',
     child: [
       {
-        childTitle: 'Master 1',
-        childLink: '/master-1',
+        childTitle: 'Agama',
+        childLink: '/agama',
       },
       {
-        childTitle: 'Master 2',
-        childLink: '/master-2',
+        childTitle: 'Pekerjaan',
+        childLink: '/pekerjaan',
       },
       {
-        childTitle: 'Master 3',
-        childLink: '/master-3',
+        childTitle: 'Pendidikan',
+        childLink: '/pendidikan',
+      },
+      {
+        childTitle: 'Penghasilan',
+        childLink: '/penghasilan',
+      },
+      {
+        childTitle: 'Provinsi',
+        childLink: '/provinsi',
+      },
+      {
+        childTitle: 'Kabupaten / Kota',
+        childLink: '/kabupaten',
+      },
+      {
+        childTitle: 'Kecamatan',
+        childLink: '/kecamatan',
+      },
+      {
+        childTitle: 'Kelurahan',
+        childLink: '/kelurahan',
       },
     ],
   },
