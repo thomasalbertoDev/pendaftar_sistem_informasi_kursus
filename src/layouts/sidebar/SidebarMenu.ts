@@ -25,22 +25,6 @@ export const SidebarMenu = [
         childTitle: 'Penghasilan',
         childLink: '/penghasilan',
       },
-      {
-        childTitle: 'Provinsi',
-        childLink: '/provinsi',
-      },
-      {
-        childTitle: 'Kabupaten / Kota',
-        childLink: '/kabupaten',
-      },
-      {
-        childTitle: 'Kecamatan',
-        childLink: '/kecamatan',
-      },
-      {
-        childTitle: 'Kelurahan',
-        childLink: '/kelurahan',
-      },
     ],
   },
 ];
