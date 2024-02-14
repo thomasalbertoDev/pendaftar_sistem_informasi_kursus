@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Formik } from 'formik';
+import { validationSchema } from './validationSchema';
+import { requestUpdateAgama } from '../../../api/agama/services/requestUpdateAgama';
 import { requestGetAgamaByID } from '../../../api/agama/services/requestGetAgamaByID';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import FormLayouts from './layouts/FormLayouts';
-import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
-import { validationSchema } from './validationSchema';
-import ButtonSolidSuccess from '../../../components/buttons/solid/ButtonSolidSuccess';
 import ButtonSolidDanger from '../../../components/buttons/solid/ButtonSolidDanger';
-import { requestUpdateAgama } from '../../../api/agama/services/requestUpdateAgama';
+import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
+import ButtonSolidSuccess from '../../../components/buttons/solid/ButtonSolidSuccess';
 
 const FormUpdate: React.FC = () => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const FormUpdate: React.FC = () => {
   const handleUpdate = async (e: { nama_agama: string }) => {
     const { nama_agama } = e;
     const request = await requestUpdateAgama(id_agama ?? '', nama_agama);
-    if (request) {
+    if (request === true) {
       navigate('/agama');
     }
   };
@@ -39,8 +39,8 @@ const FormUpdate: React.FC = () => {
             icon: 'mdi:religion-christian',
           },
           {
-            label: 'Edit Agama',
-            link: `/agama/edit-agama/${id_agama}`,
+            label: 'Update Agama',
+            link: `/agama/update-agama/${id_agama}`,
           },
         ]}
       />
@@ -56,10 +56,10 @@ const FormUpdate: React.FC = () => {
         >
           {({ errors, handleChange, submitCount, values }) => (
             <>
-              <FormLayouts errors={errors} handleChange={handleChange} submitCount={submitCount} values={values} handleCreate={handleUpdate} />
+              <FormLayouts errors={errors} handleChange={handleChange} submitCount={submitCount} values={values} />
 
               <div className="flex gap-3 justify-end">
-                <ButtonSolidSuccess text={'Edit Agama'} width={'w-auto'} onClick={() => handleUpdate(values)} />
+                <ButtonSolidSuccess text={'Update Agama'} width={'w-auto'} onClick={() => handleUpdate(values)} />
                 <Link to={'/agama'}>
                   <ButtonSolidDanger text={'Batal'} width={'w-auto'} />
                 </Link>

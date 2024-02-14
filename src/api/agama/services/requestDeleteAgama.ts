@@ -1,5 +1,16 @@
-import Swal from 'sweetalert2';
 import { remove } from '../api';
+import Swal from 'sweetalert2';
+import ShowToast from '../../../helpers/ShowToast';
+
+const handleSuccess = () => {
+  ShowToast('success', 'Agama Berhasil Dihapus!');
+  return true;
+};
+
+const handleError = () => {
+  ShowToast('error', 'Agama Gagal Dihapus!');
+  return false;
+};
 
 export const requestDeleteAgama = async (id_agama: string) => {
   try {
@@ -15,35 +26,10 @@ export const requestDeleteAgama = async (id_agama: string) => {
 
     if (alert.isConfirmed) {
       await remove(id_agama);
-      const toast = Swal.mixin({
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 3000,
-      });
-      toast.fire({
-        icon: 'success',
-        title: 'Agama Berhasil Dihapus!',
-        padding: '10px 20px',
-      });
-
-      return true;
+      return handleSuccess();
     }
   } catch (error) {
     console.log(error);
-
-    const toast = Swal.mixin({
-      toast: true,
-      position: 'top',
-      showConfirmButton: false,
-      timer: 3000,
-    });
-    toast.fire({
-      icon: 'error',
-      title: 'Agama Gagal Dihapus!',
-      padding: '10px 20px',
-    });
-
-    return false;
+    return handleError();
   }
 };

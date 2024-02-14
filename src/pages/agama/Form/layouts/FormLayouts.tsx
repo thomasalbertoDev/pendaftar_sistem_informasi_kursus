@@ -7,7 +7,6 @@ interface FormLayoutsProps {
   handleChange: any;
   submitCount: any;
   values: any;
-  handleCreate: (values: any) => void;
 }
 
 const FormLayouts: React.FC<FormLayoutsProps> = ({ errors, handleChange, submitCount, values }) => {

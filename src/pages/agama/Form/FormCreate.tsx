@@ -13,7 +13,7 @@ const FormCreate: React.FC = () => {
   const handleCreate = async (e: { nama_agama: string }) => {
     const { nama_agama } = e;
     const request = await requestCreateAgama(nama_agama);
-    if (request) {
+    if (request === true) {
       navigate('/agama');
     }
   };
@@ -45,7 +45,7 @@ const FormCreate: React.FC = () => {
         >
           {({ errors, handleChange, submitCount, values }) => (
             <>
-              <FormLayouts errors={errors} handleChange={handleChange} submitCount={submitCount} values={values} handleCreate={handleCreate} />
+              <FormLayouts errors={errors} handleChange={handleChange} submitCount={submitCount} values={values} />
 
               <div className="flex gap-3 justify-end">
                 <ButtonSolidPrimary text={'Tambah Agama'} width={'w-auto'} onClick={() => handleCreate(values)} />
