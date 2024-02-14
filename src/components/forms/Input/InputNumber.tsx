@@ -12,7 +12,7 @@ interface InputNumberProps {
 }
 
 const InputNumber: React.FC<InputNumberProps> = ({ id, name, value, onChange, placeholder, label, error, isInputFilled }) => {
-  const isFilled = value.toString() !== '';
+  const isFilled = value !== 0;
 
   return (
     <>
