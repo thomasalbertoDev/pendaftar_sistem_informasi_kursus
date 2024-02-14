@@ -49,56 +49,56 @@ const Profile = () => {
               <tbody>
                 <tr className="border-none">
                   <td>Nama Lengkap </td>
-                  <td>: &nbsp; &nbsp; {user?.data?.nama}</td>
+                  <td>: &nbsp; &nbsp; {user?.data?.nama ? user?.data?.nama : '-'}</td>
                 </tr>
                 <tr className="border-none">
                   <td>Email</td>
-                  <td>: &nbsp; &nbsp; {user?.data?.email}</td>
+                  <td>: &nbsp; &nbsp; {user?.data?.email ? user?.data?.email : '-'}</td>
                 </tr>
                 <tr className="border-none">
                   <td>Username</td>
-                  <td>: &nbsp; &nbsp; {user?.data?.username}</td>
+                  <td>: &nbsp; &nbsp; {user?.data?.username ? user?.data?.username : '-'}</td>
                 </tr>
                 <tr className="border-none">
                   <td>Role</td>
-                  <td>: &nbsp; &nbsp; {user?.data?.role}</td>
+                  <td>: &nbsp; &nbsp; {user?.data?.role ? user?.data?.role : '-'}</td>
                 </tr>
                 <tr className="border-none">
                   <td>Tempat Lahir</td>
-                  <td>: &nbsp; &nbsp; {user?.data?.tempat_lahir}</td>
+                  <td>: &nbsp; &nbsp; {user?.data?.tempat_lahir ? user?.data?.tempat_lahir : '-'}</td>
                 </tr>
                 <tr className="border-none">
                   <td>Tanggal Lahir</td>
-                  <td>: &nbsp; &nbsp; {FormatTanggal(user?.data?.tanggal_lahir)}</td>
+                  <td>: &nbsp; &nbsp; {user?.data?.tanggal_lahir ? FormatTanggal(user?.data?.tanggal_lahir) : '-'}</td>
                 </tr>
                 <tr className="border-none">
                   <td>Jenis Kelamin</td>
-                  <td>: &nbsp; &nbsp; {user?.data?.jenis_kelamin}</td>
+                  <td>: &nbsp; &nbsp; {user?.data?.jenis_kelamin ? user?.data?.jenis_kelamin : '-'}</td>
                 </tr>
                 <tr className="border-none">
                   <td>No Telepon</td>
-                  <td>: &nbsp; &nbsp; +62{user?.data?.no_telepon}</td>
+                  <td>: &nbsp; &nbsp; {user?.data?.no_telepon ? '+62' + user?.data?.no_telepon : '-'}</td>
                 </tr>
                 <tr className="border-none">
                   <td>Alamat</td>
-                  <td>: &nbsp; &nbsp; {user?.data?.alamat}</td>
+                  <td>: &nbsp; &nbsp; {user?.data?.alamat ? user?.data?.alamat : '-'}</td>
                 </tr>
                 <tr className="border-none">
                   <td>Instagram</td>
                   <td>
                     : &nbsp; &nbsp;
-                    <a href={user?.data?.instagram} className="text-primary">
-                      Instagram
+                    <a href={user?.data?.instagram ? user?.data?.instagram : '#'} className="text-primary">
+                      {user?.data?.instagram ? 'Instagram' : '-'}
                     </a>
                   </td>
                 </tr>
                 <tr className="border-none">
                   <td>Whatsapp</td>
-                  <td>: &nbsp; &nbsp;+62{user?.data?.whatsapp}</td>
+                  <td>: &nbsp; &nbsp; {user?.data?.whatsapp ? '+62' + user?.data?.whatsapp : '-'}</td>
                 </tr>
                 <tr className="border-none">
                   <td>Tanggal Verifikasi Email</td>
-                  <td>: &nbsp; &nbsp; {FormatTanggal(user?.data?.tanggal_verifikasi_email)} </td>
+                  <td>: &nbsp; &nbsp; {user?.data?.tanggal_verifikasi_email ? FormatTanggal(user?.data?.tanggal_verifikasi_email) : '-'}</td>
                 </tr>
               </tbody>
             </table>
