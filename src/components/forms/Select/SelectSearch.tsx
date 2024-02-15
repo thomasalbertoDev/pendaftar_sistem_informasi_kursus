@@ -16,7 +16,7 @@ interface SelectSearchProps {
 
 const SelectSearch: React.FC<SelectSearchProps> = ({ id, name, value, onChange, placeholder, options, label, error, isInputFilled, styles }) => {
   const selectedOption = options.find((option: any) => option.value === value);
-  const isFilled = selectedOption ? true : false;
+  const isFilled = value !== '' && value !== null;
 
   return (
     <div className="mb-5">
