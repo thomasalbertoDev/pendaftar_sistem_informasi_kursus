@@ -27,4 +27,9 @@ export const SidebarMenu = [
       },
     ],
   },
+  {
+    title: 'Sekolah',
+    icon: 'emojione-monotone:school',
+    link: '/sekolah',
+  },
 ];
