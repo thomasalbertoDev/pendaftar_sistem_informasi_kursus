@@ -11,16 +11,17 @@ interface SelectSearchProps {
   label: string;
   error: string;
   isInputFilled: string;
+  styles?: any;
 }
 
-const SelectSearch: React.FC<SelectSearchProps> = ({ id, name, value, onChange, placeholder, options, label, error, isInputFilled }) => {
+const SelectSearch: React.FC<SelectSearchProps> = ({ id, name, value, onChange, placeholder, options, label, error, isInputFilled, styles }) => {
   const selectedOption = options.find((option: any) => option.value === value);
   const isFilled = selectedOption ? true : false;
 
   return (
     <div className="mb-5">
       <label htmlFor={id}>{label}</label>
-      <Select id={id} name={name} value={selectedOption} onChange={onChange} placeholder={placeholder} options={options} className="mb-1" />
+      <Select id={id} name={name} value={selectedOption} onChange={onChange} placeholder={placeholder} options={options} styles={styles} className="mb-1" />
 
       {error && <span className="text-danger">{error}</span>}
       {isFilled && !error && <span className="text-success">{isInputFilled}</span>}
