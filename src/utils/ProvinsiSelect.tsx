@@ -15,7 +15,6 @@ interface ProvinsiSelectProps {
 }
 
 const ProvinsiSelect: React.FC<ProvinsiSelectProps> = ({ id, name, label, error, value, onChange, isInputFilled, placeholder, onProvinsiChange }) => {
-  const isFilled = value !== '';
   const [provinsi, setProvinsi] = useState<any[]>([]);
 
   useEffect(() => {
@@ -37,7 +36,7 @@ const ProvinsiSelect: React.FC<ProvinsiSelectProps> = ({ id, name, label, error,
   }, []);
 
   const handleProvinsiChange = (selectedProvinsiValue: any) => {
-    onChange(selectedProvinsiValue?.value);
+    onChange(selectedProvinsiValue?.label);
     onProvinsiChange(selectedProvinsiValue?.value);
   };
 
@@ -69,9 +68,6 @@ const ProvinsiSelect: React.FC<ProvinsiSelectProps> = ({ id, name, label, error,
           isInputFilled={isInputFilled}
           placeholder={placeholder}
         />
-
-        {error && <span className="text-danger">{error}</span>}
-        {isFilled && !error && <span className="text-success">{isInputFilled}</span>}
       </div>
     </>
   );

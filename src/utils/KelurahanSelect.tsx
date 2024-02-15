@@ -54,9 +54,6 @@ const KelurahanSelect: React.FC<KelurahanSelectProps & { kecamatanId: string }> 
     <>
       <div className="mb-5">
         <SelectSearch id={id} name={name} label={label} value={value} error={error} styles={styles} options={kelurahan} onChange={onChange} placeholder={placeholder} isInputFilled={isInputFilled} />
-
-        {error && <span className="text-danger">{error}</span>}
-        {isFilled && !error && <span className="text-success">{isInputFilled}</span>}
       </div>
     </>
   );

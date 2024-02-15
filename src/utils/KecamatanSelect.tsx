@@ -16,7 +16,6 @@ interface KecamatanSelectProps {
 }
 
 const KecamatanSelect: React.FC<KecamatanSelectProps & { kabupatenId: string }> = ({ id, name, label, error, value, onChange, isInputFilled, placeholder, kabupatenId, onKecamatanChange }) => {
-  const isFilled = value !== '';
   const [kecamatan, setKecamatan] = useState<any[]>([]);
 
   useEffect(() => {
@@ -38,7 +37,7 @@ const KecamatanSelect: React.FC<KecamatanSelectProps & { kabupatenId: string }> 
   }, [kabupatenId]);
 
   const handleKecamatanChange = (selectedKecamatanValue: any) => {
-    onChange(selectedKecamatanValue?.value);
+    onChange(selectedKecamatanValue?.label);
     onKecamatanChange(selectedKecamatanValue?.value);
   };
 
@@ -70,9 +69,6 @@ const KecamatanSelect: React.FC<KecamatanSelectProps & { kabupatenId: string }> 
           placeholder={placeholder}
           isInputFilled={isInputFilled}
         />
-
-        {error && <span className="text-danger">{error}</span>}
-        {isFilled && !error && <span className="text-success">{isInputFilled}</span>}
       </div>
     </>
   );
