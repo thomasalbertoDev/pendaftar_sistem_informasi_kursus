@@ -1,5 +1,5 @@
 import Select from 'react-select';
-import React, { useState } from 'react';
+import React from 'react';
 
 interface JenisKelaminSelectProps {
   id: string;
@@ -26,6 +26,18 @@ const JenisKelaminSelect: React.FC<JenisKelaminSelectProps> = ({ id, name, label
   ];
 
   const selectedOption = jenisKelamin.find((option: any) => option.value === value);
+  const styles = {
+    control: (base: any) => ({
+      ...base,
+      border: '1px solid #e5e7eb',
+      borderRadius: '0.5rem',
+      paddingBottom: '6px',
+      paddingTop: '6px',
+      paddingLeft: '8px',
+      color: '#1f2937',
+      backgroundColor: '#fff',
+    }),
+  };
 
   return (
     <>
@@ -43,17 +55,7 @@ const JenisKelaminSelect: React.FC<JenisKelaminSelectProps> = ({ id, name, label
           onChange={onChange}
           className="mb-1 basic-single text-black"
           classNamePrefix="select"
-          styles={{
-            control: (provided) => ({
-              ...provided,
-              border: '1px solid #e5e7eb',
-              borderRadius: '0.5rem',
-              paddingBottom: '6px',
-              paddingTop: '6px',
-              color: '#1f2937',
-              backgroundColor: '#fff',
-            }),
-          }}
+          styles={styles}
         />
 
         {error && <span className="text-danger">{error}</span>}
