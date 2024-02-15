@@ -25,6 +25,11 @@ const Pendidikan = lazy(() => import('../pages/pendidikan/Index'));
 const CreatePendidikan = lazy(() => import('../pages/pendidikan/Form/FormCreate'));
 const UpdatePendidikan = lazy(() => import('../pages/pendidikan/Form/FormUpdate'));
 
+// PENGHASILAN
+const Penghasilan = lazy(() => import('../pages/penghasilan/Index'));
+const CreatePenghasilan = lazy(() => import('../pages/penghasilan/Form/FormCreate'));
+const UpdatePenghasilan = lazy(() => import('../pages/penghasilan/Form/FormUpdate'));
+
 // ERROR 404
 const Error404 = lazy(() => import('../pages/Error404'));
 
@@ -93,6 +98,21 @@ const routes = [
   {
     path: '/pendidikan/update-pendidikan/:id_pendidikan',
     element: <UpdatePendidikan />,
+  },
+
+  {
+    path: '/penghasilan',
+    element: <Penghasilan />,
+  },
+
+  {
+    path: '/penghasilan/tambah-penghasilan',
+    element: <CreatePenghasilan />,
+  },
+
+  {
+    path: '/penghasilan/update-penghasilan/:id_penghasilan',
+    element: <UpdatePenghasilan />,
   },
 
   // ERROR 404
