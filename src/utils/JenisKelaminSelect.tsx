@@ -27,8 +27,8 @@ const JenisKelaminSelect: React.FC<JenisKelaminSelectProps> = ({ id, name, label
 
   const selectedOption = jenisKelamin.find((option: any) => option.value === value);
   const styles = {
-    control: (base: any) => ({
-      ...base,
+    control: (baseStyles: any) => ({
+      ...baseStyles,
       border: '1px solid #e5e7eb',
       borderRadius: '0.5rem',
       paddingBottom: '6px',
