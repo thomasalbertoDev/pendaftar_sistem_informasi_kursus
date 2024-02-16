@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { use } from 'i18next';
 import { useEffect, useState } from 'react';
 import SelectSearch from '../components/forms/Select/SelectSearch';
 
@@ -13,10 +12,10 @@ interface KelurahanSelectProps {
   isInputFilled: string;
   placeholder: string;
   kecamatanId: string;
+  onKelurahanChange: (value: any) => void;
 }
 
-const KelurahanSelect: React.FC<KelurahanSelectProps & { kecamatanId: string }> = ({ id, name, label, error, value, onChange, isInputFilled, placeholder, kecamatanId }) => {
-  const isFilled = value !== '';
+const KelurahanSelect: React.FC<KelurahanSelectProps & { kecamatanId: string }> = ({ id, name, label, error, value, onChange, isInputFilled, placeholder, kecamatanId, onKelurahanChange }) => {
   const [kelurahan, setKelurahan] = useState<any[]>([]);
 
   useEffect(() => {
@@ -50,10 +49,26 @@ const KelurahanSelect: React.FC<KelurahanSelectProps & { kecamatanId: string }> 
     }),
   };
 
+  const handleKelurahanChange = (selectedKelurahanValue: any) => {
+    onChange(selectedKelurahanValue?.value);
+    onKelurahanChange(selectedKelurahanValue?.value);
+  };
+
   return (
     <>
       <div className="mb-5">
-        <SelectSearch id={id} name={name} label={label} value={value} error={error} styles={styles} options={kelurahan} onChange={onChange} placeholder={placeholder} isInputFilled={isInputFilled} />
+        <SelectSearch
+          id={id}
+          name={name}
+          label={label}
+          value={value}
+          error={error}
+          styles={styles}
+          options={kelurahan}
+          onChange={handleKelurahanChange}
+          placeholder={placeholder}
+          isInputFilled={isInputFilled}
+        />
       </div>
     </>
   );
