@@ -32,4 +32,9 @@ export const SidebarMenu = [
     icon: 'emojione-monotone:school',
     link: '/sekolah',
   },
+  {
+    title: 'Pengajar',
+    icon: 'mdi:teacher',
+    link: '/pengajar',
+  },
 ];
