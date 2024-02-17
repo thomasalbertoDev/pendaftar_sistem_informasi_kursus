@@ -35,6 +35,11 @@ const Sekolah = lazy(() => import('../pages/sekolah/Index'));
 const CreateSekolah = lazy(() => import('../pages/sekolah/Form/FormCreate'));
 const UpdateSekolah = lazy(() => import('../pages/sekolah/Form/FormUpdate'));
 
+// PENGAJAR
+const Pengajar = lazy(() => import('../pages/pengajar/Index'));
+const CreatePengajar = lazy(() => import('../pages/pengajar/Form/FormCreate'));
+const UpdatePengajar = lazy(() => import('../pages/pengajar/Form/FormUpdate'));
+
 // ERROR 404
 const Error404 = lazy(() => import('../pages/Error404'));
 
@@ -133,6 +138,21 @@ const routes = [
   {
     path: '/sekolah/update-sekolah/:id_sekolah',
     element: <UpdateSekolah />,
+  },
+
+  {
+    path: '/pengajar',
+    element: <Pengajar />,
+  },
+
+  {
+    path: '/pengajar/tambah-pengajar',
+    element: <CreatePengajar />,
+  },
+
+  {
+    path: '/pengajar/update-pengajar/:id_pengajar',
+    element: <UpdatePengajar />,
   },
 
   // ERROR 404
