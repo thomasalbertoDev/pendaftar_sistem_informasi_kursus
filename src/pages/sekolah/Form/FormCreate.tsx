@@ -48,10 +48,6 @@ const FormCreate: React.FC = () => {
     }
   };
 
-  // const handleCreate = async (values: any) => {
-  //   console.log(values);
-  // };
-
   const [selectedProvinsiId, setSelectedProvinsiId] = useState<string>('');
   const [selectedKabupatenId, setSelectedKabupatenId] = useState<string>('');
   const [selectedKecamatanId, setSelectedKecamatanId] = useState<string>('');
