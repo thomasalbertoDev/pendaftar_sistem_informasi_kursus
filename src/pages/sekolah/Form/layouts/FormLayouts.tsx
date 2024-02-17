@@ -41,60 +41,66 @@ const FormLayouts: React.FC<FormLayoutsProps> = ({
   return (
     <>
       <Form>
-        {/* NPSN */}
-        <div className={submitCount ? (errors.npsn ? 'has-error' : 'has-success') : ''}>
-          <InputNumber
-            id={'npsn'}
-            name={'npsn'}
-            label={'NPSN'}
-            value={values.npsn || ''}
-            onChange={handleChange}
-            error={errors.npsn}
-            placeholder={'Masukkan NPSN...'}
-            isInputFilled={'Form NPSN Sudah Terisi'}
-          />
+        {/* NPSN , Nama Sekolah */}
+        <div className="grid md:grid-cols-2 gap-4">
+          {/* NPSN */}
+          <div className={submitCount ? (errors.npsn ? 'has-error' : 'has-success') : ''}>
+            <InputNumber
+              id={'npsn'}
+              name={'npsn'}
+              label={'NPSN'}
+              value={values.npsn || ''}
+              onChange={handleChange}
+              error={errors.npsn}
+              placeholder={'Masukkan NPSN...'}
+              isInputFilled={'Form NPSN Sudah Terisi'}
+            />
+          </div>
+
+          {/* Nama Sekolah */}
+          <div className={submitCount ? (errors.nama_sekolah ? 'has-error' : 'has-success') : ''}>
+            <InputText
+              id={'nama_sekolah'}
+              name={'nama_sekolah'}
+              label={'Nama Sekolah'}
+              value={values.nama_sekolah || ''}
+              onChange={handleChange}
+              error={typeof errors.nama_sekolah === 'string' ? errors.nama_sekolah : ''}
+              placeholder={'Masukkan Nama Sekolah...'}
+              isInputFilled={'Form Nama Sekolah Sudah Terisi'}
+            />
+          </div>
         </div>
 
-        {/* Nama Sekolah */}
-        <div className={submitCount ? (errors.nama_sekolah ? 'has-error' : 'has-success') : ''}>
-          <InputText
-            id={'nama_sekolah'}
-            name={'nama_sekolah'}
-            label={'Nama Sekolah'}
-            value={values.nama_sekolah || ''}
-            onChange={handleChange}
-            error={typeof errors.nama_sekolah === 'string' ? errors.nama_sekolah : ''}
-            placeholder={'Masukkan Nama Sekolah...'}
-            isInputFilled={'Form Nama Sekolah Sudah Terisi'}
-          />
-        </div>
+        {/* Alamat , Kode Pos */}
+        <div className="grid md:grid-cols-2 gap-4">
+          {/* Alamat */}
+          <div className={submitCount ? (errors.alamat ? 'has-error' : 'has-success') : ''}>
+            <InputText
+              id={'alamat'}
+              name={'alamat'}
+              label={'Alamat Sekolah'}
+              value={values.alamat || ''}
+              onChange={handleChange}
+              error={typeof errors.alamat === 'string' ? errors.alamat : ''}
+              placeholder={'Masukkan Alamat Sekolah...'}
+              isInputFilled={'Form Alamat Sekolah Sudah Terisi'}
+            />
+          </div>
 
-        {/* Alamat */}
-        <div className={submitCount ? (errors.alamat ? 'has-error' : 'has-success') : ''}>
-          <InputText
-            id={'alamat'}
-            name={'alamat'}
-            label={'Alamat Sekolah'}
-            value={values.alamat || ''}
-            onChange={handleChange}
-            error={typeof errors.alamat === 'string' ? errors.alamat : ''}
-            placeholder={'Masukkan Alamat Sekolah...'}
-            isInputFilled={'Form Alamat Sekolah Sudah Terisi'}
-          />
-        </div>
-
-        {/* Kode Pos */}
-        <div className={submitCount ? (errors.kode_pos ? 'has-error' : 'has-success') : ''}>
-          <InputNumber
-            id={'kode_pos'}
-            name={'kode_pos'}
-            label={'Kode Pos'}
-            value={values.kode_pos || ''}
-            onChange={handleChange}
-            error={errors.kode_pos}
-            placeholder={'Masukkan Kode Pos...'}
-            isInputFilled={'Form Kode Pos Sudah Terisi'}
-          />
+          {/* Kode Pos */}
+          <div className={submitCount ? (errors.kode_pos ? 'has-error' : 'has-success') : ''}>
+            <InputNumber
+              id={'kode_pos'}
+              name={'kode_pos'}
+              label={'Kode Pos'}
+              value={values.kode_pos || ''}
+              onChange={handleChange}
+              error={errors.kode_pos}
+              placeholder={'Masukkan Kode Pos...'}
+              isInputFilled={'Form Kode Pos Sudah Terisi'}
+            />
+          </div>
         </div>
 
         {/* Provinsi , Kabupaten , Kecamatan , Kelurahan */}
@@ -173,74 +179,80 @@ const FormLayouts: React.FC<FormLayoutsProps> = ({
           )}
         </div>
 
-        {/* Status Sekolah */}
-        <div className={submitCount ? (errors.status_sekolah ? 'has-error' : 'has-success') : ''}>
-          <InputText
-            id={'status_sekolah'}
-            name={'status_sekolah'}
-            label={'Status Sekolah'}
-            value={values.status_sekolah || ''}
-            onChange={handleChange}
-            error={typeof errors.status_sekolah === 'string' ? errors.status_sekolah : ''}
-            placeholder={'Masukkan Status Sekolah...'}
-            isInputFilled={'Form Status Sekolah Sudah Terisi'}
-          />
+        {/* Status Sekolaj , Jenjang Pendidikan , Akreditasi */}
+        <div className="grid md:grid-cols-3 gap-4">
+          {/* Status Sekolah */}
+          <div className={submitCount ? (errors.status_sekolah ? 'has-error' : 'has-success') : ''}>
+            <InputText
+              id={'status_sekolah'}
+              name={'status_sekolah'}
+              label={'Status Sekolah'}
+              value={values.status_sekolah || ''}
+              onChange={handleChange}
+              error={typeof errors.status_sekolah === 'string' ? errors.status_sekolah : ''}
+              placeholder={'Masukkan Status Sekolah...'}
+              isInputFilled={'Form Status Sekolah Sudah Terisi'}
+            />
+          </div>
+
+          {/* Jenjang Pendidikan */}
+          <div className={submitCount ? (errors.jenjang_pendidikan ? 'has-error' : 'has-success') : ''}>
+            <InputText
+              id={'jenjang_pendidikan'}
+              name={'jenjang_pendidikan'}
+              label={'Jenjang Pendidikan'}
+              value={values.jenjang_pendidikan || ''}
+              onChange={handleChange}
+              error={typeof errors.jenjang_pendidikan === 'string' ? errors.jenjang_pendidikan : ''}
+              placeholder={'Masukkan Jenjang Pendidikan...'}
+              isInputFilled={'Form Jenjang Pendidikan Sudah Terisi'}
+            />
+          </div>
+
+          {/* Akreditasi */}
+          <div className={submitCount ? (errors.akreditasi ? 'has-error' : 'has-success') : ''}>
+            <InputText
+              id={'akreditasi'}
+              name={'akreditasi'}
+              label={'Akreditasi Sekolah'}
+              value={values.akreditasi || ''}
+              onChange={handleChange}
+              error={typeof errors.akreditasi === 'string' ? errors.akreditasi : ''}
+              placeholder={'Masukkan Akreditasi Sekolah...'}
+              isInputFilled={'Form Akreditasi Sekolah Sudah Terisi'}
+            />
+          </div>
         </div>
 
-        {/* Jenjang Pendidikan */}
-        <div className={submitCount ? (errors.jenjang_pendidikan ? 'has-error' : 'has-success') : ''}>
-          <InputText
-            id={'jenjang_pendidikan'}
-            name={'jenjang_pendidikan'}
-            label={'Jenjang Pendidikan'}
-            value={values.jenjang_pendidikan || ''}
-            onChange={handleChange}
-            error={typeof errors.jenjang_pendidikan === 'string' ? errors.jenjang_pendidikan : ''}
-            placeholder={'Masukkan Jenjang Pendidikan...'}
-            isInputFilled={'Form Jenjang Pendidikan Sudah Terisi'}
-          />
-        </div>
+        {/* Email , No Telepon Sekolah */}
+        <div className="grid md:grid-cols-2 gap-4">
+          {/* Email */}
+          <div className={submitCount ? (errors.email_sekolah ? 'has-error' : 'has-success') : ''}>
+            <InputText
+              id={'email_sekolah'}
+              name={'email_sekolah'}
+              label={'Email Sekolah'}
+              value={values.email_sekolah || ''}
+              onChange={handleChange}
+              error={typeof errors.email_sekolah === 'string' ? errors.email_sekolah : ''}
+              placeholder={'Masukkan Email Sekolah...'}
+              isInputFilled={'Form Email Sekolah Sudah Terisi'}
+            />
+          </div>
 
-        {/* Akreditasi */}
-        <div className={submitCount ? (errors.akreditasi ? 'has-error' : 'has-success') : ''}>
-          <InputText
-            id={'akreditasi'}
-            name={'akreditasi'}
-            label={'Akreditasi Sekolah'}
-            value={values.akreditasi || ''}
-            onChange={handleChange}
-            error={typeof errors.akreditasi === 'string' ? errors.akreditasi : ''}
-            placeholder={'Masukkan Akreditasi Sekolah...'}
-            isInputFilled={'Form Akreditasi Sekolah Sudah Terisi'}
-          />
-        </div>
-
-        {/* Email */}
-        <div className={submitCount ? (errors.email_sekolah ? 'has-error' : 'has-success') : ''}>
-          <InputText
-            id={'email_sekolah'}
-            name={'email_sekolah'}
-            label={'Email Sekolah'}
-            value={values.email_sekolah || ''}
-            onChange={handleChange}
-            error={typeof errors.email_sekolah === 'string' ? errors.email_sekolah : ''}
-            placeholder={'Masukkan Email Sekolah...'}
-            isInputFilled={'Form Email Sekolah Sudah Terisi'}
-          />
-        </div>
-
-        {/* No Telepon Sekolah */}
-        <div className={submitCount ? (errors.no_telepon_sekolah ? 'has-error' : 'has-success') : ''}>
-          <InputText
-            id={'no_telepon_sekolah'}
-            name={'no_telepon_sekolah'}
-            label={'No Telepon Sekolah cth(8123456789)'}
-            value={values.no_telepon_sekolah || ''}
-            onChange={handleChange}
-            error={typeof errors.no_telepon_sekolah === 'string' ? errors.no_telepon_sekolah : ''}
-            placeholder={'Masukkan No Telepon Sekolah...'}
-            isInputFilled={'Form No Telepon Sekolah Sudah Terisi'}
-          />
+          {/* No Telepon Sekolah */}
+          <div className={submitCount ? (errors.no_telepon_sekolah ? 'has-error' : 'has-success') : ''}>
+            <InputText
+              id={'no_telepon_sekolah'}
+              name={'no_telepon_sekolah'}
+              label={'No Telepon Sekolah cth(8123456789)'}
+              value={values.no_telepon_sekolah || ''}
+              onChange={handleChange}
+              error={typeof errors.no_telepon_sekolah === 'string' ? errors.no_telepon_sekolah : ''}
+              placeholder={'Masukkan No Telepon Sekolah...'}
+              isInputFilled={'Form No Telepon Sekolah Sudah Terisi'}
+            />
+          </div>
         </div>
       </Form>
     </>
