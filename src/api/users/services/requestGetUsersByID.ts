@@ -19,7 +19,7 @@ type Users = {
 
 interface UsersResponse {
   data: {
-    data: Users[];
+    data: Users;
   };
 }
 

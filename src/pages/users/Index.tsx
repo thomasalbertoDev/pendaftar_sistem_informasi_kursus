@@ -76,7 +76,7 @@ const Users: React.FC = () => {
       />
 
       <div className="flex justify-between items-center mt-10">
-        <SearchBasic value={searchQuery} placeholder="Cari Email Users..." onChange={handleSearch} width="w-1/2" />
+        <SearchBasic value={searchQuery} placeholder="Cari Email User..." onChange={handleSearch} width="w-1/2" />
         <div className="flex gap-3">
           <TippyDefault content="Refresh Halaman">
             <ButtonIcon icon="material-symbols:refresh" backgroundColor="btn-info" onClick={handleRefresh} />

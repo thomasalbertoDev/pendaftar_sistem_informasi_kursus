@@ -1,12 +1,33 @@
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../store/themeConfigSlice';
-import { useEffect, useState } from 'react';
 import { requestGetUsersByID } from '../../api/users/services/requestGetUsersByID';
 import FormatTanggal from '../../helpers/FormatTanggal';
 import BreadcrumbsDefault from '../../components/breadcrumbs/BreadcrumbsDefault';
 
-const Profile = () => {
+interface Users {
+  nama: string;
+  email: string;
+  username: string;
+  role: string;
+  verifikasi_email: boolean;
+  tanggal_verifikasi_email: string;
+  foto_profile: string;
+  tempat_lahir: string;
+  tanggal_lahir: string;
+  jenis_kelamin: string;
+  no_telepon: string;
+  alamat: string;
+  instagram: string;
+  whatsapp: string;
+}
+
+interface UsersResponse {
+  data: Users;
+}
+
+const Profile: React.FC = () => {
   const { id_users } = useParams<{ id_users: string }>();
   const dispatch = useDispatch();
   const [user, setUser] = useState<any>({});
@@ -14,7 +35,7 @@ const Profile = () => {
   useEffect(() => {
     dispatch(setPageTitle('Admin | Users'));
 
-    requestGetUsersByID(id_users ?? '').then((response: any) => {
+    requestGetUsersByID(id_users ?? '').then((response: UsersResponse | never[]) => {
       setUser(response);
     });
   }, [dispatch, id_users]);

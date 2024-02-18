@@ -18,7 +18,7 @@ const Columns = () => {
       ),
     },
     {
-      title: 'Nama Users',
+      title: 'Nama User',
       accessor: 'nama',
       render: (item: { nama: string }) => (
         <>
@@ -27,7 +27,7 @@ const Columns = () => {
       ),
     },
     {
-      title: 'Email Users',
+      title: 'Email User',
       accessor: 'email',
       render: (item: { email: string }) => (
         <>
@@ -36,7 +36,7 @@ const Columns = () => {
       ),
     },
     {
-      title: 'Username Users',
+      title: 'Username User',
       accessor: 'username',
       render: (item: { username: string }) => (
         <>
