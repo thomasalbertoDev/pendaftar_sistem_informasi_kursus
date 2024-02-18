@@ -1,11 +1,11 @@
 import { Icon } from '@iconify/react';
-import { forwardRef, ForwardedRef } from 'react';
+import React, { forwardRef, ForwardedRef } from 'react';
 
 interface ButtonIconTextLeftProps {
-  text: string;
+  text: React.ReactNode;
   icon: string;
   onClick?: () => void;
-  backgroundColor?: string;
+  backgroundColor: string;
 }
 
 const ButtonIconTextLeft = forwardRef(({ text, icon, onClick, backgroundColor }: ButtonIconTextLeftProps, ref: ForwardedRef<HTMLButtonElement>) => {
