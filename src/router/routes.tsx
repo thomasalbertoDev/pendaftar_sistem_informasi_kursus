@@ -30,6 +30,10 @@ const Penghasilan = lazy(() => import('../pages/penghasilan/Index'));
 const CreatePenghasilan = lazy(() => import('../pages/penghasilan/Form/FormCreate'));
 const UpdatePenghasilan = lazy(() => import('../pages/penghasilan/Form/FormUpdate'));
 
+// USERS
+const Users = lazy(() => import('../pages/users/Index'));
+const DataUsers = lazy(() => import('../pages/users/DataUsers'));
+
 // SEKOLAH
 const Sekolah = lazy(() => import('../pages/sekolah/Index'));
 const CreateSekolah = lazy(() => import('../pages/sekolah/Form/FormCreate'));
@@ -123,6 +127,16 @@ const routes = [
   {
     path: '/penghasilan/update-penghasilan/:id_penghasilan',
     element: <UpdatePenghasilan />,
+  },
+
+  {
+    path: '/users',
+    element: <Users />,
+  },
+
+  {
+    path: '/users/:id_users',
+    element: <DataUsers />,
   },
 
   {
