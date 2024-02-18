@@ -57,7 +57,7 @@ const FormUpdate: React.FC = () => {
           },
           {
             label: 'Update Pengajar',
-            link: `/pengajar/updat-pengajar/${id_pengajar}`,
+            link: `/pengajar/update-pengajar/${id_pengajar}`,
           },
         ]}
       />
