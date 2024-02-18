@@ -15,7 +15,7 @@ const QuillBasic: React.FC<QuillBasicProps> = ({ id, label, value, onChange, err
   const isFilled = value !== '';
 
   return (
-    <div>
+    <div className="mb-5">
       <label htmlFor={id}>{label}</label>
       <ReactQuill theme="snow" id={id} value={value} onChange={onChange} className="mb-1" placeholder={placeholder} />
 
