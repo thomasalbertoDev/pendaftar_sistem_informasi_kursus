@@ -28,6 +28,11 @@ export const SidebarMenu = [
     ],
   },
   {
+    title: 'Users',
+    icon: 'mdi:users',
+    link: '/users',
+  },
+  {
     title: 'Sekolah',
     icon: 'emojione-monotone:school',
     link: '/sekolah',
