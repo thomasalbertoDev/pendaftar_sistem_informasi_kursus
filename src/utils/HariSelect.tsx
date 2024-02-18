@@ -45,7 +45,7 @@ const HariSelect: React.FC<HariSelectProps> = ({ id, name, label, error, value, 
     },
   ];
 
-  const selectedOption = hari.find((option: any) => option.value === value);
+  const selectedOptions = hari.filter((option) => value.includes(option.value));
   const styles = {
     control: (baseStyles: any) => ({
       ...baseStyles,
@@ -68,7 +68,7 @@ const HariSelect: React.FC<HariSelectProps> = ({ id, name, label, error, value, 
           isMulti
           id={id}
           name={name}
-          value={selectedOption}
+          value={selectedOptions}
           placeholder="--- Pilih Hari ---"
           options={hari}
           isSearchable={false}
