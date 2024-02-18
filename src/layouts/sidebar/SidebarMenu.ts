@@ -42,4 +42,9 @@ export const SidebarMenu = [
     icon: 'mdi:teacher',
     link: '/pengajar',
   },
+  {
+    title: 'Kursus',
+    icon: 'mdi:teacher',
+    link: '/kursus',
+  },
 ];
