@@ -1,10 +1,10 @@
 import React from 'react';
 import { Form } from 'formik';
 import InputText from '../../../../components/forms/Input/InputText';
-import InputTextarea from '../../../../components/forms/Input/InputTexarea';
 import InputFile from '../../../../components/forms/Input/InputFile';
-import PreviewImage from '../../../../utils/PreviewImage';
+import QuillBasic from '../../../../components/quills/QuillBasic';
 import InputNumber from '../../../../components/forms/Input/InputNumber';
+import PreviewImage from '../../../../utils/PreviewImage';
 
 type pengajar = {
   nama_pengajar: string;
@@ -131,16 +131,16 @@ const FormLayouts: React.FC<FormLayoutsProps> = ({ errors, handleChange, submitC
 
         {/* Pengalaman */}
         <div className={submitCount ? (errors.pengalaman_pengajar ? 'has-error' : 'has-success') : ''}>
-          <InputTextarea
+          <QuillBasic
             id={'pengalaman_pengajar'}
-            name={'pengalaman_pengajar'}
             label={'Pengalaman Pengajar'}
             value={values.pengalaman_pengajar}
-            onChange={handleChange}
+            onChange={(e: any) => {
+              setFieldValue('pengalaman_pengajar', e);
+            }}
             error={errors.pengalaman_pengajar || ''}
-            placeholder={'Masukkan Pengalaman Pengajar'}
             isInputFilled={'Form Pengalaman Pengajar Sudah Terisi'}
-            rows={10}
+            placeholder={'Masukkan Pengalaman Pengajar'}
           />
         </div>
       </Form>

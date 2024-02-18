@@ -55,15 +55,15 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
         </>
       ),
     },
-    {
-      title: 'Pengalaman Pengajar',
-      accessor: 'pengalaman_pengajar',
-      render: (item: { pengalaman_pengajar: string }) => (
-        <>
-          <span className="dark:text-white">{item?.pengalaman_pengajar}</span>
-        </>
-      ),
-    },
+    // {
+    //   title: 'Pengalaman Pengajar',
+    //   accessor: 'pengalaman_pengajar',
+    //   render: (item: { pengalaman_pengajar: string }) => (
+    //     <>
+    //       <p className="dark:text-white" dangerouslySetInnerHTML={{ __html: item?.pengalaman_pengajar }}></p>
+    //     </>
+    //   ),
+    // },
     {
       title: 'Foto Pengajar',
       accessor: 'foto_pengajar',
