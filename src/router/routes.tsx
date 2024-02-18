@@ -44,6 +44,12 @@ const Pengajar = lazy(() => import('../pages/pengajar/Index'));
 const CreatePengajar = lazy(() => import('../pages/pengajar/Form/FormCreate'));
 const UpdatePengajar = lazy(() => import('../pages/pengajar/Form/FormUpdate'));
 
+// KURSUS
+const Kursus = lazy(() => import('../pages/kursus/Index'));
+const CreateKursus = lazy(() => import('../pages/kursus/Form/FormCreate'));
+const UpdateKursus = lazy(() => import('../pages/kursus/Form/FormUpdate'));
+const DataKursus = lazy(() => import('../pages/kursus/DataKursus'));
+
 // ERROR 404
 const Error404 = lazy(() => import('../pages/Error404'));
 
@@ -167,6 +173,26 @@ const routes = [
   {
     path: '/pengajar/update-pengajar/:id_pengajar',
     element: <UpdatePengajar />,
+  },
+
+  {
+    path: '/kursus',
+    element: <Kursus />,
+  },
+
+  {
+    path: '/kursus/tambah-kursus',
+    element: <CreateKursus />,
+  },
+
+  {
+    path: '/kursus/update-kursus/:id_kursus',
+    element: <UpdateKursus />,
+  },
+
+  {
+    path: '/kursus/:id_kursus',
+    element: <DataKursus />,
   },
 
   // ERROR 404

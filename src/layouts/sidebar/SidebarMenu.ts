@@ -44,7 +44,7 @@ export const SidebarMenu = [
   },
   {
     title: 'Kursus',
-    icon: 'mdi:teacher',
+    icon: 'dashicons:welcome-learn-more',
     link: '/kursus',
   },
 ];
