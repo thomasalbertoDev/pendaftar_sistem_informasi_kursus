@@ -7,12 +7,12 @@ import InputNumber from '../../../components/forms/Input/InputNumber';
 import JenisKelaminSelect from '../../../utils/JenisKelaminSelect';
 
 interface FormLayoutsProps {
-  errors: any;
-  handleChange: any;
-  submitCount: any;
-  values: any;
-  setFieldValue: any;
-  setImagePreview: any;
+  errors: { [key: string]: any };
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  submitCount: number;
+  values: { [key: string]: any };
+  setFieldValue: (field: string, value: any) => void;
+  setImagePreview: (preview: string) => void;
 }
 
 const FormLayouts: React.FC<FormLayoutsProps> = ({ errors, handleChange, submitCount, values, setFieldValue, setImagePreview }) => {

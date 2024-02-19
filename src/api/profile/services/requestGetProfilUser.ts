@@ -1,6 +1,7 @@
 import { getProfileUser } from '../api';
 
-type User = {
+interface User {
+  [x: string]: any;
   id_users: string;
   nama: string;
   email: string;
@@ -16,16 +17,11 @@ type User = {
   alamat: string;
   instagram: string;
   whatsapp: string;
-};
-
-interface UserResponse {
-  status: number;
-  data: User;
 }
 
 export const requestGetProfilUser = async (): Promise<User | undefined> => {
   try {
-    const response: UserResponse = await getProfileUser();
+    const response: User = await getProfileUser();
     const user = response.data;
     return user;
   } catch (error) {

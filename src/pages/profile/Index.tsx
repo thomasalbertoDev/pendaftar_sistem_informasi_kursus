@@ -1,21 +1,42 @@
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../store/themeConfigSlice';
-import { useEffect, useState } from 'react';
 import { requestGetProfilUser } from '../../api/profile/services/requestGetProfilUser';
 import FormatTanggal from '../../helpers/FormatTanggal';
 import IconPencilPaper from '../../components/Icons/IconPencilPaper';
 import BreadcrumbsDefault from '../../components/breadcrumbs/BreadcrumbsDefault';
 
-const Profile = () => {
+interface User {
+  [x: string]: any;
+  id_users: string;
+  nama: string;
+  email: string;
+  username: string;
+  role: string;
+  verifikasi_email: boolean;
+  tanggal_verifikasi_email: string;
+  foto_profil: string;
+  tempat_lahir: string;
+  tanggal_lahir: string;
+  jenis_kelamin: string;
+  no_telepon: string;
+  alamat: string;
+  instagram: string;
+  whatsapp: string;
+}
+
+const Profile: React.FunctionComponent = () => {
   const dispatch = useDispatch();
   const [user, setUser] = useState<any>({});
 
   useEffect(() => {
     dispatch(setPageTitle('Admin | Profile'));
 
-    requestGetProfilUser().then((response) => {
-      setUser(response);
+    requestGetProfilUser().then((response: User | undefined) => {
+      if (response) {
+        setUser(response);
+      }
     });
   }, [dispatch]);
 
@@ -41,7 +62,7 @@ const Profile = () => {
         </div>
         <div className="flex flex-col sm:flex-row">
           <div className="ltr:sm:mr-4 rtl:sm:ml-4 w-full sm:w-2/12 mb-5">
-            <img src={`${import.meta.env.VITE_API_URL}/${user?.data?.foto_profil}`} alt="img" className="w-44 h-44 md:w-48 md:h-48 rounded-full object-cover mx-auto" />
+            <img src={`${import.meta.env.VITE_API_URL}/${user?.data?.foto_profil}`} alt="Foto Profile" className="w-44 h-44 md:w-48 md:h-48 rounded-full object-cover mx-auto" loading="lazy" />
           </div>
 
           <div className="flex-1">

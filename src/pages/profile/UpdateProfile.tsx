@@ -1,8 +1,8 @@
+import React, { useEffect, useState } from 'react';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../store/themeConfigSlice';
 import { validationSchema } from './validationSchema';
-import { useEffect, useState } from 'react';
 import { requestGetProfilUser } from '../../api/profile/services/requestGetProfilUser';
 import { requestUpdateProfilUser } from '../../api/profile/services/requestUpdateProfilUser';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -11,42 +11,51 @@ import ButtonSolidDanger from '../../components/buttons/solid/ButtonSolidDanger'
 import BreadcrumbsDefault from '../../components/breadcrumbs/BreadcrumbsDefault';
 import ButtonSolidPrimary from '../../components/buttons/solid/ButtonSolidPrimary';
 
-const Profile = () => {
+interface User {
+  [x: string]: any;
+  id_users: string;
+  nama: string;
+  email: string;
+  username: string;
+  role: string;
+  verifikasi_email: boolean;
+  tanggal_verifikasi_email: string;
+  foto_profil: string;
+  tempat_lahir: string;
+  tanggal_lahir: string;
+  jenis_kelamin: string;
+  no_telepon: string;
+  alamat: string;
+  instagram: string;
+  whatsapp: string;
+}
+
+const Profile: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id_users } = useParams<{ id_users: string }>();
-  const [user, setUser] = useState<any>({});
-  const [data, setData] = useState<any>({
-    nama: '',
-    foto_profil: '',
-    tempat_lahir: '',
-    tanggal_lahir: '',
-    jenis_kelamin: '',
-    no_telepon: '',
-    alamat: '',
-    instagram: '',
-    whatsapp: '',
-  });
   const [imagePreview, setImagePreview] = useState<string>('');
+  const [user, setUser] = useState<any>({});
 
   useEffect(() => {
     dispatch(setPageTitle('Admin | Profile'));
 
-    requestGetProfilUser().then((response) => {
-      setUser(response);
-      setData({
-        nama: response?.data?.nama,
-        foto_profil: response?.data?.foto_profil,
-        tempat_lahir: response?.data?.tempat_lahir,
-        tanggal_lahir: response?.data?.tanggal_lahir,
-        jenis_kelamin: response?.data?.jenis_kelamin,
-        no_telepon: response?.data?.no_telepon,
-        alamat: response?.data?.alamat,
-        instagram: response?.data?.instagram,
-        whatsapp: response?.data?.whatsapp,
-      });
+    requestGetProfilUser().then((response: User | undefined) => {
+      setUser(response?.data);
     });
   }, [dispatch]);
+
+  const initialValues: Partial<User> = {
+    nama: user?.nama || '',
+    foto_profil: user?.foto_profil || '',
+    tempat_lahir: user?.tempat_lahir || '',
+    tanggal_lahir: user?.tanggal_lahir || '',
+    jenis_kelamin: user?.jenis_kelamin || '',
+    no_telepon: user?.no_telepon || '',
+    alamat: user?.alamat || '',
+    instagram: user?.instagram || '',
+    whatsapp: user?.whatsapp || '',
+  };
 
   const handleUpdateProfile = async (values: any): Promise<any> => {
     const request = await requestUpdateProfilUser(id_users ?? '', values);
@@ -58,12 +67,16 @@ const Profile = () => {
   return (
     <>
       <BreadcrumbsDefault
-        header="Profile"
+        header="Update Profile"
         menus={[
           {
             label: 'Profile',
-            link: `/profile/${id_users}`,
+            link: `/profile`,
             icon: 'mdi:user',
+          },
+          {
+            label: 'Update Profile',
+            link: `/profile/${id_users}`,
           },
         ]}
       />
@@ -75,27 +88,12 @@ const Profile = () => {
             {imagePreview ? (
               <img src={imagePreview} alt="Iamge Preview" className="w-44 h-44 md:w-48 md:h-48 rounded-full object-cover mx-auto" />
             ) : (
-              <img src={`${import.meta.env.VITE_API_URL}/${user?.data?.foto_profil}`} alt="img" className="w-44 h-44 md:w-48 md:h-48 rounded-full object-cover mx-auto" />
+              <img src={`${import.meta.env.VITE_API_URL}/${user?.foto_profil}`} alt="img" className="w-44 h-44 md:w-48 md:h-48 rounded-full object-cover mx-auto" />
             )}
           </div>
 
           <div className="flex-1">
-            <Formik
-              enableReinitialize={true}
-              initialValues={{
-                nama: data.nama,
-                foto_profil: data.foto_profil,
-                tempat_lahir: data.tempat_lahir,
-                tanggal_lahir: data.tanggal_lahir,
-                jenis_kelamin: data.jenis_kelamin,
-                no_telepon: data.no_telepon,
-                alamat: data.alamat,
-                instagram: data.instagram,
-                whatsapp: data.whatsapp,
-              }}
-              validationSchema={validationSchema}
-              onSubmit={handleUpdateProfile}
-            >
+            <Formik enableReinitialize={true} initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleUpdateProfile}>
               {({ errors, handleChange, submitCount, values, setFieldValue }) => (
                 <>
                   <FormLayouts errors={errors} handleChange={handleChange} submitCount={submitCount} values={values} setFieldValue={setFieldValue} setImagePreview={setImagePreview} />
