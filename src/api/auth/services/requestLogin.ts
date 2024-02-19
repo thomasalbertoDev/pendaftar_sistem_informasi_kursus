@@ -1,53 +1,44 @@
-import Swal from 'sweetalert2';
-import auth from '../../../configs/auth';
 import { login } from '../api';
+import auth from '../../../configs/auth';
+import ShowToast from '../../../helpers/ShowToast';
 
-export const requestLogin = async (username: string, password: string) => {
+const handleSuccess = (): boolean => {
+  ShowToast('success', 'Selamat Datang!');
+  return true;
+};
+
+const handleError = (): boolean => {
+  ShowToast('error', 'Username Atau Password Salah!');
+  return false;
+};
+
+interface LoginResponse {
+  token: string;
+  username: string;
+  nama: string;
+  role: string;
+}
+
+export const requestLogin = async (username: string, password: string): Promise<boolean | undefined> => {
   try {
     const data = { username, password };
     const response = await login(data);
 
     if (response.status === 200) {
-      const { data } = response;
-      const token = data?.data?.token;
-      const username = data?.data?.username;
-      const nama = data?.data?.nama;
-      const role = data?.data?.role;
+      const responseData: LoginResponse = response?.data?.data;
+      const { token, username, nama, role } = responseData;
 
       auth.setToken(token);
       auth.setUsername(username);
       auth.setNama(nama);
       auth.setRole(role);
 
-      const toast = Swal.mixin({
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 3000,
-      });
-      toast.fire({
-        icon: 'success',
-        title: `Selamat Datang ${username}`,
-        padding: '10px 20px',
-      });
-
-      return true;
+      return handleSuccess();
     }
   } catch (error) {
     console.log(error);
-
-    const toast = Swal.mixin({
-      toast: true,
-      position: 'top',
-      showConfirmButton: false,
-      timer: 3000,
-    });
-    toast.fire({
-      icon: 'error',
-      title: 'Username atau Password Salah',
-      padding: '10px 20px',
-    });
-
-    return false;
+    if ((error as Error | any).response.status === 401) {
+      return handleError();
+    }
   }
 };

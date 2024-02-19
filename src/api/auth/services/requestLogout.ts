@@ -1,8 +1,18 @@
-import Swal from 'sweetalert2';
-import auth from '../../../configs/auth';
 import { logout } from '../api';
+import auth from '../../../configs/auth';
+import ShowToast from '../../../helpers/ShowToast';
 
-export const requestLogout = async () => {
+const handleSuccess = (): boolean => {
+  ShowToast('success', 'Berhasil Logout!');
+  return true;
+};
+
+const handleError = (): boolean => {
+  ShowToast('error', 'Gagal Logout!');
+  return false;
+};
+
+export const requestLogout = async (): Promise<boolean | undefined> => {
   try {
     const response = await logout();
     if (response.status === 200) {
@@ -11,34 +21,12 @@ export const requestLogout = async () => {
       auth.removeNama();
       auth.removeRole();
 
-      const toast = Swal.mixin({
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 3000,
-      });
-      toast.fire({
-        icon: 'success',
-        title: 'Anda Berhasil Logout!',
-        padding: '10px 20px',
-      });
-
-      return true;
+      return handleSuccess();
     }
   } catch (error) {
     console.log(error);
-    const toast = Swal.mixin({
-      toast: true,
-      position: 'top',
-      showConfirmButton: false,
-      timer: 3000,
-    });
-    toast.fire({
-      icon: 'error',
-      title: 'Anda Gagal Logout!',
-      padding: '10px 20px',
-    });
-
-    return false;
+    if ((error as Error | any).response.status === 401) {
+      return handleError();
+    }
   }
 };

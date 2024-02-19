@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setPageTitle } from '../../store/themeConfigSlice';
@@ -10,13 +10,25 @@ import InputPassword from '../../components/forms/Input/InputPassword';
 import ButtonSolidPrimary from '../../components/buttons/solid/ButtonSolidPrimary';
 import CheckboxDefaultPrimary from '../../components/forms/checkbox/default/CheckboxDefaultPrimary';
 
-const SignIn: React.FC = () => {
+interface FormValues {
+  username: string;
+  password: string;
+}
+
+interface State {
+  formValues: FormValues;
+  rememberMe: boolean;
+}
+
+const SignIn: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [rememberMe, setRememberMe] = React.useState(false);
-  const [formValues, setFormValues] = React.useState({
-    username: '',
-    password: '',
+  const [state, setState] = useState<State>({
+    formValues: {
+      username: '',
+      password: '',
+    },
+    rememberMe: false,
   });
 
   useEffect(() => {
@@ -25,16 +37,19 @@ const SignIn: React.FC = () => {
     const rememberMeData = localStorage.getItem('rememberMe');
     if (rememberMeData) {
       const { username, password } = JSON.parse(rememberMeData);
-      setRememberMe(true);
-      setFormValues({ username, password });
+      setState((prevState) => ({
+        ...prevState,
+        rememberMe: true,
+        formValues: { username, password },
+      }));
     }
-  }, []);
+  }, [dispatch]);
 
-  const handleSubmit = async (values: any) => {
+  const handleSubmit = async (values: FormValues) => {
     const { username, password } = values;
     const response = await requestLogin(username, password);
-    if (response) {
-      if (rememberMe) {
+    if (response === true) {
+      if (state.rememberMe) {
         localStorage.setItem('rememberMe', JSON.stringify({ username, password }));
       }
       navigate('/');
@@ -44,11 +59,11 @@ const SignIn: React.FC = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-cover bg-center bg-[url('/assets/images/course.jpg')]">
       <div className="panel sm:w-[700px] px-6 pb-8 max-w-lg w-full rounded-2xl">
-        <img src="/assets/images/logo_light.png" alt="logo" className="w-36  mx-auto" />
+        <img src="/assets/images/logo_light.png" alt="logo" className="w-36  mx-auto" loading="lazy" />
         <Formik
           initialValues={{
-            username: formValues.username,
-            password: formValues.password,
+            username: state.formValues.username,
+            password: state.formValues.password,
           }}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
@@ -79,7 +94,16 @@ const SignIn: React.FC = () => {
                   isInputFilled={'Password Sudah Terisi'}
                 />
 
-                <CheckboxDefaultPrimary text={'Ingatkan Saya!'} checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} />
+                <CheckboxDefaultPrimary
+                  text={'Ingatkan Saya!'}
+                  checked={state.rememberMe}
+                  onChange={(e) => {
+                    setState((prevState) => ({
+                      ...prevState,
+                      rememberMe: e.target.checked,
+                    }));
+                  }}
+                />
               </div>
 
               <ButtonSolidPrimary text={'LOGIN'} width={'w-full'} onClick={() => handleSubmit(values)} />
