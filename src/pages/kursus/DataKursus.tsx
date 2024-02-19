@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import BreadcrumbsDefault from '../../components/breadcrumbs/BreadcrumbsDefault';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { requestGetKursusByID } from '../../api/kursus/services/requestGetKursusByID';
 import { setPageTitle } from '../../store/themeConfigSlice';
+import { requestGetKursusByID } from '../../api/kursus/services/requestGetKursusByID';
 import FormatJam from '../../helpers/FormatJam';
+import FormatUang from '../../helpers/FormatUang';
 import FormatTanggal from '../../helpers/FormatTanggal';
 import BadgeBasicSuccess from '../../components/badges/basic/BadgeBasicSuccess';
-import FormatUang from '../../helpers/FormatUang';
+import BreadcrumbsDefault from '../../components/breadcrumbs/BreadcrumbsDefault';
 import ButtonIconTextLeft from '../../components/buttons/icon/ButtonIconTextLeft';
 
 interface Kursus {
@@ -97,8 +97,8 @@ const DataKursus: React.FC = () => {
                   Tanggal Kegiatan &nbsp; : &nbsp; {FormatTanggal(kursus?.data?.tanggal_mulai)} &nbsp; - &nbsp;{FormatTanggal(kursus?.data?.tanggal_selesai)}{' '}
                 </p>
                 <p className="dark:text-white mb-2">Syarat Kursus &nbsp; : &nbsp;{kursus?.data?.syarat_kursus}</p>
-                <p className="dark:text-white  flex">Hari Kursus &nbsp; : &nbsp; {hariKursus}</p>
-                <p className="mt-10 text-justify" dangerouslySetInnerHTML={{ __html: kursus?.data?.deskripsi_kursus }}></p>
+                <p className="dark:text-white flex">Hari Kursus &nbsp; : &nbsp; {hariKursus}</p>
+                <div className="dark:text-white mt-10 text-justify" dangerouslySetInnerHTML={{ __html: kursus?.data?.deskripsi_kursus }} />
               </div>
             </div>
           </div>
