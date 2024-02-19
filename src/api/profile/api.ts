@@ -7,6 +7,6 @@ export async function getProfileUser() {
   return await API_JSON.get(`/api/${URL}`);
 }
 
-export async function updateProfileUser(id_users: string, data: any) {
+export async function updateProfileUser(id_users: string, data: object) {
   return await API_FORM.put(`/api/${URL}/${id_users}`, data);
 }

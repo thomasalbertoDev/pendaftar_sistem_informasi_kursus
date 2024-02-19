@@ -1,7 +1,45 @@
-import Swal from 'sweetalert2';
 import { updateProfileUser } from '../api';
+import Swal from 'sweetalert2';
+import ShowToast from '../../../helpers/ShowToast';
 
-export const requestUpdateProfilUser = async (id_users: string, data: any) => {
+type User = {
+  id_users: string;
+  nama: string;
+  email: string;
+  username: string;
+  role: string;
+  verifikasi_email: boolean;
+  tanggal_verifikasi_email: string;
+  foto_profil: string;
+  tempat_lahir: string;
+  tanggal_lahir: string;
+  jenis_kelamin: string;
+  no_telepon: string;
+  alamat: string;
+  instagram: string;
+  whatsapp: string;
+};
+
+interface DataUser {
+  data: User;
+}
+
+interface UserResponse {
+  status: number;
+  data: DataUser;
+}
+
+const handleSuccess = (): boolean => {
+  ShowToast('success', 'Pengajar Berhasil Diupdate!');
+  return true;
+};
+
+const handleError = (): boolean => {
+  ShowToast('error', 'Pengajar Gagal Diupdate!');
+  return false;
+};
+
+export const requestUpdateProfilUser = async (id_users: string, data: DataUser) => {
   try {
     const alert = await Swal.fire({
       icon: 'warning',
@@ -14,37 +52,13 @@ export const requestUpdateProfilUser = async (id_users: string, data: any) => {
     });
 
     if (alert.isConfirmed) {
-      const response = await updateProfileUser(id_users, data);
+      const response: UserResponse = await updateProfileUser(id_users, data);
       if (response.status === 200) {
-        const toast = Swal.mixin({
-          toast: true,
-          position: 'top',
-          showConfirmButton: false,
-          timer: 3000,
-        });
-        toast.fire({
-          icon: 'success',
-          title: `Profil Berhasil Diedit`,
-          padding: '10px 20px',
-        });
-
-        return true;
+        return handleSuccess();
       }
     }
   } catch (error) {
     console.log(error);
-    const toast = Swal.mixin({
-      toast: true,
-      position: 'top',
-      showConfirmButton: false,
-      timer: 3000,
-    });
-    toast.fire({
-      icon: 'error',
-      title: 'Profil Gagal Diedit',
-      padding: '10px 20px',
-    });
-
-    return false;
+    return handleError();
   }
 };
