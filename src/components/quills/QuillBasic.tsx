@@ -14,13 +14,25 @@ interface QuillBasicProps {
 const QuillBasic: React.FC<QuillBasicProps> = ({ id, label, value, onChange, error, isInputFilled, placeholder }) => {
   const isFilled = value !== '';
 
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      ['link', 'indent', 'color', 'image'],
+      [{ 'code-block': true }],
+      ['clean'],
+    ],
+  };
+  const formats = ['header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'link', 'image', 'indent', 'code-block', 'color'];
+
   return (
     <div className="mb-5">
       <label htmlFor={id}>{label}</label>
-      <ReactQuill theme="snow" id={id} value={value} onChange={onChange} className="mb-1" placeholder={placeholder} />
+      <ReactQuill theme="snow" id={id} value={value} onChange={onChange} className="mb-1" placeholder={placeholder} modules={modules} formats={formats} />
 
       {error && <span className="text-danger">{error}</span>}
-      {isFilled && !error && <div className="text-success" dangerouslySetInnerHTML={{ __html: isInputFilled }} />}
+      {isFilled && !error && <span className="text-success">{isInputFilled}</span>}
     </div>
   );
 };
