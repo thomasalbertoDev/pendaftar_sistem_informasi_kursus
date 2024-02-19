@@ -9,20 +9,19 @@ import ButtonSolidDanger from '../../../components/buttons/solid/ButtonSolidDang
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 import ButtonSolidSuccess from '../../../components/buttons/solid/ButtonSolidSuccess';
 
-const FormUpdate: React.FC = () => {
+const FormUpdate: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const { id_agama } = useParams<{ id_agama: string }>();
   const [namaAgama, setNamaAgama] = useState<string>('');
 
   useEffect(() => {
-    requestGetAgamaByID(id_agama ?? '').then((response) => {
-      setNamaAgama(response?.data?.nama_agama || '');
+    requestGetAgamaByID(id_agama ?? '').then((response: any) => {
+      setNamaAgama(response?.data?.nama_agama);
     });
-  }, []);
+  }, [id_agama]);
 
-  const handleUpdate = async (e: { nama_agama: string }) => {
-    const { nama_agama } = e;
-    const request = await requestUpdateAgama(id_agama ?? '', nama_agama);
+  const handleUpdate = async (values: any) => {
+    const request = await requestUpdateAgama(id_agama ?? '', { ...values });
     if (request === true) {
       navigate('/agama');
     }
@@ -31,7 +30,7 @@ const FormUpdate: React.FC = () => {
   return (
     <>
       <BreadcrumbsDefault
-        header="Agama"
+        header="Update Agama"
         menus={[
           {
             label: 'Agama',

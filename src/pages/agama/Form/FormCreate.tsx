@@ -8,11 +8,14 @@ import ButtonSolidDanger from '../../../components/buttons/solid/ButtonSolidDang
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 import ButtonSolidPrimary from '../../../components/buttons/solid/ButtonSolidPrimary';
 
-const FormCreate: React.FC = () => {
+type Agama = {
+  nama_agama: string;
+};
+
+const FormCreate: React.FunctionComponent = () => {
   const navigate = useNavigate();
-  const handleCreate = async (e: { nama_agama: string }) => {
-    const { nama_agama } = e;
-    const request = await requestCreateAgama(nama_agama);
+  const handleCreate = async (formData: Agama) => {
+    const request = await requestCreateAgama(formData);
     if (request === true) {
       navigate('/agama');
     }
@@ -21,7 +24,7 @@ const FormCreate: React.FC = () => {
   return (
     <>
       <BreadcrumbsDefault
-        header="Agama"
+        header="Tambah Agama"
         menus={[
           {
             label: 'Agama',

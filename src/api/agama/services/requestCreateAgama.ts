@@ -1,25 +1,36 @@
 import { post } from '../api';
 import ShowToast from '../../../helpers/ShowToast';
 
-const handleSuccess = () => {
+type Agama = {
+  nama_agama: string;
+};
+
+interface AgamaResponse {
+  status: number;
+  data: {
+    data: Agama[];
+  };
+}
+
+const handleSuccess = (): boolean => {
   ShowToast('success', 'Agama Berhasil Ditambahkan!');
   return true;
 };
 
-const handleError = () => {
+const handleError = (): boolean => {
   ShowToast('error', 'Agama Gagal Ditambahkan!');
   return false;
 };
 
-const handleErrorConflict = () => {
+const handleErrorConflict = (): boolean => {
   ShowToast('error', 'Agama Sudah Ada!');
   return false;
 };
 
-export const requestCreateAgama = async (nama_agama: string) => {
+export const requestCreateAgama = async (values: Agama) => {
   try {
-    const data = { nama_agama };
-    const response = await post(data);
+    const data: Agama = { nama_agama: values.nama_agama };
+    const response: AgamaResponse = await post(data);
     if (response.status === 201) {
       return handleSuccess();
     }

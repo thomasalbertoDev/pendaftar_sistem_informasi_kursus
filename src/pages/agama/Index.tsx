@@ -11,32 +11,40 @@ import SearchBasic from '../../components/searchs/SearchBasic';
 import TippyDefault from '../../components/tippys/default/TippyDefault';
 import BreadcrumbsDefault from '../../components/breadcrumbs/BreadcrumbsDefault';
 
-const Agama: React.FC = () => {
+interface AgamaList {
+  id_agama: string;
+  nama_agama: string;
+}
+
+const Agama: React.FunctionComponent = () => {
   const dispatch = useDispatch();
-  const [agamaList, setAgamaList] = useState<any[]>([]);
-  const [initialAgamaList, setInitialAgamaList] = useState<any[]>([]);
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [state, setState] = useState({
+    agamaList: [] as AgamaList[],
+    initialAgamaList: [] as AgamaList[],
+    searchQuery: '' as string,
+  });
+
+  const { agamaList, initialAgamaList, searchQuery } = state;
 
   useEffect(() => {
     dispatch(setPageTitle('Admin | Agama'));
 
-    requestGetAgama().then((response: object[]) => {
-      setAgamaList(response);
-      setInitialAgamaList(response);
+    requestGetAgama().then((response: AgamaList[]) => {
+      setState((prevState) => ({ ...prevState, agamaList: response, initialAgamaList: response }));
     });
   }, [dispatch]);
 
   const filterAgamaList = useCallback(
     debounce((query: string) => {
-      const filteredData = initialAgamaList.filter((item) => item.nama_agama.toLowerCase().includes(query.toLowerCase()));
-      setAgamaList(filteredData);
+      const filteredData = initialAgamaList.filter((item) => item?.nama_agama.toLowerCase().includes(query.toLowerCase()));
+      setState((prevState) => ({ ...prevState, agamaList: filteredData }));
     }, 500),
     [initialAgamaList]
   );
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
-    setSearchQuery(query);
+    setState((prevState) => ({ ...prevState, searchQuery: query }));
     filterAgamaList(query);
   };
 
@@ -44,8 +52,7 @@ const Agama: React.FC = () => {
     const isDeleted = await requestDeleteAgama(id_agama);
     if (isDeleted) {
       requestGetAgama().then((response: object[]) => {
-        setAgamaList(response);
-        setInitialAgamaList(response);
+        setState((prevState) => ({ ...prevState, agamaList: response as AgamaList[] }));
       });
     }
   };

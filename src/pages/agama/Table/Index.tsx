@@ -2,33 +2,42 @@ import React, { useState, useEffect } from 'react';
 import Columns from './Columns';
 import TableSkinBordered from '../../../components/tables/skin/TableSkinBordered';
 
+type Agama = {
+  id_agama: string;
+  nama_agama: string;
+};
+
 interface TableProps {
   agama: any[];
   handleDelete: (id_agama: string) => void;
 }
 
-const Table: React.FC<TableProps> = ({ agama, handleDelete }) => {
-  const DEFAULT_PAGE_SIZE = 5;
-  const PAGE_SIZES = [10, 25, 50, 100];
-  const [page, setPage] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(DEFAULT_PAGE_SIZE);
-  const [recordsData, setRecordsData] = useState<any[]>([]);
+const Table: React.FunctionComponent<TableProps> = ({ agama, handleDelete }) => {
+  const DEFAULT_PAGE_SIZE = 10;
+  const PAGE_SIZES: number[] = [10, 25, 50, 100];
+  const [state, setState] = useState({
+    page: 1 as number,
+    pageSize: DEFAULT_PAGE_SIZE as number,
+    recordsData: [] as Agama[],
+  });
+
+  const { page, pageSize, recordsData } = state;
 
   useEffect(() => {
-    setRecordsData(agama.slice(0, pageSize));
+    setState((prevState) => ({ ...prevState, recordsData: agama.slice(0, pageSize) }));
   }, [agama, pageSize]);
 
   useEffect(() => {
     const calculateRecords = () => {
       const from = (page - 1) * pageSize;
       const to = from + pageSize;
-      setRecordsData(agama.slice(from, to));
+      setState((prevState) => ({ ...prevState, recordsData: agama.slice(from, to) }));
     };
     calculateRecords();
   }, [page, pageSize, agama]);
 
-  const handlePageChange = (page: number) => setPage(page);
-  const handleRecordsPerPageChange = (size: number) => setPageSize(size);
+  const handlePageChange = (page: number) => setState((prevState) => ({ ...prevState, page }));
+  const handleRecordsPerPageChange = (size: number) => setState((prevState) => ({ ...prevState, pageSize: size }));
 
   return (
     <>

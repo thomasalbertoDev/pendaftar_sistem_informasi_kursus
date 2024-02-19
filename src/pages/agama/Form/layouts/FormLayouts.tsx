@@ -2,11 +2,15 @@ import React from 'react';
 import { Form } from 'formik';
 import InputText from '../../../../components/forms/Input/InputText';
 
+type Agama = {
+  nama_agama: string;
+};
+
 interface FormLayoutsProps {
-  errors: any;
-  handleChange: any;
-  submitCount: any;
-  values: any;
+  errors: Record<string, string>;
+  handleChange: (e: React.ChangeEvent<any>) => void;
+  submitCount: number;
+  values: Agama;
 }
 
 const FormLayouts: React.FC<FormLayoutsProps> = ({ errors, handleChange, submitCount, values }) => {

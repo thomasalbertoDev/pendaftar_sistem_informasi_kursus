@@ -13,6 +13,7 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
       title: 'No',
       width: 60,
       accessor: 'index',
+
       render: (item: { index: number }) => (
         <>
           <span className="dark:text-white">{item.index + 1}</span>
@@ -30,7 +31,7 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
     },
     {
       title: 'Aksi',
-      width: 400,
+
       accessor: 'aksi',
       render: (item: { id_agama: string }) => (
         <>
