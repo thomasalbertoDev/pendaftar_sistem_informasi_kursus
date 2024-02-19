@@ -86,9 +86,9 @@ const Profile: React.FunctionComponent = () => {
         <div className="flex flex-col sm:flex-row">
           <div className="ltr:sm:mr-4 rtl:sm:ml-4 w-full sm:w-2/12 mb-5">
             {imagePreview ? (
-              <img src={imagePreview} alt="Iamge Preview" className="w-44 h-44 md:w-48 md:h-48 rounded-full object-cover mx-auto" />
+              <img src={imagePreview} alt="Iamge Preview" className="w-44 h-44 md:w-48 md:h-48 rounded-full object-cover mx-auto" loading="lazy" />
             ) : (
-              <img src={`${import.meta.env.VITE_API_URL}/${user?.foto_profil}`} alt="img" className="w-44 h-44 md:w-48 md:h-48 rounded-full object-cover mx-auto" />
+              <img src={`${import.meta.env.VITE_API_URL}/${user?.foto_profil}`} alt="img" className="w-44 h-44 md:w-48 md:h-48 rounded-full object-cover mx-auto" loading="lazy" />
             )}
           </div>
 

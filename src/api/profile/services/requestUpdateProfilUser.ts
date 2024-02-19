@@ -30,12 +30,12 @@ interface UserResponse {
 }
 
 const handleSuccess = (): boolean => {
-  ShowToast('success', 'Pengajar Berhasil Diupdate!');
+  ShowToast('success', 'Profil Berhasil Diupdate!');
   return true;
 };
 
 const handleError = (): boolean => {
-  ShowToast('error', 'Pengajar Gagal Diupdate!');
+  ShowToast('error', 'Profil Gagal Diupdate!');
   return false;
 };
 
