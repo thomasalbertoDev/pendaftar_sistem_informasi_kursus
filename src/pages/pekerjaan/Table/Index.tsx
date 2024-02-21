@@ -2,33 +2,42 @@ import React, { useState, useEffect } from 'react';
 import Columns from './Columns';
 import TableSkinBordered from '../../../components/tables/skin/TableSkinBordered';
 
+interface Pekerjaan {
+  id_pekerjaan: string;
+  nama_pekerjaan: string;
+}
+
 interface TableProps {
-  pekerjaan: any[];
+  pekerjaan: Array<Pekerjaan>;
   handleDelete: (id_pekerjaan: string) => void;
 }
 
-const Table: React.FC<TableProps> = ({ pekerjaan, handleDelete }) => {
+const Table: React.FunctionComponent<TableProps> = ({ pekerjaan, handleDelete }) => {
   const DEFAULT_PAGE_SIZE = 10;
-  const PAGE_SIZES = [10, 25, 50, 100];
-  const [page, setPage] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(DEFAULT_PAGE_SIZE);
-  const [recordsData, setRecordsData] = useState<any[]>([]);
+  const PAGE_SIZES: number[] = [10, 25, 50, 100];
+  const [state, setState] = useState({
+    page: 1 as number,
+    pageSize: DEFAULT_PAGE_SIZE as number,
+    recordsData: [] as Pekerjaan[],
+  });
+
+  const { page, pageSize, recordsData } = state;
 
   useEffect(() => {
-    setRecordsData(pekerjaan.slice(0, pageSize));
+    setState((prevState) => ({ ...prevState, recordsData: pekerjaan.slice(0, pageSize) }));
   }, [pekerjaan, pageSize]);
 
   useEffect(() => {
     const calculateRecords = () => {
       const from = (page - 1) * pageSize;
       const to = from + pageSize;
-      setRecordsData(pekerjaan.slice(from, to));
+      setState((prevState) => ({ ...prevState, recordsData: pekerjaan.slice(from, to) }));
     };
     calculateRecords();
   }, [page, pageSize, pekerjaan]);
 
-  const handlePageChange = (page: number) => setPage(page);
-  const handleRecordsPerPageChange = (size: number) => setPageSize(size);
+  const handlePageChange = (page: number) => setState((prevState) => ({ ...prevState, page }));
+  const handleRecordsPerPageChange = (size: number) => setState((prevState) => ({ ...prevState, pageSize: size }));
 
   return (
     <>
@@ -36,9 +45,9 @@ const Table: React.FC<TableProps> = ({ pekerjaan, handleDelete }) => {
         page={page}
         records={recordsData}
         columns={Columns({ handleDelete })}
-        recordsPerPage={pageSize}
         totalRecords={pekerjaan.length}
         onPageChange={handlePageChange}
+        recordsPerPage={pageSize}
         recordsPerPageOptions={PAGE_SIZES}
         onRecordsPerPageChange={handleRecordsPerPageChange}
       />

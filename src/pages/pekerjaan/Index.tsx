@@ -11,41 +11,48 @@ import SearchBasic from '../../components/searchs/SearchBasic';
 import TippyDefault from '../../components/tippys/default/TippyDefault';
 import BreadcrumbsDefault from '../../components/breadcrumbs/BreadcrumbsDefault';
 
-const Pekerjaan: React.FC = () => {
+interface PekerjaanList {
+  id_pekerjaan: string;
+  nama_pekerjaan: string;
+}
+
+const Pekerjaan: React.FunctionComponent = () => {
   const dispatch = useDispatch();
-  const [pekerjaanList, setPekerjaanList] = useState<any[]>([]);
-  const [initialPekerjaanList, setInitialPekerjaanList] = useState<any[]>([]);
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [state, setState] = useState({
+    pekerjaanList: [] as PekerjaanList[],
+    initialPekerjaanList: [] as PekerjaanList[],
+    searchQuery: '' as string,
+  });
+
+  const { pekerjaanList, initialPekerjaanList, searchQuery } = state;
 
   useEffect(() => {
     dispatch(setPageTitle('Admin | Pekerjaan'));
 
-    requestGetPekerjaan().then((response) => {
-      setPekerjaanList(response);
-      setInitialPekerjaanList(response);
+    requestGetPekerjaan().then((response: PekerjaanList[]) => {
+      setState((prevState) => ({ ...prevState, pekerjaanList: response, initialPekerjaanList: response }));
     });
   }, [dispatch]);
 
   const filterPekerjaanList = useCallback(
     debounce((query: string) => {
       const filteredData = initialPekerjaanList.filter((item) => item?.nama_pekerjaan.toLowerCase().includes(query.toLowerCase()));
-      setPekerjaanList(filteredData);
+      setState((prevState) => ({ ...prevState, pekerjaanList: filteredData }));
     }, 500),
     [initialPekerjaanList]
   );
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
-    setSearchQuery(query);
+    setState((prevState) => ({ ...prevState, searchQuery: query }));
     filterPekerjaanList(query);
   };
 
   const handleDelete = async (id_pekerjaan: string) => {
     const isDeleted = await requestDeletePekerjaan(id_pekerjaan);
     if (isDeleted) {
-      requestGetPekerjaan().then((response) => {
-        setPekerjaanList(response);
-        setInitialPekerjaanList(response);
+      requestGetPekerjaan().then((response: PekerjaanList[]) => {
+        setState((prevState) => ({ ...prevState, pekerjaanList: response as PekerjaanList[] }));
       });
     }
   };

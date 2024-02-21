@@ -9,7 +9,11 @@ import ButtonSolidDanger from '../../../components/buttons/solid/ButtonSolidDang
 import ButtonSolidSuccess from '../../../components/buttons/solid/ButtonSolidSuccess';
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 
-const FormUpdate: React.FC = () => {
+interface Pekerjaan {
+  nama_pekerjaan: string;
+}
+
+const FormUpdate: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const { id_pekerjaan } = useParams<{ id_pekerjaan: string }>();
   const [namaPekerjaan, setNamaPekerjaan] = useState<string>('');
@@ -20,9 +24,8 @@ const FormUpdate: React.FC = () => {
     });
   }, []);
 
-  const handleUpdate = async (e: { nama_pekerjaan: string }) => {
-    const { nama_pekerjaan } = e;
-    const request = await requestUpdatePekerjaan(id_pekerjaan ?? '', nama_pekerjaan);
+  const handleUpdate = async (values: Pekerjaan) => {
+    const request = await requestUpdatePekerjaan(id_pekerjaan ?? '', { ...values });
     if (request === true) {
       navigate('/pekerjaan');
     }

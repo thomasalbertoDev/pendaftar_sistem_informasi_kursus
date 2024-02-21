@@ -7,11 +7,14 @@ import ButtonSolidDanger from '../../../components/buttons/solid/ButtonSolidDang
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 import ButtonSolidPrimary from '../../../components/buttons/solid/ButtonSolidPrimary';
 
-const FormCreate: React.FC = () => {
+interface Pekerjaan {
+  nama_pekerjaan: string;
+}
+
+const FormCreate: React.FunctionComponent = () => {
   const navigate = useNavigate();
-  const handleCreate = async (e: { nama_pekerjaan: string }) => {
-    const { nama_pekerjaan } = e;
-    const request = await requestCreatePekerjaan(nama_pekerjaan);
+  const handleCreate = async (formData: Pekerjaan) => {
+    const request = await requestCreatePekerjaan(formData);
     if (request === true) {
       navigate('/pekerjaan');
     }

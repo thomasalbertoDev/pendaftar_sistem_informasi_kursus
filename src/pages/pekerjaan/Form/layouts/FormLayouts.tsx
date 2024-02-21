@@ -2,14 +2,18 @@ import React from 'react';
 import { Form } from 'formik';
 import InputText from '../../../../components/forms/Input/InputText';
 
-interface FormLayoutsProps {
-  errors: any;
-  handleChange: any;
-  submitCount: any;
-  values: any;
+interface Pekerjaan {
+  nama_pekerjaan: string;
 }
 
-const FormLayouts: React.FC<FormLayoutsProps> = ({ errors, handleChange, submitCount, values }) => {
+interface FormLayoutsProps {
+  errors: Record<string, string>;
+  handleChange: (e: React.ChangeEvent<any>) => void;
+  submitCount: number;
+  values: Pekerjaan;
+}
+
+const FormLayouts: React.FunctionComponent<FormLayoutsProps> = ({ errors, handleChange, submitCount, values }) => {
   return (
     <>
       <Form className="space-y-5">
