@@ -2,12 +2,12 @@ import Swal from 'sweetalert2';
 import { remove } from '../api';
 import ShowToast from '../../../helpers/ShowToast';
 
-const handleSuccess = () => {
+const handleSuccess = (): boolean => {
   ShowToast('success', 'Pendidikan Berhasil Dihapus!');
   return true;
 };
 
-const handleError = () => {
+const handleError = (): boolean => {
   ShowToast('error', 'Pendidikan Gagal Dihapus!');
   return false;
 };

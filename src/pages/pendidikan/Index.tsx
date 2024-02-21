@@ -11,41 +11,48 @@ import SearchBasic from '../../components/searchs/SearchBasic';
 import TippyDefault from '../../components/tippys/default/TippyDefault';
 import BreadcrumbsDefault from '../../components/breadcrumbs/BreadcrumbsDefault';
 
-const Pendidikan: React.FC = () => {
+interface PendidikanList {
+  id_pendidikan: string;
+  nama_pendidikan: string;
+}
+
+const Pendidikan: React.FunctionComponent = () => {
   const dispatch = useDispatch();
-  const [pendidikanList, setPendidikanList] = useState<any[]>([]);
-  const [initialPendidikanList, setInitialPendidikanList] = useState<any[]>([]);
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [state, setState] = useState({
+    pendidikanList: [] as PendidikanList[],
+    initialPendidikanList: [] as PendidikanList[],
+    searchQuery: '' as string,
+  });
+
+  const { pendidikanList, initialPendidikanList, searchQuery } = state;
 
   useEffect(() => {
     dispatch(setPageTitle('Admin | Pendidikan'));
 
-    requestGetPendidikan().then((response) => {
-      setPendidikanList(response);
-      setInitialPendidikanList(response);
+    requestGetPendidikan().then((response: PendidikanList[]) => {
+      setState((prevState) => ({ ...prevState, pendidikanList: response, initialPendidikanList: response }));
     });
   }, [dispatch]);
 
   const filterPendidikanList = useCallback(
     debounce((query: string) => {
       const filteredData = initialPendidikanList.filter((item) => item?.nama_pendidikan.toLowerCase().includes(query.toLowerCase()));
-      setPendidikanList(filteredData);
+      setState((prevState) => ({ ...prevState, pendidikanList: filteredData }));
     }, 500),
     [initialPendidikanList]
   );
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
-    setSearchQuery(query);
+    setState((prevState) => ({ ...prevState, searchQuery: query }));
     filterPendidikanList(query);
   };
 
   const handleDelete = async (id_pendidikan: string) => {
     const isDeleted = await requestDeletePendidikan(id_pendidikan);
     if (isDeleted === true) {
-      requestGetPendidikan().then((response) => {
-        setPendidikanList(response);
-        setInitialPendidikanList(response);
+      requestGetPendidikan().then((response: PendidikanList[]) => {
+        setState((prevState) => ({ ...prevState, pendidikanList: response as PendidikanList[] }));
       });
     }
   };

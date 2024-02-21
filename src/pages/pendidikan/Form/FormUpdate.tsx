@@ -9,7 +9,11 @@ import ButtonSolidDanger from '../../../components/buttons/solid/ButtonSolidDang
 import ButtonSolidSuccess from '../../../components/buttons/solid/ButtonSolidSuccess';
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 
-const FormUpdate: React.FC = () => {
+interface Pendidikan {
+  nama_pendidikan: string;
+}
+
+const FormUpdate: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const { id_pendidikan } = useParams<{ id_pendidikan: string }>();
   const [namaPendidikan, setNamaPendidikan] = useState<string>('');
@@ -20,9 +24,8 @@ const FormUpdate: React.FC = () => {
     });
   }, []);
 
-  const handleUpdate = async (e: { nama_pendidikan: string }) => {
-    const { nama_pendidikan } = e;
-    const request = await requestUpdatePendidikan(id_pendidikan ?? '', nama_pendidikan);
+  const handleUpdate = async (formData: Pendidikan) => {
+    const request = await requestUpdatePendidikan(id_pendidikan ?? '', formData);
     if (request === true) {
       navigate('/pendidikan');
     }
@@ -31,7 +34,7 @@ const FormUpdate: React.FC = () => {
   return (
     <>
       <BreadcrumbsDefault
-        header="Pendidikan"
+        header="Update Pendidikan"
         menus={[
           {
             label: 'Pendidikan',
