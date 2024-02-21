@@ -24,7 +24,7 @@ const FormCreate: React.FunctionComponent = () => {
   return (
     <>
       <BreadcrumbsDefault
-        header="Pendidikan"
+        header="Tambah Pendidikan"
         menus={[
           {
             label: 'Pendidikan',
