@@ -11,41 +11,48 @@ import SearchBasic from '../../components/searchs/SearchBasic';
 import TippyDefault from '../../components/tippys/default/TippyDefault';
 import BreadcrumbsDefault from '../../components/breadcrumbs/BreadcrumbsDefault';
 
-const Penghasilan: React.FC = () => {
+interface PenghasilanList {
+  id_penghasilan: string;
+  jumlah_penghasilan: string;
+}
+
+const Penghasilan: React.FunctionComponent = () => {
   const dispatch = useDispatch();
-  const [penghasilanList, setPenghasilanList] = useState<any[]>([]);
-  const [initialPenghasilanList, setInitialPenghasilanList] = useState<any[]>([]);
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [state, setState] = useState({
+    penghasilanList: [] as PenghasilanList[],
+    initialPenghasilanList: [] as PenghasilanList[],
+    searchQuery: '' as string,
+  });
+
+  const { penghasilanList, initialPenghasilanList, searchQuery } = state;
 
   useEffect(() => {
     dispatch(setPageTitle('Admin | Penghasilan'));
 
-    requestGetPenghasilan().then((response) => {
-      setPenghasilanList(response);
-      setInitialPenghasilanList(response);
+    requestGetPenghasilan().then((response: PenghasilanList[]) => {
+      setState((prevState) => ({ ...prevState, penghasilanList: response, initialPenghasilanList: response }));
     });
   }, [dispatch]);
 
   const filterPenghasilanList = useCallback(
     debounce((query: string) => {
       const filteredData = initialPenghasilanList.filter((item) => item?.jumlah_penghasilan.toLowerCase().includes(query.toLowerCase()));
-      setPenghasilanList(filteredData);
+      setState((prevState) => ({ ...prevState, penghasilanList: filteredData }));
     }, 500),
     [initialPenghasilanList]
   );
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
-    setSearchQuery(query);
+    setState((prevState) => ({ ...prevState, searchQuery: query }));
     filterPenghasilanList(query);
   };
 
   const handleDelete = async (id_penghasilan: string) => {
     const isDeleted = await requestDeletePenghasilan(id_penghasilan);
     if (isDeleted === true) {
-      requestGetPenghasilan().then((response) => {
-        setPenghasilanList(response);
-        setInitialPenghasilanList(response);
+      requestGetPenghasilan().then((response: PenghasilanList[]) => {
+        setState((prevState) => ({ ...prevState, penghasilanList: response as PenghasilanList[] }));
       });
     }
   };

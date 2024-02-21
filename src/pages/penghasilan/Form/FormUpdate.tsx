@@ -9,7 +9,11 @@ import ButtonSolidDanger from '../../../components/buttons/solid/ButtonSolidDang
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 import ButtonSolidSuccess from '../../../components/buttons/solid/ButtonSolidSuccess';
 
-const FormUpdate: React.FC = () => {
+interface Penghasilan {
+  jumlah_penghasilan: string;
+}
+
+const FormUpdate: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const { id_penghasilan } = useParams<{ id_penghasilan: string }>();
   const [jumlahPenghasilan, setJumlahPenghasilan] = useState<string>('');
@@ -20,9 +24,8 @@ const FormUpdate: React.FC = () => {
     });
   }, []);
 
-  const handleUpdate = async (e: { jumlah_penghasilan: string }) => {
-    const { jumlah_penghasilan } = e;
-    const request = await requestUpdatePenghasilan(id_penghasilan ?? '', jumlah_penghasilan);
+  const handleUpdate = async (formData: Penghasilan) => {
+    const request = await requestUpdatePenghasilan(id_penghasilan ?? '', formData);
     if (request === true) {
       navigate('/penghasilan');
     }
@@ -31,7 +34,7 @@ const FormUpdate: React.FC = () => {
   return (
     <>
       <BreadcrumbsDefault
-        header="Penghasilan"
+        header="Update Penghasilan"
         menus={[
           {
             label: 'Penghasilan',

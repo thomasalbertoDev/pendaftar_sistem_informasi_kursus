@@ -1,25 +1,35 @@
 import { post } from '../api';
 import ShowToast from '../../../helpers/ShowToast';
 
-const handleSuccess = () => {
+interface Penghasilan {
+  jumlah_penghasilan: string;
+}
+
+interface PenghasilanResponse {
+  status: number;
+  data: {
+    data: Penghasilan;
+  };
+}
+
+const handleSuccess = (): boolean => {
   ShowToast('success', 'Penghasilan Berhasil Ditambahkan!');
   return true;
 };
 
-const handleError = () => {
+const handleError = (): boolean => {
   ShowToast('error', 'Penghasilan Gagal Ditambahkan!');
   return false;
 };
 
-const handleErrorConflict = () => {
+const handleErrorConflict = (): boolean => {
   ShowToast('error', 'Penghasilan Sudah Ada!');
   return false;
 };
 
-export const requestCreatePenghasilan = async (jumlah_penghasilan: string) => {
+export const requestCreatePenghasilan = async (data: Penghasilan) => {
   try {
-    const data = { jumlah_penghasilan };
-    const response = await post(data);
+    const response: PenghasilanResponse = await post(data);
     if (response.status === 201) {
       return handleSuccess();
     }

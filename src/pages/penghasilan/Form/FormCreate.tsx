@@ -8,11 +8,14 @@ import ButtonSolidDanger from '../../../components/buttons/solid/ButtonSolidDang
 import ButtonSolidPrimary from '../../../components/buttons/solid/ButtonSolidPrimary';
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 
-const FormCreate: React.FC = () => {
+interface Penghasilan {
+  jumlah_penghasilan: string;
+}
+
+const FormCreate: React.FunctionComponent = () => {
   const navigate = useNavigate();
-  const handleCreate = async (e: { jumlah_penghasilan: string }) => {
-    const { jumlah_penghasilan } = e;
-    const request = await requestCreatePenghasilan(jumlah_penghasilan);
+  const handleCreate = async (formData: Penghasilan) => {
+    const request = await requestCreatePenghasilan(formData);
     if (request === true) {
       navigate('/penghasilan');
     }
@@ -21,7 +24,7 @@ const FormCreate: React.FC = () => {
   return (
     <>
       <BreadcrumbsDefault
-        header="Penghasilan"
+        header="Tambah Penghasilan"
         menus={[
           {
             label: 'Penghasilan',

@@ -1,21 +1,30 @@
 import { put } from '../api';
 import ShowToast from '../../../helpers/ShowToast';
 
-const handleSuccess = () => {
+interface Penghasilan {
+  jumlah_penghasilan: string;
+}
+
+interface PenghasilanResponse {
+  status: number;
+  data: {
+    data: Penghasilan;
+  };
+}
+
+const handleSuccess = (): boolean => {
   ShowToast('success', 'Penghasilan Berhasil Diedit!');
   return true;
 };
 
-const handleError = () => {
+const handleError = (): boolean => {
   ShowToast('error', 'Penghasilan Gagal Diedit!');
   return false;
 };
 
-export const requestUpdatePenghasilan = async (id_penghasilan: string, jumlah_penghasilan: string) => {
+export const requestUpdatePenghasilan = async (id_penghasilan: string, data: Penghasilan) => {
   try {
-    const data = { jumlah_penghasilan };
-    const response = await put(id_penghasilan, data);
-
+    const response: PenghasilanResponse = await put(id_penghasilan, data);
     if (response.status === 200) {
       return handleSuccess();
     }

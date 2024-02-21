@@ -2,14 +2,18 @@ import React from 'react';
 import { Form } from 'formik';
 import InputText from '../../../../components/forms/Input/InputText';
 
-interface FormLayoutsProps {
-  errors: any;
-  handleChange: any;
-  submitCount: any;
-  values: any;
+interface Penghasilan {
+  jumlah_penghasilan: string;
 }
 
-const FormLayouts: React.FC<FormLayoutsProps> = ({ errors, handleChange, submitCount, values }) => {
+interface FormLayoutsProps {
+  errors: Record<string, string>;
+  handleChange: (e: React.ChangeEvent<any>) => void;
+  submitCount: number;
+  values: Penghasilan;
+}
+
+const FormLayouts: React.FunctionComponent<FormLayoutsProps> = ({ errors, handleChange, submitCount, values }) => {
   return (
     <>
       <Form className="space-y-5">
@@ -19,8 +23,8 @@ const FormLayouts: React.FC<FormLayoutsProps> = ({ errors, handleChange, submitC
             name={'jumlah_penghasilan'}
             label={'Jumlah Penghasilan'}
             value={values.jumlah_penghasilan}
-            onChange={handleChange}
             error={errors.jumlah_penghasilan || ''}
+            onChange={handleChange}
             placeholder={'Masukkan Jumlah Penghasilan'}
             isInputFilled={'Form Jumlah Penghasilan Sudah Terisi'}
           />

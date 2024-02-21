@@ -35,7 +35,7 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
         <>
           <div className="flex space-x-1 rtl:space-x-reverse gap-2">
             <Link to={`/penghasilan/update-penghasilan/${item?.id_penghasilan}`}>
-              <TippyDefault content="Edit">
+              <TippyDefault content="Update">
                 <IconPencil className="dark:text-white" />
               </TippyDefault>
             </Link>
