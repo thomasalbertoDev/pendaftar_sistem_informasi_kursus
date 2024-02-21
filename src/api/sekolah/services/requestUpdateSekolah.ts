@@ -1,19 +1,42 @@
-import ShowToast from '../../../helpers/ShowToast';
 import { put } from '../api';
+import ShowToast from '../../../helpers/ShowToast';
 
-const handleSuccess = () => {
+interface Sekolah {
+  npsn: number;
+  nama_sekolah: string;
+  alamat: string;
+  kode_pos: number;
+  provinsi: string;
+  kabupaten: string;
+  kecamatan: string;
+  kelurahan: string;
+  status_sekolah: string;
+  jenjang_pendidikan: string;
+  akreditasi: string;
+  email_sekolah: string;
+  no_telepon_sekolah: string;
+}
+
+interface SekolahResponse {
+  status: number;
+  data: {
+    data: Sekolah;
+  };
+}
+
+const handleSuccess = (): boolean => {
   ShowToast('success', 'Sekolah Berhasil Diupdate!');
   return true;
 };
 
-const handleError = () => {
+const handleError = (): boolean => {
   ShowToast('error', 'Sekolah Gagal Diupdate!');
   return false;
 };
 
-export const requestUpdateSekolah = async (id_sekolah: string, data: any) => {
+export const requestUpdateSekolah = async (id_sekolah: string, data: Sekolah) => {
   try {
-    const response = await put(id_sekolah, data);
+    const response: SekolahResponse = await put(id_sekolah, data);
     if (response.status === 200) {
       return handleSuccess();
     }

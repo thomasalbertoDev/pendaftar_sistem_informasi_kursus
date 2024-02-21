@@ -1,5 +1,5 @@
+import React from 'react';
 import { Form } from 'formik';
-import React, { useState } from 'react';
 import InputText from '../../../../components/forms/Input/InputText';
 import InputNumber from '../../../../components/forms/Input/InputNumber';
 import ProvinsiSelect from '../../../../utils/ProvinsiSelect';
@@ -7,20 +7,36 @@ import KabupatenSelect from '../../../../utils/KabupatenSelect';
 import KecamatanSelect from '../../../../utils/KecamatanSelect';
 import KelurahanSelect from '../../../../utils/KelurahanSelect';
 
+interface Sekolah {
+  npsn: number;
+  nama_sekolah: string;
+  alamat: string;
+  kode_pos: number;
+  provinsi: string;
+  kabupaten: string;
+  kecamatan: string;
+  kelurahan: string;
+  status_sekolah: string;
+  jenjang_pendidikan: string;
+  akreditasi: string;
+  email_sekolah: string;
+  no_telepon_sekolah: string;
+}
+
 interface FormLayoutsProps {
-  errors: any;
-  handleChange: any;
-  submitCount: any;
-  values: any;
-  setFieldValue: any;
-  selectedProvinsiId: any;
-  setSelectedProvinsiId: any;
-  selectedKabupatenId: any;
-  setSelectedKabupatenId: any;
-  selectedKecamatanId: any;
-  setSelectedKecamatanId: any;
-  selectedKelurahanId?: any;
-  setSelectedKelurahanId?: any;
+  errors: Record<string, string>;
+  handleChange: (e: React.ChangeEvent<any>) => void;
+  submitCount: number;
+  values: Sekolah;
+  setFieldValue: (field: string, value: number | string | boolean, shouldValidate?: boolean | undefined) => void;
+  selectedProvinsiId: string;
+  setSelectedProvinsiId: string | number | any;
+  selectedKabupatenId: string;
+  setSelectedKabupatenId: string | number | any;
+  selectedKecamatanId: string;
+  setSelectedKecamatanId: string | number | any;
+  selectedKelurahanId?: string;
+  setSelectedKelurahanId?: string | number | any;
 }
 
 const FormLayouts: React.FC<FormLayoutsProps> = ({
@@ -51,7 +67,7 @@ const FormLayouts: React.FC<FormLayoutsProps> = ({
               label={'NPSN'}
               value={values.npsn}
               onChange={handleChange}
-              error={errors.npsn}
+              error={errors.npsn || ''}
               placeholder={'Masukkan NPSN...'}
               isInputFilled={'Form NPSN Sudah Terisi'}
             />
@@ -63,9 +79,9 @@ const FormLayouts: React.FC<FormLayoutsProps> = ({
               id={'nama_sekolah'}
               name={'nama_sekolah'}
               label={'Nama Sekolah'}
-              value={values.nama_sekolah || ''}
+              value={values.nama_sekolah}
               onChange={handleChange}
-              error={typeof errors.nama_sekolah === 'string' ? errors.nama_sekolah : ''}
+              error={errors.nama_sekolah || ''}
               placeholder={'Masukkan Nama Sekolah...'}
               isInputFilled={'Form Nama Sekolah Sudah Terisi'}
             />
@@ -80,9 +96,9 @@ const FormLayouts: React.FC<FormLayoutsProps> = ({
               id={'alamat'}
               name={'alamat'}
               label={'Alamat Sekolah'}
-              value={values.alamat || ''}
+              value={values.alamat}
               onChange={handleChange}
-              error={typeof errors.alamat === 'string' ? errors.alamat : ''}
+              error={errors.alamat || ''}
               placeholder={'Masukkan Alamat Sekolah...'}
               isInputFilled={'Form Alamat Sekolah Sudah Terisi'}
             />
@@ -96,7 +112,7 @@ const FormLayouts: React.FC<FormLayoutsProps> = ({
               label={'Kode Pos'}
               value={values.kode_pos}
               onChange={handleChange}
-              error={errors.kode_pos}
+              error={errors.kode_pos || ''}
               placeholder={'Masukkan Kode Pos...'}
               isInputFilled={'Form Kode Pos Sudah Terisi'}
             />
@@ -110,14 +126,14 @@ const FormLayouts: React.FC<FormLayoutsProps> = ({
               id={'provinsi'}
               name={'provinsi'}
               label={'Provinsi'}
-              error={typeof errors.provinsi === 'string' ? errors.provinsi : ''}
+              error={errors.provinsi || ''}
               value={selectedProvinsiId}
-              onChange={(e: any) => {
+              onChange={(e: string) => {
                 setFieldValue('provinsi', (values.provinsi = e));
               }}
               placeholder={'--- Pilih Provinsi ---'}
               isInputFilled={'Form Provinsi Sudah Terisi'}
-              onProvinsiChange={(value: any) => setSelectedProvinsiId(value)}
+              onProvinsiChange={(value: string) => setSelectedProvinsiId(value)}
             />
           </div>
 
@@ -127,15 +143,15 @@ const FormLayouts: React.FC<FormLayoutsProps> = ({
                 id={'kabupaten'}
                 name={'kabupaten'}
                 label={'Kabupaten'}
+                error={errors.kabupaten || ''}
                 value={selectedKabupatenId}
-                error={typeof errors.kabupaten === 'string' ? errors.kabupaten : ''}
-                onChange={(e: any) => {
+                onChange={(e: string) => {
                   setFieldValue('kabupaten', (values.kabupaten = e));
                 }}
                 provinsiId={selectedProvinsiId}
                 placeholder={'--- Pilih Kabupaten ---'}
                 isInputFilled={'Form Kabupaten Sudah Terisi'}
-                onKabupatenChange={(value: any) => setSelectedKabupatenId(value)}
+                onKabupatenChange={(value: string) => setSelectedKabupatenId(value)}
               />
             </div>
           )}
@@ -146,15 +162,15 @@ const FormLayouts: React.FC<FormLayoutsProps> = ({
                 id={'kecamatan'}
                 name={'kecamatan'}
                 label={'Kecamatan'}
+                error={errors.kecamatan || ''}
                 value={selectedKecamatanId}
-                error={typeof errors.kecamatan === 'string' ? errors.kecamatan : ''}
-                onChange={(e: any) => {
+                onChange={(e: string) => {
                   setFieldValue('kecamatan', (values.kecamatan = e));
                 }}
                 placeholder={'--- Pilih Kecamatan ---'}
                 kabupatenId={selectedKabupatenId}
                 isInputFilled={'Form Kecamatan Sudah Terisi'}
-                onKecamatanChange={(value: any) => setSelectedKecamatanId(value)}
+                onKecamatanChange={(value: string) => setSelectedKecamatanId(value)}
               />
             </div>
           )}
@@ -166,14 +182,14 @@ const FormLayouts: React.FC<FormLayoutsProps> = ({
                 name={'kelurahan'}
                 label={'Kelurahan'}
                 value={selectedKelurahanId}
-                error={typeof errors.kelurahan === 'string' ? errors.kelurahan : ''}
-                onChange={(e: any) => {
+                error={errors.kelurahan || ''}
+                onChange={(e: string) => {
                   setFieldValue('kelurahan', (values.kelurahan = e));
                 }}
                 kecamatanId={selectedKecamatanId}
                 placeholder={'--- Pilih Kelurahan ---'}
                 isInputFilled={'Form Kelurahan Sudah Terisi'}
-                onKelurahanChange={(value: any) => setSelectedKelurahanId(value)}
+                onKelurahanChange={(value: string) => setSelectedKelurahanId(value)}
               />
             </div>
           )}
@@ -187,9 +203,9 @@ const FormLayouts: React.FC<FormLayoutsProps> = ({
               id={'status_sekolah'}
               name={'status_sekolah'}
               label={'Status Sekolah'}
-              value={values.status_sekolah || ''}
+              value={values.status_sekolah}
               onChange={handleChange}
-              error={typeof errors.status_sekolah === 'string' ? errors.status_sekolah : ''}
+              error={errors.status_sekolah || ''}
               placeholder={'Masukkan Status Sekolah...'}
               isInputFilled={'Form Status Sekolah Sudah Terisi'}
             />
@@ -201,9 +217,9 @@ const FormLayouts: React.FC<FormLayoutsProps> = ({
               id={'jenjang_pendidikan'}
               name={'jenjang_pendidikan'}
               label={'Jenjang Pendidikan'}
-              value={values.jenjang_pendidikan || ''}
+              value={values.jenjang_pendidikan}
               onChange={handleChange}
-              error={typeof errors.jenjang_pendidikan === 'string' ? errors.jenjang_pendidikan : ''}
+              error={errors.jenjang_pendidikan || ''}
               placeholder={'Masukkan Jenjang Pendidikan...'}
               isInputFilled={'Form Jenjang Pendidikan Sudah Terisi'}
             />
@@ -215,9 +231,9 @@ const FormLayouts: React.FC<FormLayoutsProps> = ({
               id={'akreditasi'}
               name={'akreditasi'}
               label={'Akreditasi Sekolah'}
-              value={values.akreditasi || ''}
+              value={values.akreditasi}
+              error={errors.akreditasi || ''}
               onChange={handleChange}
-              error={typeof errors.akreditasi === 'string' ? errors.akreditasi : ''}
               placeholder={'Masukkan Akreditasi Sekolah...'}
               isInputFilled={'Form Akreditasi Sekolah Sudah Terisi'}
             />
@@ -232,9 +248,9 @@ const FormLayouts: React.FC<FormLayoutsProps> = ({
               id={'email_sekolah'}
               name={'email_sekolah'}
               label={'Email Sekolah'}
-              value={values.email_sekolah || ''}
+              value={values.email_sekolah}
+              error={errors.email_sekolah || ''}
               onChange={handleChange}
-              error={typeof errors.email_sekolah === 'string' ? errors.email_sekolah : ''}
               placeholder={'Masukkan Email Sekolah...'}
               isInputFilled={'Form Email Sekolah Sudah Terisi'}
             />
@@ -246,9 +262,9 @@ const FormLayouts: React.FC<FormLayoutsProps> = ({
               id={'no_telepon_sekolah'}
               name={'no_telepon_sekolah'}
               label={'No Telepon Sekolah cth(8123456789)'}
-              value={values.no_telepon_sekolah || ''}
+              error={errors.no_telepon_sekolah || ''}
+              value={values.no_telepon_sekolah}
               onChange={handleChange}
-              error={typeof errors.no_telepon_sekolah === 'string' ? errors.no_telepon_sekolah : ''}
               placeholder={'Masukkan No Telepon Sekolah...'}
               isInputFilled={'Form No Telepon Sekolah Sudah Terisi'}
             />

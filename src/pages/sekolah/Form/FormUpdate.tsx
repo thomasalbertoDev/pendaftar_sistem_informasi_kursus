@@ -1,76 +1,76 @@
 import React, { useEffect, useState } from 'react';
 import { Formik } from 'formik';
 import { validationSchema } from './validationSchema';
+import { requestUpdateSekolah } from '../../../api/sekolah/services/requestUpdateSekolah';
 import { requestGetSekolahByID } from '../../../api/sekolah/services/requestGetSekolahByID';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import FormLayouts from './layouts/FormLayouts';
 import ButtonSolidDanger from '../../../components/buttons/solid/ButtonSolidDanger';
 import ButtonSolidSuccess from '../../../components/buttons/solid/ButtonSolidSuccess';
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
-import { requestUpdateSekolah } from '../../../api/sekolah/services/requestUpdateSekolah';
 
-const FormUpdate: React.FC = () => {
+interface Sekolah {
+  npsn: number;
+  nama_sekolah: string;
+  alamat: string;
+  kode_pos: number;
+  provinsi: string;
+  kabupaten: string;
+  kecamatan: string;
+  kelurahan: string;
+  status_sekolah: string;
+  jenjang_pendidikan: string;
+  akreditasi: string;
+  email_sekolah: string;
+  no_telepon_sekolah: string;
+}
+
+const FormUpdate: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const { id_sekolah } = useParams<{ id_sekolah: string }>();
-  const [formData, setFormData] = useState<any>({
-    npsn: 0,
-    nama_sekolah: '',
-    alamat: '',
-    kode_pos: 0,
-    provinsi: '',
-    kabupaten: '',
-    kecamatan: '',
-    kelurahan: '',
-    status_sekolah: '',
-    jenjang_pendidikan: '',
-    akreditasi: '',
-    email_sekolah: '',
-    no_telepon_sekolah: '',
+  const [formData, setFormData] = useState<Sekolah>({
+    npsn: 0 as number,
+    nama_sekolah: '' as string,
+    alamat: '' as string,
+    kode_pos: 0 as number,
+    provinsi: '' as string,
+    kabupaten: '' as string,
+    kecamatan: '' as string,
+    kelurahan: '' as string,
+    status_sekolah: '' as string,
+    jenjang_pendidikan: '' as string,
+    akreditasi: '' as string,
+    email_sekolah: '' as string,
+    no_telepon_sekolah: '' as string,
   });
 
-  const [selectedProvinsiId, setSelectedProvinsiId] = useState<string>('');
-  const [selectedKabupatenId, setSelectedKabupatenId] = useState<string>('');
-  const [selectedKecamatanId, setSelectedKecamatanId] = useState<string>('');
-  const [selectedKelurahanId, setSelectedKelurahanId] = useState<string>('');
+  const [selectedLocation, setSelectedLocation] = useState({
+    provinsi: '' as string,
+    kabupaten: '' as string,
+    kecamatan: '' as string,
+    kelurahan: '' as string,
+  });
 
   useEffect(() => {
     requestGetSekolahByID(id_sekolah ?? '').then((response: any) => {
       const { data } = response;
       setFormData(data);
-      setSelectedProvinsiId(data.provinsi);
-      setSelectedKabupatenId(data.kabupaten);
-      setSelectedKecamatanId(data.kecamatan);
-      setSelectedKelurahanId(data.kelurahan);
+      setSelectedLocation({
+        provinsi: data.provinsi,
+        kabupaten: data.kabupaten,
+        kecamatan: data.kecamatan,
+        kelurahan: data.kelurahan,
+      });
     });
   }, [id_sekolah]);
 
-  // Efek samping untuk memperbarui nilai form data berdasarkan nilai yang dipilih
-  useEffect(() => {
-    if (selectedProvinsiId !== '') {
-      setFormData((prevState: any) => ({ ...prevState, provinsi: selectedProvinsiId }));
-    }
-  }, [selectedProvinsiId]);
+  const handleLocationChange = (field: string, value: string) => {
+    setSelectedLocation((prevIds) => ({ ...prevIds, [field]: value }));
+    setFormData((prevData) => ({ ...prevData, [field]: value }));
+  };
 
-  useEffect(() => {
-    if (selectedKabupatenId !== '') {
-      setFormData((prevState: any) => ({ ...prevState, kabupaten: selectedKabupatenId }));
-    }
-  }, [selectedKabupatenId]);
-
-  useEffect(() => {
-    if (selectedKecamatanId !== '') {
-      setFormData((prevState: any) => ({ ...prevState, kecamatan: selectedKecamatanId }));
-    }
-  }, [selectedKecamatanId]);
-
-  useEffect(() => {
-    if (selectedKelurahanId !== '') {
-      setFormData((prevState: any) => ({ ...prevState, kelurahan: selectedKelurahanId }));
-    }
-  }, [selectedKelurahanId]);
-
-  const handleUpdate = async (values: any) => {
-    const request = await requestUpdateSekolah(id_sekolah ?? '', values);
+  const handleUpdate = async (formData: Sekolah) => {
+    const request = await requestUpdateSekolah(id_sekolah ?? '', formData);
     if (request === true) {
       navigate('/sekolah');
     }
@@ -79,7 +79,7 @@ const FormUpdate: React.FC = () => {
   return (
     <>
       <BreadcrumbsDefault
-        header="Sekolah"
+        header="Update Sekolah"
         menus={[
           {
             label: 'Sekolah',
@@ -98,19 +98,19 @@ const FormUpdate: React.FC = () => {
           {({ errors, handleChange, submitCount, values, setFieldValue }) => (
             <>
               <FormLayouts
-                errors={errors}
+                values={values}
+                errors={errors as Record<string, string>}
                 handleChange={handleChange}
                 submitCount={submitCount}
-                values={values}
                 setFieldValue={setFieldValue}
-                selectedProvinsiId={selectedProvinsiId === '' ? formData.provinsi : selectedProvinsiId}
-                setSelectedProvinsiId={selectedProvinsiId === '' ? (id: string) => setFormData({ ...formData, provinsi: id }) : setSelectedProvinsiId}
-                selectedKabupatenId={selectedKabupatenId === '' ? formData.kabupaten : selectedKabupatenId}
-                setSelectedKabupatenId={selectedKabupatenId === '' ? (id: string) => setFormData({ ...formData, kabupaten: id }) : setSelectedKabupatenId}
-                selectedKecamatanId={selectedKecamatanId === '' ? formData.kecamatan : selectedKecamatanId}
-                setSelectedKecamatanId={selectedKecamatanId === '' ? (id: string) => setFormData({ ...formData, kecamatan: id }) : setSelectedKecamatanId}
-                selectedKelurahanId={selectedKelurahanId === '' ? formData.kelurahan : selectedKelurahanId}
-                setSelectedKelurahanId={selectedKelurahanId === '' ? (id: string) => setFormData({ ...formData, kelurahan: id }) : setSelectedKelurahanId}
+                selectedProvinsiId={selectedLocation.provinsi}
+                setSelectedProvinsiId={(id: string) => handleLocationChange('provinsi', id)}
+                selectedKabupatenId={selectedLocation.kabupaten}
+                setSelectedKabupatenId={(id: string) => handleLocationChange('kabupaten', id)}
+                selectedKecamatanId={selectedLocation.kecamatan}
+                setSelectedKecamatanId={(id: string) => handleLocationChange('kecamatan', id)}
+                selectedKelurahanId={selectedLocation.kelurahan}
+                setSelectedKelurahanId={(id: string) => handleLocationChange('kelurahan', id)}
               />
 
               <div className="md:flex justify-end gap-3">

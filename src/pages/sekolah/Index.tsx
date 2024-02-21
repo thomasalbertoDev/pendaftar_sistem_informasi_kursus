@@ -1,51 +1,70 @@
+import { Link } from 'react-router-dom';
 import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../store/themeConfigSlice';
 import { requestGetSekolah } from '../../api/sekolah/services/requestGetSekolah';
-import { useCallback, useEffect, useState } from 'react';
 import { requestDeleteSekolah } from '../../api/sekolah/services/requestDeleteSekolah';
-import BreadcrumbsDefault from '../../components/breadcrumbs/BreadcrumbsDefault';
-import SearchBasic from '../../components/searchs/SearchBasic';
-import { Link } from 'react-router-dom';
-import TippyDefault from '../../components/tippys/default/TippyDefault';
-import ButtonIcon from '../../components/buttons/icon/ButtonIcon';
+import { useCallback, useEffect, useState } from 'react';
 import Table from './Table/Index';
+import ButtonIcon from '../../components/buttons/icon/ButtonIcon';
+import SearchBasic from '../../components/searchs/SearchBasic';
+import TippyDefault from '../../components/tippys/default/TippyDefault';
+import BreadcrumbsDefault from '../../components/breadcrumbs/BreadcrumbsDefault';
 
-const Sekolah: React.FC = () => {
+interface SekolahList {
+  id_sekolah: string;
+  npsn: number;
+  nama_sekolah: string;
+  alamat: string;
+  kode_pos: number;
+  provinsi: string;
+  kabupaten: string;
+  kecamatan: string;
+  kelurahan: string;
+  status_sekolah: string;
+  jenjang_pendidikan: string;
+  akreditasi: string;
+  email_sekolah: string;
+  no_telepon_sekolah: string;
+}
+
+const Sekolah: React.FunctionComponent = () => {
   const dispatch = useDispatch();
-  const [sekolahList, setSekolahList] = useState<any[]>([]);
-  const [initialSekolahList, setInitialSekolahList] = useState<any[]>([]);
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [state, setState] = useState({
+    sekolahList: [] as SekolahList[],
+    initialSekolahList: [] as SekolahList[],
+    searchQuery: '' as string,
+  });
+
+  const { sekolahList, initialSekolahList, searchQuery } = state;
 
   useEffect(() => {
     dispatch(setPageTitle('Admin | Sekolah'));
 
-    requestGetSekolah().then((response: any) => {
-      setSekolahList(response);
-      setInitialSekolahList(response);
+    requestGetSekolah().then((response: SekolahList[]) => {
+      setState((prevState) => ({ ...prevState, sekolahList: response, initialSekolahList: response }));
     });
   }, [dispatch]);
 
   const filterSekolahList = useCallback(
     debounce((query: string) => {
       const filteredData = initialSekolahList.filter((item) => item?.nama_sekolah.toLowerCase().includes(query.toLowerCase()));
-      setSekolahList(filteredData);
+      setState((prevState) => ({ ...prevState, sekolahList: filteredData }));
     }, 500),
     [initialSekolahList]
   );
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
-    setSearchQuery(query);
+    setState((prevState) => ({ ...prevState, searchQuery: query }));
     filterSekolahList(query);
   };
 
   const handleDelete = async (id_sekolah: string) => {
     const isDeleted = await requestDeleteSekolah(id_sekolah);
     if (isDeleted === true) {
-      requestGetSekolah().then((response) => {
-        setSekolahList(response);
-        setInitialSekolahList(response);
+      requestGetSekolah().then((response: SekolahList[]) => {
+        setState((prevState) => ({ ...prevState, sekolahList: response as SekolahList[] }));
       });
     }
   };

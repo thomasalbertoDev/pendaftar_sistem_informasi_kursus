@@ -8,54 +8,40 @@ import ButtonSolidDanger from '../../../components/buttons/solid/ButtonSolidDang
 import ButtonSolidPrimary from '../../../components/buttons/solid/ButtonSolidPrimary';
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 
-const FormCreate: React.FC = () => {
+interface Sekolah {
+  npsn: number;
+  nama_sekolah: string;
+  alamat: string;
+  kode_pos: number;
+  provinsi: string;
+  kabupaten: string;
+  kecamatan: string;
+  kelurahan: string;
+  status_sekolah: string;
+  jenjang_pendidikan: string;
+  akreditasi: string;
+  email_sekolah: string;
+  no_telepon_sekolah: string;
+}
+
+const FormCreate: React.FunctionComponent = () => {
   const navigate = useNavigate();
-  const handleCreate = async (e: {
-    npsn: number;
-    nama_sekolah: string;
-    alamat: string;
-    kode_pos: number;
-    provinsi: string;
-    kabupaten: string;
-    kecamatan: string;
-    kelurahan: string;
-    status_sekolah: string;
-    jenjang_pendidikan: string;
-    akreditasi: string;
-    email_sekolah: string;
-    no_telepon_sekolah: string;
-  }) => {
-    const { npsn, nama_sekolah, alamat, kode_pos, provinsi, kabupaten, kecamatan, kelurahan, status_sekolah, jenjang_pendidikan, akreditasi, email_sekolah, no_telepon_sekolah } = e;
+  const [selectedProvinsiId, setSelectedProvinsiId] = useState<string>('');
+  const [selectedKabupatenId, setSelectedKabupatenId] = useState<string>('');
+  const [selectedKecamatanId, setSelectedKecamatanId] = useState<string>('');
+  const [selectedKelurahanId, setSelectedKelurahanId] = useState<string>('');
 
-    const request = await requestCreateSekolah(
-      npsn,
-      nama_sekolah,
-      alamat,
-      kode_pos,
-      provinsi,
-      kabupaten,
-      kecamatan,
-      kelurahan,
-      status_sekolah,
-      jenjang_pendidikan,
-      akreditasi,
-      email_sekolah,
-      no_telepon_sekolah
-    );
-
+  const handleCreate = async (formData: Sekolah) => {
+    const request = await requestCreateSekolah(formData);
     if (request === true) {
       navigate('/sekolah');
     }
   };
 
-  const [selectedProvinsiId, setSelectedProvinsiId] = useState<string>('');
-  const [selectedKabupatenId, setSelectedKabupatenId] = useState<string>('');
-  const [selectedKecamatanId, setSelectedKecamatanId] = useState<string>('');
-
   return (
     <>
       <BreadcrumbsDefault
-        header="Sekolah"
+        header="Tambah Sekolah"
         menus={[
           {
             label: 'Sekolah',
@@ -72,19 +58,19 @@ const FormCreate: React.FC = () => {
       <div className="mt-10">
         <Formik
           initialValues={{
-            npsn: 0,
-            nama_sekolah: '',
-            alamat: '',
-            kode_pos: 0,
-            provinsi: '',
-            kabupaten: '',
-            kecamatan: '',
-            kelurahan: '',
-            status_sekolah: '',
-            jenjang_pendidikan: '',
-            akreditasi: '',
-            email_sekolah: '',
-            no_telepon_sekolah: '',
+            npsn: 0 as number,
+            nama_sekolah: '' as string,
+            alamat: '' as string,
+            kode_pos: 0 as number,
+            provinsi: '' as string,
+            kabupaten: '' as string,
+            kecamatan: '' as string,
+            kelurahan: '' as string,
+            status_sekolah: '' as string,
+            jenjang_pendidikan: '' as string,
+            akreditasi: '' as string,
+            email_sekolah: '' as string,
+            no_telepon_sekolah: '' as string,
           }}
           validationSchema={validationSchema}
           onSubmit={handleCreate}
@@ -92,10 +78,10 @@ const FormCreate: React.FC = () => {
           {({ errors, handleChange, submitCount, values, setFieldValue }) => (
             <>
               <FormLayouts
-                errors={errors}
-                handleChange={handleChange}
-                submitCount={submitCount}
                 values={values}
+                errors={errors}
+                submitCount={submitCount}
+                handleChange={handleChange}
                 setFieldValue={setFieldValue}
                 selectedProvinsiId={selectedProvinsiId === '' ? values.provinsi : selectedProvinsiId}
                 setSelectedProvinsiId={selectedProvinsiId === '' ? (id: string) => setFieldValue('provinsi', id) : setSelectedProvinsiId}
@@ -103,6 +89,8 @@ const FormCreate: React.FC = () => {
                 setSelectedKabupatenId={selectedKabupatenId === '' ? (id: string) => setFieldValue('kabupaten', id) : setSelectedKabupatenId}
                 selectedKecamatanId={selectedKecamatanId === '' ? values.kecamatan : selectedKecamatanId}
                 setSelectedKecamatanId={selectedKecamatanId === '' ? (id: string) => setFieldValue('kecamatan', id) : setSelectedKecamatanId}
+                selectedKelurahanId={selectedKelurahanId === '' ? values.kelurahan : selectedKelurahanId}
+                setSelectedKelurahanId={selectedKelurahanId === '' ? (id: string) => setFieldValue('kelurahan', id) : setSelectedKelurahanId}
               />
 
               <div className="md:flex justify-end gap-3">
