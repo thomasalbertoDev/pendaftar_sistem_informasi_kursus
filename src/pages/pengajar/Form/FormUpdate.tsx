@@ -9,7 +9,7 @@ import ButtonSolidSuccess from '../../../components/buttons/solid/ButtonSolidSuc
 import ButtonSolidDanger from '../../../components/buttons/solid/ButtonSolidDanger';
 import { requestUpdatePengajar } from '../../../api/pengajar/services/requestUpdatePengajar';
 
-type Pengajar = {
+interface Pengajar {
   nama_pengajar: string;
   no_telepon_pengajar: string;
   gelar_pengajar: string;
@@ -17,9 +17,9 @@ type Pengajar = {
   pengalaman_pengajar: string;
   foto_pengajar: string;
   sertifikat_pengajar: string;
-};
+}
 
-const FormUpdate: React.FC = () => {
+const FormUpdate: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const { id_pengajar } = useParams<{ id_pengajar: string }>();
   const [formData, setFormData] = useState<Pengajar>({
@@ -33,13 +33,15 @@ const FormUpdate: React.FC = () => {
   });
 
   useEffect(() => {
-    requestGetPengajarByID(id_pengajar ?? '').then((response: any) => {
-      setFormData(response.data);
+    requestGetPengajarByID(id_pengajar ?? '').then((response) => {
+      if (response) {
+        setFormData(response.data);
+      }
     });
   }, [id_pengajar]);
 
-  const handleUpdate = async (values: any) => {
-    const request = await requestUpdatePengajar(id_pengajar ?? '', { ...values });
+  const handleUpdate = async (formData: Pengajar) => {
+    const request = await requestUpdatePengajar(id_pengajar ?? '', formData);
     if (request === true) {
       navigate('/pengajar');
     }
@@ -48,7 +50,7 @@ const FormUpdate: React.FC = () => {
   return (
     <>
       <BreadcrumbsDefault
-        header="Pengajar"
+        header="Update Pengajar"
         menus={[
           {
             label: 'Pengajar',

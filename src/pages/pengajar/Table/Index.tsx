@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Columns from './Columns';
 import TableSkinBordered from '../../../components/tables/skin/TableSkinBordered';
 
-type Pengajar = {
+interface Pengajar {
   id_pengajar: string;
   nama_pengajar: string;
   no_telepon_pengajar: string;
@@ -11,14 +11,14 @@ type Pengajar = {
   pengalaman_pengajar: string;
   foto_pengajar: string;
   sertifikat_pengajar: string;
-};
+}
 
 interface TableProps {
   pengajar: Pengajar[];
   handleDelete: (id_pengajar: string) => void;
 }
 
-const Table: React.FC<TableProps> = ({ pengajar, handleDelete }) => {
+const Table: React.FunctionComponent<TableProps> = ({ pengajar, handleDelete }) => {
   const DEFAULT_PAGE_SIZE: number = 10;
   const PAGE_SIZES: number[] = [10, 25, 50, 100];
   const [state, setState] = useState({
@@ -51,9 +51,9 @@ const Table: React.FC<TableProps> = ({ pengajar, handleDelete }) => {
         page={page}
         records={recordsData}
         columns={Columns({ handleDelete })}
-        recordsPerPage={pageSize}
         totalRecords={pengajar.length}
         onPageChange={handlePageChange}
+        recordsPerPage={pageSize}
         recordsPerPageOptions={PAGE_SIZES}
         onRecordsPerPageChange={handleRecordsPerPageChange}
       />

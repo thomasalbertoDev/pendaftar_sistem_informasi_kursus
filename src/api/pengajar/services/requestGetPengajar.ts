@@ -1,6 +1,6 @@
 import { get } from '../api';
 
-type Pengajar = {
+interface Pengajar {
   id_pengajar: string;
   nama_pengajar: string;
   no_telepon_pengajar: string;
@@ -9,7 +9,7 @@ type Pengajar = {
   pengalaman_pengajar: string;
   foto_pengajar: string;
   sertifikat_pengajar: string;
-};
+}
 
 interface PengajarResponse {
   data: {
@@ -17,11 +17,11 @@ interface PengajarResponse {
   };
 }
 
-export const requestGetPengajar = async (): Promise<Pengajar[]> => {
+export const requestGetPengajar = async () => {
   try {
     const response: PengajarResponse = await get();
     const pengajar = response?.data?.data.map((item: Pengajar, index: number) => ({ ...item, index }));
-    return pengajar || [];
+    return pengajar;
   } catch (error) {
     console.log(error);
     return [];

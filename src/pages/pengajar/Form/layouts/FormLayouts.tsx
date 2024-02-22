@@ -6,7 +6,7 @@ import QuillBasic from '../../../../components/quills/QuillBasic';
 import InputNumber from '../../../../components/forms/Input/InputNumber';
 import PreviewImage from '../../../../utils/PreviewImage';
 
-type pengajar = {
+interface Pengajar {
   nama_pengajar: string;
   no_telepon_pengajar: string;
   gelar_pengajar: string;
@@ -14,14 +14,14 @@ type pengajar = {
   pengalaman_pengajar: string;
   foto_pengajar: string;
   sertifikat_pengajar: string;
-};
+}
 
 interface FormLayoutsProps {
   errors: Record<string, string>;
   handleChange: (e: React.ChangeEvent<any>) => void;
   submitCount: number;
-  values: pengajar;
-  setFieldValue: (field: string, value: pengajar, shouldValidate?: boolean | undefined) => void;
+  values: Pengajar;
+  setFieldValue: (field: string, value: Pengajar, shouldValidate?: boolean | undefined) => void;
 }
 
 const FormLayouts: React.FC<FormLayoutsProps> = ({ errors, handleChange, submitCount, values, setFieldValue }) => {
@@ -52,7 +52,7 @@ const FormLayouts: React.FC<FormLayoutsProps> = ({ errors, handleChange, submitC
               label={'No Telepon Pengajar (cth: 8123456789)'}
               value={Number(values.no_telepon_pengajar)}
               onChange={handleChange}
-              error={typeof errors.no_telepon_pengajar === 'string' ? errors.no_telepon_pengajar : ''}
+              error={errors.no_telepon_pengajar || ''}
               placeholder={'Masukkan No Telepon Pengajar...'}
               isInputFilled={'Form No Telepon Pengajar Sudah Terisi'}
             />

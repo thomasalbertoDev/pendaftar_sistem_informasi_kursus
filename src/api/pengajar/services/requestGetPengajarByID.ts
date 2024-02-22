@@ -1,6 +1,6 @@
 import { getById } from '../api';
 
-type Pengajar = {
+interface Pengajar {
   id_pengajar: string;
   nama_pengajar: string;
   no_telepon_pengajar: string;
@@ -9,20 +9,19 @@ type Pengajar = {
   pengalaman_pengajar: string;
   foto_pengajar: string;
   sertifikat_pengajar: string;
-};
+}
 
 interface PengajarResponse {
   data: {
-    data: Pengajar[];
+    data: Pengajar;
   };
 }
 
 export const requestGetPengajarByID = async (id_pengajar: string) => {
   try {
     const response: PengajarResponse = await getById(id_pengajar);
-    return response?.data || [];
+    return response?.data;
   } catch (error) {
     console.log(error);
-    return [];
   }
 };

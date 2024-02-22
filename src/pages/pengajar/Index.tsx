@@ -22,7 +22,7 @@ interface PengajarList {
   sertifikat_pengajar: string;
 }
 
-const Pengajar: React.FC = () => {
+const Pengajar: React.FunctionComponent = () => {
   const dispatch = useDispatch();
   const [state, setState] = useState({
     pengajarList: [] as PengajarList[],

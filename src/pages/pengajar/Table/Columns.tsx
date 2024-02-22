@@ -55,15 +55,6 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
         </>
       ),
     },
-    // {
-    //   title: 'Pengalaman Pengajar',
-    //   accessor: 'pengalaman_pengajar',
-    //   render: (item: { pengalaman_pengajar: string }) => (
-    //     <>
-    //       <p className="dark:text-white" dangerouslySetInnerHTML={{ __html: item?.pengalaman_pengajar }}></p>
-    //     </>
-    //   ),
-    // },
     {
       title: 'Foto Pengajar',
       accessor: 'foto_pengajar',
@@ -92,7 +83,7 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
         <>
           <div className="flex space-x-1 rtl:space-x-reverse gap-2">
             <Link to={`/pengajar/update-pengajar/${item?.id_pengajar}`}>
-              <TippyDefault content="Edit">
+              <TippyDefault content="Update">
                 <IconPencil className="dark:text-white" />
               </TippyDefault>
             </Link>

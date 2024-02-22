@@ -8,7 +8,7 @@ import ButtonSolidDanger from '../../../components/buttons/solid/ButtonSolidDang
 import BreadcrumbsDefault from '../../../components/breadcrumbs/BreadcrumbsDefault';
 import ButtonSolidPrimary from '../../../components/buttons/solid/ButtonSolidPrimary';
 
-type Pengajar = {
+interface Pengajar {
   nama_pengajar: string;
   no_telepon_pengajar: string;
   gelar_pengajar: string;
@@ -16,9 +16,9 @@ type Pengajar = {
   pengalaman_pengajar: string;
   foto_pengajar: string;
   sertifikat_pengajar: string;
-};
+}
 
-const FormCreate: React.FC = () => {
+const FormCreate: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const handleCreate = async (formData: Pengajar) => {
     const request = await requestCreatePengajar(formData);
@@ -30,7 +30,7 @@ const FormCreate: React.FC = () => {
   return (
     <>
       <BreadcrumbsDefault
-        header="Pengajar"
+        header="Tambah Pengajar"
         menus={[
           {
             label: 'Pengajar',
