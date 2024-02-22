@@ -1,108 +1,35 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setPageTitle } from '../../store/themeConfigSlice';
-import { requestGetKursus } from '../../api/kursus/services/requestGetKursus';
-import BreadcrumbsDefault from '../../components/breadcrumbs/BreadcrumbsDefault';
-import { requestDeleteKursus } from '../../api/kursus/services/requestDeleteKursus';
-import SearchBasic from '../../components/searchs/SearchBasic';
-import { Link } from 'react-router-dom';
-import TippyDefault from '../../components/tippys/default/TippyDefault';
-import ButtonIcon from '../../components/buttons/icon/ButtonIcon';
-import Table from './Table/Index';
-
-interface KursusList {
-  id_kursus: string;
-  nama_kursus: string;
-  topik_kursus: string;
-  jenjang_kursus: string;
-  pengajar_ID: string;
-  jam_mulai: string;
-  jam_selesai: string;
-  tanggal_mulai: string;
-  tanggal_selesai: string;
-  hari_kursus: string;
-  harga_kursus: number;
-  foto_kursus: string;
-  syarat_kursus: string;
-  deskripsi_kursus: string;
-  modul_kursus: string;
-}
-
 const Kursus: React.FunctionComponent = () => {
-  const dispatch = useDispatch();
-  const [state, setState] = useState({
-    kursusList: [] as KursusList[],
-    initialKursusList: [] as KursusList[],
-    searchQuery: '' as string,
-  });
-
-  const { kursusList, initialKursusList, searchQuery } = state;
-
-  useEffect(() => {
-    dispatch(setPageTitle('Admin | Kursus'));
-
-    requestGetKursus().then((response: KursusList[]) => {
-      setState((prevState) => ({ ...prevState, kursusList: response, initialKursusList: response }));
-    });
-  }, [dispatch]);
-
-  const filterKursusList = useCallback(
-    (query: string) => {
-      const filteredData = initialKursusList.filter((item) => item?.nama_kursus.toLowerCase().includes(query.toLowerCase()));
-      setState((prevState) => ({ ...prevState, kursusList: filteredData }));
-    },
-    [initialKursusList]
-  );
-
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const query = e.target.value;
-    setState((prevState) => ({ ...prevState, searchQuery: query }));
-    filterKursusList(query);
-  };
-
-  const handleDelete = async (id_kursus: string) => {
-    const isDeleted = await requestDeleteKursus(id_kursus);
-    if (isDeleted === true) {
-      requestGetKursus().then((response: KursusList[]) => {
-        setState((prevState) => ({ ...prevState, kursusList: response, initialKursusList: response }));
-      });
-    }
-  };
-
-  const handleRefresh = () => {
-    window.location.reload();
-  };
-
   return (
     <>
-      <BreadcrumbsDefault
-        header="Kursus"
-        menus={[
-          {
-            label: 'Kursus',
-            link: '/kursus',
-            icon: 'dashicons:welcome-learn-more',
-          },
-        ]}
-      />
-
-      <div className="flex justify-between items-center mt-10">
-        <SearchBasic value={searchQuery} placeholder="Cari Nama Kursus..." onChange={handleSearch} width="w-1/2" />
-        <div className="flex gap-3">
-          <Link to={'/kursus/tambah-kursus'}>
-            <TippyDefault content="Tambah Kursus">
-              <ButtonIcon icon="ic:baseline-plus" backgroundColor="btn-primary" />
-            </TippyDefault>
-          </Link>
-
-          <TippyDefault content="Refresh Halaman">
-            <ButtonIcon icon="material-symbols:refresh" backgroundColor="btn-info" onClick={handleRefresh} />
-          </TippyDefault>
+      <div className="mb-5 flex items-center justify-center">
+        <div className="w-full bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-white-light dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none">
+          <div className="py-7 px-6">
+            <div className="-mt-7 mb-7 -mx-6 rounded-tl rounded-tr h-[260px] overflow-hidden">
+              <img src="/assets/images/profile-28.jpeg" alt="profile" className="w-full h-full object-cover" />
+            </div>
+            <p className="text-primary text-xs mb-1.5 font-bold">25 Sep 2020</p>
+            <h5 className="text-[#3b3f5c] text-[15px] font-bold mb-4 dark:text-white-light">How to Start a Blog in 5 Easy Steps.</h5>
+            <p className="text-white-dark ">Vestibulum vestibulum tortor ut eros tincidunt, ut rutrum elit volutpat.</p>
+            <div className="relative flex justify-between mt-6 pt-4 before:w-[250px] before:h-[1px] before:bg-white-light before:inset-x-0 before:top-0 before:absolute before:mx-auto dark:before:bg-[#1b2e4b]">
+              <div className="flex items-center font-semibold">
+                <div className="w-9 h-9 rounded-full overflow-hidden inline-block ltr:mr-2 rtl:ml-2.5">
+                  <span className="flex w-full h-full items-center justify-center bg-[#515365] text-white-light">AG</span>
+                </div>
+                <div className="text-[#515365] dark:text-white-dark">Luke Ivory</div>
+              </div>
+              <div className="flex font-semibold">
+                <div className="text-primary flex items-center ltr:mr-3 rtl:ml-3">
+                  <svg>...</svg>
+                  51
+                </div>
+                <div className="text-primary flex items-center">
+                  <svg>...</svg>
+                  250
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div className="mt-5">
-        <Table kursus={kursusList} handleDelete={handleDelete} />
       </div>
     </>
   );
