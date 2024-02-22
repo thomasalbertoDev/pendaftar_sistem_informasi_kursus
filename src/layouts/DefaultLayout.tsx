@@ -5,7 +5,7 @@ import { IRootState } from '../store';
 import { toggleSidebar } from '../store/themeConfigSlice';
 import Footer from './Footer';
 import Header from './Header';
-// import Setting from './Setting';
+import Setting from './Setting';
 import Sidebar from './sidebar/Sidebar';
 import Portals from '../components/Portals';
 
@@ -75,7 +75,7 @@ const DefaultLayout = ({ children }: PropsWithChildren) => {
         </div>
 
         {/* BEGIN APP SETTING LAUNCHER */}
-        {/*<Setting />*/}
+        <Setting />
         {/* END APP SETTING LAUNCHER */}
 
         <div className={`${themeConfig.navbar} main-container text-black dark:text-white-dark min-h-screen`}>

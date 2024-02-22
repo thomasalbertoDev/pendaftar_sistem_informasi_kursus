@@ -50,11 +50,11 @@ const Sidebar = () => {
 
   return (
     <div className={semidark ? 'dark' : ''}>
-      <nav className={`sidebar fixed min-h-screen h-full top-0 bottom-0 w-[260px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] z-50 transition-all duration-300 ${semidark ? 'text-white-dark' : ''}`}>
+      <nav className={`sidebar fixed min-h-screen h-full top-0 bottom-0 w-[260px]  z-50 transition-all duration-300 ${semidark ? 'text-white-dark' : ''}`}>
         <div className="bg-white dark:bg-black h-full">
           <div className="flex justify-between items-center px-4 py-3">
             <NavLink to="/" className="main-logo flex items-center shrink-0">
-              {themeConfig.theme === 'light' ? <img className="w-16 " src="/assets/images/logo_light.png" alt="logo" /> : <img className="w-16" src="/assets/images/logo_dark.png" alt="logo" />}
+              {themeConfig.theme === 'light' ? <img className="w-16 " src="/assets/images/logo_dark.png" alt="logo" /> : <img className="w-16" src="/assets/images/logo_dark.png" alt="logo" />}
               <span className="text-2xl text-dark ltr:ml-3 rtl:mr-1.5 font-semibold align-middle lg:inline dark:text-white-light">{t('EduBoost')}</span>
             </NavLink>
 
@@ -72,10 +72,10 @@ const Sidebar = () => {
                 <li key={index} className="menu nav-item ">
                   {/* Sidebar no-child */}
                   {!menu.child && (
-                    <NavLink to={menu.link} className="group ">
+                    <NavLink to={menu.link} className="group">
                       <div className="flex items-center">
                         <Icon icon={menu.icon} width={22} className="group-hover:!text-primary shrink-0" />
-                        <span className="ltr:pl-3 rtl:pr-3 text-dark dark:text-white dark:group-hover:text-white-dark">{menu.title}</span>
+                        <span className="ltr:pl-3 rtl:pr-3 text-dark dark:text-white dark:group-hover:text-primary">{menu.title}</span>
                       </div>
                     </NavLink>
                   )}
@@ -85,7 +85,7 @@ const Sidebar = () => {
                     <button type="button" className={`${currentMenu ? 'active' : ''} nav-link group w-full`} onClick={() => toggleMenu(`kategori-${index + 1}`)}>
                       <div className="flex items-center">
                         <Icon icon={menu.icon} width={22} className="group-hover:!text-primary shrink-0" />
-                        <span className="ltr:pl-3 rtl:pr-3 text-dark dark:text-white dark:group-hover:text-white-dark">{menu.title}</span>
+                        <span className="ltr:pl-3 rtl:pr-3 text-dark dark:text-white dark:group-hover:text-primary">{menu.title}</span>
                       </div>
 
                       <div className={currentMenu !== `kategori-${index + 1}` ? 'rtl:rotate-90 -rotate-90' : ''}>
