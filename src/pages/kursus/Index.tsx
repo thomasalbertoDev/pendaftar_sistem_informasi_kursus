@@ -1,3 +1,9 @@
+import AgamaSelect from '../../utils/AgamaSelect';
+import PekerjaanSelect from '../../utils/PekerjaanSelect';
+import PendidikanSelect from '../../utils/PendidikanSelect';
+import PenghasilanSelect from '../../utils/PenghasilanSelect';
+import SekolahSelect from '../../utils/SekolahSelect';
+
 const Kursus: React.FunctionComponent = () => {
   return (
     <>
@@ -30,6 +36,14 @@ const Kursus: React.FunctionComponent = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div>
+        {/* <PekerjaanSelect id="pekerjaan" name="pekerjaan" label="Pekerjaan" value="" placeholder="Pilih Pekerjaan" error="" isInputFilled="" onChange={() => {}} /> */}
+
+        {/* <PenghasilanSelect id="penghasilan" name="penghasilan" label="Penghasilan" value="" placeholder="Pilih Penghasilan" error="" isInputFilled="" onChange={() => {}} /> */}
+
+        {/* <PendidikanSelect id="pendidikan" name="pendidikan" label="Pendidikan" value="" placeholder="Pilih Pendidikan" error="" isInputFilled="" onChange={() => {}} /> */}
       </div>
     </>
   );
