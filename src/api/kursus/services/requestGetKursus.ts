@@ -1,6 +1,6 @@
 import { get } from '../api';
 
-type Kursus = {
+interface Kursus {
   id_kursus: string;
   nama_kursus: string;
   topik_kursus: string;
@@ -16,7 +16,7 @@ type Kursus = {
   syarat_kursus: string;
   deskripsi_kursus: string;
   modul_kursus: string;
-};
+}
 
 interface KursusResponse {
   data: {
@@ -24,11 +24,11 @@ interface KursusResponse {
   };
 }
 
-export const requestGetKursus = async (): Promise<Kursus[]> => {
+export const requestGetKursus = async () => {
   try {
     const response: KursusResponse = await get();
     const kursus = response?.data?.data.map((item: Kursus, index: number) => ({ ...item, index }));
-    return kursus || [];
+    return kursus;
   } catch (error) {
     console.log(error);
     return [];

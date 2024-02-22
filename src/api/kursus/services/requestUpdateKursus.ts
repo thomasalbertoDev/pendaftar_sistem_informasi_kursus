@@ -1,17 +1,7 @@
 import { put } from '../api';
 import ShowToast from '../../../helpers/ShowToast';
 
-const handleSuccess = () => {
-  ShowToast('success', 'Kursus Berhasil Diupdate!');
-  return true;
-};
-
-const handleError = () => {
-  ShowToast('error', 'Kursus Gagal Diupdate!');
-  return false;
-};
-
-type Kursus = {
+interface Kursus {
   nama_kursus: string;
   topik_kursus: string;
   jenjang_kursus: string;
@@ -26,14 +16,24 @@ type Kursus = {
   syarat_kursus: string;
   deskripsi_kursus: string;
   modul_kursus: string;
-};
+}
 
 interface KursusResponse {
   status: number;
   data: {
-    data: Kursus[];
+    data: Kursus;
   };
 }
+
+const handleSuccess = (): boolean => {
+  ShowToast('success', 'Kursus Berhasil Diupdate!');
+  return true;
+};
+
+const handleError = (): boolean => {
+  ShowToast('error', 'Kursus Gagal Diupdate!');
+  return false;
+};
 
 export const requestUpdateKursus = async (id_kursus: string, data: Kursus) => {
   try {

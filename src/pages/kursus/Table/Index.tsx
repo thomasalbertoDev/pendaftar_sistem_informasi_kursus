@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Columns from './Columns';
 import TableSkinBordered from '../../../components/tables/skin/TableSkinBordered';
 
-type Kursus = {
+interface Kursus {
   id_kursus: string;
   nama_kursus: string;
   topik_kursus: string;
@@ -18,14 +18,14 @@ type Kursus = {
   syarat_kursus: string;
   deskripsi_kursus: string;
   modul_kursus: string;
-};
+}
 
 interface TableProps {
-  kursus: Kursus[];
+  kursus: Array<Kursus>;
   handleDelete: (id_kursus: string) => void;
 }
 
-const Table: React.FC<TableProps> = ({ kursus, handleDelete }) => {
+const Table: React.FunctionComponent<TableProps> = ({ kursus, handleDelete }) => {
   const DEFAULT_PAGE_SIZE: number = 10;
   const PAGE_SIZES: number[] = [10, 25, 50, 100];
   const [state, setState] = useState({
@@ -58,9 +58,9 @@ const Table: React.FC<TableProps> = ({ kursus, handleDelete }) => {
         page={page}
         records={recordsData}
         columns={Columns({ handleDelete })}
-        recordsPerPage={pageSize}
         totalRecords={kursus.length}
         onPageChange={handlePageChange}
+        recordsPerPage={pageSize}
         recordsPerPageOptions={PAGE_SIZES}
         onRecordsPerPageChange={handleRecordsPerPageChange}
       />

@@ -25,7 +25,7 @@ interface Kursus {
   modul_kursus: String;
 }
 
-const FormCreate: React.FC = () => {
+const FormCreate: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const handleCreate = async (formData: Kursus) => {
     const request = await requestCreateKursus(formData);

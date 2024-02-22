@@ -26,24 +26,24 @@ interface Kursus {
   modul_kursus: string;
 }
 
-const FormUpdate: React.FC = () => {
+const FormUpdate: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const { id_kursus } = useParams<{ id_kursus: string }>();
   const [formData, setFormData] = useState<Kursus>({
-    nama_kursus: '',
-    topik_kursus: '',
-    jenjang_kursus: '',
-    pengajar_ID: '',
-    jam_mulai: '',
-    jam_selesai: '',
-    tanggal_mulai: '',
-    tanggal_selesai: '',
-    hari_kursus: '',
-    harga_kursus: 0,
-    foto_kursus: '',
-    syarat_kursus: '',
-    deskripsi_kursus: '',
-    modul_kursus: '',
+    nama_kursus: '' as string,
+    topik_kursus: '' as string,
+    jenjang_kursus: '' as string,
+    pengajar_ID: '' as string,
+    jam_mulai: '' as string,
+    jam_selesai: '' as string,
+    tanggal_mulai: '' as string,
+    tanggal_selesai: '' as string,
+    hari_kursus: '' as string,
+    harga_kursus: 0 as number,
+    foto_kursus: '' as string,
+    syarat_kursus: '' as string,
+    deskripsi_kursus: '' as string,
+    modul_kursus: '' as string,
   });
 
   useEffect(() => {
@@ -67,13 +67,11 @@ const FormUpdate: React.FC = () => {
     });
   }, [id_kursus]);
 
-  const handleUpdate = async (values: any) => {
-    const request = await requestUpdateKursus(id_kursus ?? '', { ...values });
+  const handleUpdate = async (formData: Kursus) => {
+    const request = await requestUpdateKursus(id_kursus ?? '', formData);
     if (request === true) {
       navigate('/kursus');
     }
-
-    console.log('values', values);
   };
 
   return (

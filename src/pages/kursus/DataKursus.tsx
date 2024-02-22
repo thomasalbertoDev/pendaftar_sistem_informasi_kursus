@@ -28,7 +28,7 @@ interface Kursus {
 }
 
 interface KursusResponse {
-  data: Kursus[];
+  data: Kursus;
 }
 
 const DataKursus: React.FC = () => {
@@ -39,12 +39,12 @@ const DataKursus: React.FC = () => {
   useEffect(() => {
     dispatch(setPageTitle('Admin | Kursus'));
 
-    requestGetKursusByID(id_kursus ?? '').then((response: KursusResponse | never[]) => {
+    requestGetKursusByID(id_kursus ?? '').then((response: KursusResponse | any) => {
       setKursus(response);
     });
   }, [dispatch, id_kursus]);
 
-  const hariKursus = kursus?.data?.hari_kursus.map((hari: any, index: number) => {
+  const hariKursus = kursus?.data?.hari_kursus.map((hari: string, index: number) => {
     return (
       <span key={index} className="mb-2 uppercase">
         &nbsp; {hari} &nbsp;

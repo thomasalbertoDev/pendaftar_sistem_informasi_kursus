@@ -1,22 +1,7 @@
 import { post } from '../api';
 import ShowToast from '../../../helpers/ShowToast';
 
-const handleSuccess = () => {
-  ShowToast('success', 'Kursus Berhasil Ditambahkan!');
-  return true;
-};
-
-const handleError = () => {
-  ShowToast('error', 'Kursus Gagal Ditambahkan!');
-  return false;
-};
-
-const handleErrorConflict = () => {
-  ShowToast('error', 'Kursus Sudah Ada!');
-  return false;
-};
-
-type Kursus = {
+interface Kursus {
   nama_kursus: String;
   topik_kursus: String;
   jenjang_kursus: String;
@@ -31,14 +16,29 @@ type Kursus = {
   syarat_kursus: String;
   deskripsi_kursus: String;
   modul_kursus: String;
-};
+}
 
 interface KursusResponse {
   status: number;
   data: {
-    data: Kursus[];
+    data: Kursus;
   };
 }
+
+const handleSuccess = (): boolean => {
+  ShowToast('success', 'Kursus Berhasil Ditambahkan!');
+  return true;
+};
+
+const handleError = (): boolean => {
+  ShowToast('error', 'Kursus Gagal Ditambahkan!');
+  return false;
+};
+
+const handleErrorConflict = (): boolean => {
+  ShowToast('error', 'Kursus Sudah Ada!');
+  return false;
+};
 
 export const requestCreateKursus = async (values: Kursus) => {
   try {

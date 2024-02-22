@@ -28,7 +28,7 @@ interface KursusList {
   modul_kursus: string;
 }
 
-const Kursus: React.FC = () => {
+const Kursus: React.FunctionComponent = () => {
   const dispatch = useDispatch();
   const [state, setState] = useState({
     kursusList: [] as KursusList[],

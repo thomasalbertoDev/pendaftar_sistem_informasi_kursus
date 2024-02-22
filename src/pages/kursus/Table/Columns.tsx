@@ -85,37 +85,6 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
         </>
       ),
     },
-
-    // {
-    //   title: 'Pengalaman Pengajar',
-    //   accessor: 'pengalaman_pengajar',
-    //   render: (item: { pengalaman_pengajar: string }) => (
-    //     <>
-    //       <p className="dark:text-white" dangerouslySetInnerHTML={{ __html: item?.pengalaman_pengajar }}></p>
-    //     </>
-    //   ),
-    // },
-    // {
-    //   title: 'Foto Pengajar',
-    //   accessor: 'foto_pengajar',
-    //   render: (item: { foto_pengajar: string }) => (
-    //     <>
-    //       <img className="rounded-sm w-20 object-cover" src={`${import.meta.env.VITE_API_URL}/${item?.foto_pengajar}`} alt="Foto Pengajar" />
-    //     </>
-    //   ),
-    // },
-    // {
-    //   title: 'Sertifikat Pengajar',
-    //   accessor: 'sertifikat_pengajar',
-    //   render: (item: { sertifikat_pengajar: string }) => (
-    //     <>
-    //       <a href={`${import.meta.env.VITE_API_URL}/${item?.sertifikat_pengajar}`} className="text-primary">
-    //         Sertifikat Pengajar
-    //       </a>
-    //     </>
-    //   ),
-    // },
-
     {
       title: 'Aksi',
       accessor: 'aksi',
@@ -128,7 +97,7 @@ const Columns = ({ handleDelete }: ColumnsProps) => {
               </TippyDefault>
             </Link>
             <Link to={`/kursus/update-kursus/${item?.id_kursus}`}>
-              <TippyDefault content="Edit">
+              <TippyDefault content="Update">
                 <IconPencil className="dark:text-white" />
               </TippyDefault>
             </Link>

@@ -1,6 +1,6 @@
 import { getById } from '../api';
 
-type Kursus = {
+interface Kursus {
   id_kursus: string;
   nama_kursus: string;
   topik_kursus: string;
@@ -16,20 +16,19 @@ type Kursus = {
   syarat_kursus: string;
   deskripsi_kursus: string;
   modul_kursus: string;
-};
+}
 
 interface KursusResponse {
   data: {
-    data: Kursus[];
+    data: Kursus;
   };
 }
 
 export const requestGetKursusByID = async (id_kursus: string) => {
   try {
     const response: KursusResponse = await getById(id_kursus);
-    return response?.data || [];
+    return response?.data;
   } catch (error) {
     console.log(error);
-    return [];
   }
 };
