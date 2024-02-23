@@ -31,7 +31,7 @@ const Profile: React.FunctionComponent = () => {
   const [user, setUser] = useState<any>({});
 
   useEffect(() => {
-    dispatch(setPageTitle('Admin | Profile'));
+    dispatch(setPageTitle('Profile'));
 
     requestGetProfilUser().then((response: User | undefined) => {
       if (response) {
@@ -55,7 +55,7 @@ const Profile: React.FunctionComponent = () => {
 
       <div className="border border-[#ebedf2] dark:border-[#191e3a] rounded-xl p-4 mb-5 mt-10 bg-white dark:bg-black">
         <div className="flex items-center justify-between mb-10 px-5 mt-5">
-          <h5 className="font-semibold text-lg dark:text-white-light">Profile Admin</h5>
+          <h5 className="font-semibold text-lg dark:text-white-light">Profile User</h5>
           <Link to={`/profile/${user?.data?.id_users}`} className="ltr:ml-auto rtl:mr-auto btn btn-primary p-2 rounded-full">
             <IconPencilPaper />
           </Link>
