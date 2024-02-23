@@ -6,6 +6,13 @@ import { lazy } from 'react';
 // SIGN IN
 const SignIn = lazy(() => import('../pages/auth/SignIn'));
 
+// SIGN UP
+const SignUp = lazy(() => import('../pages/auth/SignUp'));
+
+// VERIFY EMAIL
+const Verify = lazy(() => import('../pages/auth/verify/Index'));
+const VerifySuccess = lazy(() => import('../pages/auth/verify/VerifySuccess'));
+
 // PROFILE
 const Profile = lazy(() => import('../pages/profile/Index'));
 const UpdateProfile = lazy(() => import('../pages/profile/UpdateProfile'));
@@ -25,6 +32,24 @@ const routes = [
   {
     path: '/sign-in',
     element: <SignIn />,
+    layout: 'blank',
+  },
+
+  {
+    path: '/sign-up',
+    element: <SignUp />,
+    layout: 'blank',
+  },
+
+  {
+    path: '/verify',
+    element: <Verify />,
+    layout: 'blank',
+  },
+
+  {
+    path: '/verify/verify-success',
+    element: <VerifySuccess />,
     layout: 'blank',
   },
 

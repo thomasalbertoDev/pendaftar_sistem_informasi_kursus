@@ -2,57 +2,45 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../store/themeConfigSlice';
 import { Form, Formik } from 'formik';
-import { requestLogin } from '../../api/auth/services/requestLogin';
+import { requestRegister } from '../../api/auth/services/requestRegister';
 import { validationSchema } from './validationSchema';
 import { Link, useNavigate } from 'react-router-dom';
 import InputText from '../../components/forms/Input/InputText';
+import InputEmail from '../../components/forms/Input/InputEmail';
 import InputPassword from '../../components/forms/Input/InputPassword';
 import ButtonSolidPrimary from '../../components/buttons/solid/ButtonSolidPrimary';
-import CheckboxDefaultPrimary from '../../components/forms/checkbox/default/CheckboxDefaultPrimary';
 
 interface FormValues {
+  nama: string;
+  email: string;
   username: string;
   password: string;
 }
 
 interface State {
   formValues: FormValues;
-  rememberMe: boolean;
 }
 
-const SignIn: React.FunctionComponent = () => {
+const SignUp: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [state, setState] = useState<State>({
     formValues: {
+      nama: '',
+      email: '',
       username: '',
       password: '',
     },
-    rememberMe: false,
   });
 
   useEffect(() => {
-    dispatch(setPageTitle('Sign In'));
-
-    const rememberMeData = localStorage.getItem('rememberMe');
-    if (rememberMeData) {
-      const { username, password } = JSON.parse(rememberMeData);
-      setState((prevState) => ({
-        ...prevState,
-        rememberMe: true,
-        formValues: { username, password },
-      }));
-    }
+    dispatch(setPageTitle('Sign Up'));
   }, [dispatch]);
 
   const handleSubmit = async (values: FormValues) => {
-    const { username, password } = values;
-    const response = await requestLogin(username, password);
+    const response = await requestRegister(values);
     if (response === true) {
-      if (state.rememberMe) {
-        localStorage.setItem('rememberMe', JSON.stringify({ username, password }));
-      }
-      navigate('/');
+      navigate('/verify');
     }
   };
 
@@ -62,6 +50,8 @@ const SignIn: React.FunctionComponent = () => {
         <img src="/assets/images/logo_light.png" alt="logo" className="w-36  mx-auto" loading="lazy" />
         <Formik
           initialValues={{
+            nama: state.formValues.nama,
+            email: state.formValues.email,
             username: state.formValues.username,
             password: state.formValues.password,
           }}
@@ -70,6 +60,30 @@ const SignIn: React.FunctionComponent = () => {
         >
           {({ errors, handleChange, submitCount, values }) => (
             <Form className="space-y-5">
+              <div className={submitCount ? (errors.email ? 'has-error' : 'has-success') : ''}>
+                <InputEmail
+                  id={'email'}
+                  name={'email'}
+                  label={'Email'}
+                  value={values.email}
+                  onChange={handleChange}
+                  error={errors.email || ''}
+                  placeholder={'Masukkan Email'}
+                  isInputFilled={'Form Email Sudah Terisi'}
+                />
+              </div>
+              <div className={submitCount ? (errors.nama ? 'has-error' : 'has-success') : ''}>
+                <InputText
+                  id={'nama'}
+                  name={'nama'}
+                  label={'Nama Anda'}
+                  value={values.nama}
+                  onChange={handleChange}
+                  error={errors.nama || ''}
+                  placeholder={'Masukkan Nama Lengkap Anda'}
+                  isInputFilled={'Form Nama Sudah Terisi'}
+                />
+              </div>
               <div className={submitCount ? (errors.username ? 'has-error' : 'has-success') : ''}>
                 <InputText
                   id={'username'}
@@ -79,7 +93,7 @@ const SignIn: React.FunctionComponent = () => {
                   onChange={handleChange}
                   error={errors.username || ''}
                   placeholder={'Masukkan Username'}
-                  isInputFilled={'Username Sudah Terisi'}
+                  isInputFilled={'Form Username Sudah Terisi'}
                 />
               </div>
               <div className={submitCount ? (errors.password ? 'has-error' : 'has-success') : ''}>
@@ -91,28 +105,17 @@ const SignIn: React.FunctionComponent = () => {
                   onChange={handleChange}
                   error={errors.password || ''}
                   placeholder={'Masukkan Password'}
-                  isInputFilled={'Password Sudah Terisi'}
-                />
-
-                <CheckboxDefaultPrimary
-                  text={'Ingatkan Saya!'}
-                  checked={state.rememberMe}
-                  onChange={(e) => {
-                    setState((prevState) => ({
-                      ...prevState,
-                      rememberMe: e.target.checked,
-                    }));
-                  }}
+                  isInputFilled={'Form Password Sudah Terisi'}
                 />
               </div>
 
-              <ButtonSolidPrimary text={'LOGIN'} width={'w-full'} onClick={() => handleSubmit(values)} />
+              <ButtonSolidPrimary text={'REGISTER'} width={'w-full'} onClick={() => handleSubmit(values)} />
 
               <div className="text-center font-semibold">
                 <h1>
-                  Tidak Punya Akun?
-                  <Link to={'/sign-up'} className="text-primary">
-                    &nbsp;Register
+                  Sudah Punya Akun?
+                  <Link to={'/sign-in'} className="text-primary">
+                    &nbsp;Login
                   </Link>
                 </h1>
               </div>
@@ -124,4 +127,4 @@ const SignIn: React.FunctionComponent = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
