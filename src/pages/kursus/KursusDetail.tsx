@@ -31,13 +31,13 @@ interface KursusResponse {
   data: Kursus;
 }
 
-const DataKursus: React.FC = () => {
+const KursusDetail: React.FunctionComponent = () => {
   const { id_kursus } = useParams<{ id_kursus: string }>();
   const dispatch = useDispatch();
   const [kursus, setKursus] = useState<any>({});
 
   useEffect(() => {
-    dispatch(setPageTitle('Admin | Kursus'));
+    dispatch(setPageTitle(`Detail Kursus`));
 
     requestGetKursusByID(id_kursus ?? '').then((response: KursusResponse | any) => {
       setKursus(response);
@@ -59,7 +59,7 @@ const DataKursus: React.FC = () => {
         menus={[
           {
             label: 'Kursus',
-            link: '/kursus',
+            link: '/',
             icon: 'dashicons:welcome-learn-more',
           },
           {
@@ -108,4 +108,4 @@ const DataKursus: React.FC = () => {
   );
 };
 
-export default DataKursus;
+export default KursusDetail;

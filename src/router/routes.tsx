@@ -19,6 +19,7 @@ const UpdateProfile = lazy(() => import('../pages/profile/UpdateProfile'));
 
 // KURSUS
 const Kursus = lazy(() => import('../pages/kursus/Index'));
+const KursusDetail = lazy(() => import('../pages/kursus/KursusDetail'));
 
 // ERROR 404
 const Error404 = lazy(() => import('../pages/Error404'));
@@ -27,6 +28,11 @@ const routes = [
   {
     path: '/',
     element: <Kursus />,
+  },
+
+  {
+    path: '/kursus/:id_kursus',
+    element: <KursusDetail />,
   },
 
   {
