@@ -26,3 +26,5 @@ const InputEmail: React.FC<InputEmailProps> = ({ id, name, value, onChange, plac
     </>
   );
 };
+
+export default InputEmail;
