@@ -12,7 +12,7 @@ import IconMenu from '../components/Icons/IconMenu';
 import IconMoon from '../components/Icons/IconMoon';
 import IconLaptop from '../components/Icons/IconLaptop';
 import IconLogout from '../components/Icons/IconLogout';
-import BadgeBasicSuccess from '../components/badges/basic/BadgeBasicSuccess';
+import BadgeBasicInfo from '../components/badges/basic/BadgeBasicInfo';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -130,14 +130,14 @@ const Header = () => {
                 offset={[0, 8]}
                 placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
                 btnClassName="relative group block"
-                button={<img className="w-9 h-9 rounded-full object-cover" src={`${import.meta.env.VITE_API_URL}/${user?.data?.foto_profil}`} alt="Admin Profile" />}
+                button={<img className="w-9 h-9 rounded-full object-cover" src={`${import.meta.env.VITE_API_URL}/${user?.data?.foto_profil}`} alt="User Profile" />}
               >
                 <ul className="text-dark dark:text-white-dark !py-0 w-[230px] font-semibold dark:text-white-light/90">
                   <li>
                     <div className="flex items-center px-4 py-4">
                       <img className="rounded-md w-10 h-10 object-cover" src={`${import.meta.env.VITE_API_URL}/${user?.data?.foto_profil}`} alt="User Profile" />
                       <div className="ltr:pl-4 rtl:pr-4 truncate">
-                        <BadgeBasicSuccess label={'Admin'} />
+                        <BadgeBasicInfo label={'User'} />
                         <h4 className="text-base dark:text-white mt-1">{user?.data?.nama}</h4>
                       </div>
                     </div>
