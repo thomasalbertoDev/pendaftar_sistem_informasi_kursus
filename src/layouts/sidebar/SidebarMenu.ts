@@ -4,4 +4,9 @@ export const SidebarMenu = [
     icon: 'dashicons:welcome-learn-more',
     link: '/',
   },
+  {
+    title: 'Pendaftaran',
+    icon: 'mdi:register',
+    link: '/pendaftaran',
+  },
 ];
