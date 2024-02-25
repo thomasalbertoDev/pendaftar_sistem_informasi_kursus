@@ -1,8 +1,8 @@
-import { requestGetAgama } from '../api/agama/services/requestGetAgama';
+import { requestGetKursus } from '../api/kursus/services/requestGetKursus';
 import { useEffect, useState } from 'react';
 import SelectSearch from '../components/forms/Select/SelectSearch';
 
-interface AgamaSelectProps {
+interface KursusSelectProps {
   id: string;
   name: string;
   label: string;
@@ -13,16 +13,16 @@ interface AgamaSelectProps {
   onChange: (e: any) => void;
 }
 
-const AgamaSelect = ({ id, name, label, placeholder, error, isInputFilled, onChange, value }: AgamaSelectProps) => {
-  const [agama, setAgama] = useState<any[]>([]);
+const KursusSelect = ({ id, name, label, placeholder, error, isInputFilled, onChange, value }: KursusSelectProps) => {
+  const [kursus, setKursus] = useState<any[]>([]);
 
   useEffect(() => {
-    requestGetAgama().then((response) => {
+    requestGetKursus().then((response) => {
       const transformedData = response.map((item: any) => ({
-        value: item.id_agama,
-        label: item.nama_agama,
+        value: item.id_kursus,
+        label: item.nama_kursus,
       }));
-      setAgama(transformedData);
+      setKursus(transformedData);
     });
   }, []);
 
@@ -41,9 +41,9 @@ const AgamaSelect = ({ id, name, label, placeholder, error, isInputFilled, onCha
 
   return (
     <>
-      <SelectSearch id={id} name={name} label={label} styles={styles} value={value} onChange={onChange} placeholder={placeholder} options={agama} error={error} isInputFilled={isInputFilled} />
+      <SelectSearch id={id} name={name} label={label} styles={styles} value={value} onChange={onChange} placeholder={placeholder} options={kursus} error={error} isInputFilled={isInputFilled} />
     </>
   );
 };
 
-export default AgamaSelect;
+export default KursusSelect;

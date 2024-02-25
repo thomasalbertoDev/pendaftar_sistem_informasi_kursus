@@ -51,7 +51,6 @@ const JenisKelaminSelect: React.FC<JenisKelaminSelectProps> = ({ id, name, label
           placeholder="--- Pilih Jenis Kelamin ---"
           options={jenisKelamin}
           isSearchable={false}
-          isClearable={true}
           onChange={onChange}
           className="mb-1 basic-single text-black"
           classNamePrefix="select"
