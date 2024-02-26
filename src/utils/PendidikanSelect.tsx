@@ -26,9 +26,22 @@ const PendidikanSelect = ({ id, name, label, placeholder, error, isInputFilled, 
     });
   }, []);
 
+  const styles = {
+    control: (baseStyles: any) => ({
+      ...baseStyles,
+      border: '1px solid #e5e7eb',
+      borderRadius: '0.5rem',
+      paddingBottom: '6px',
+      paddingTop: '6px',
+      paddingLeft: '8px',
+      color: '#1f2937',
+      backgroundColor: '#fff',
+    }),
+  };
+
   return (
     <>
-      <SelectSearch id={id} name={name} label={label} value={value} onChange={onChange} placeholder={placeholder} options={pendidikan} error={error} isInputFilled={isInputFilled} />
+      <SelectSearch id={id} name={name} label={label} styles={styles} value={value} onChange={onChange} placeholder={placeholder} options={pendidikan} error={error} isInputFilled={isInputFilled} />
     </>
   );
 };
