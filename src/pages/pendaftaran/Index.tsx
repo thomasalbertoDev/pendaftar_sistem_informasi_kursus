@@ -80,10 +80,14 @@ const Pendaftaran: React.FunctionComponent = () => {
 
       <div className="flex justify-end items-center mt-10">
         <div className="flex gap-3">
-          {pendaftaran.length > 0 && (
+          {pendaftaran.length > 0 ? (
+            <TippyDefault content="Ajukan Pendaftaran">
+              <ButtonIcon icon="ic:baseline-plus" backgroundColor="btn-primary" disabled={true} />
+            </TippyDefault>
+          ) : (
             <Link to={'/pendaftaran/ajukan-pendaftaran'}>
               <TippyDefault content="Ajukan Pendaftaran">
-                <ButtonIcon icon="ic:baseline-plus" backgroundColor="btn-primary" disabled={true} />
+                <ButtonIcon icon="ic:baseline-plus" backgroundColor="btn-primary" />
               </TippyDefault>
             </Link>
           )}
