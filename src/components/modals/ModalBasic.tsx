@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
 import { Icon } from '@iconify/react';
-import ButtonSolidPrimary from '../buttons/solid/ButtonSolidPrimary';
-import ButtonSolidDanger from '../buttons/solid/ButtonSolidDanger';
+import { Dialog, Transition } from '@headlessui/react';
 
 interface ModalBasicProps {
   title: string;
@@ -13,7 +11,7 @@ interface ModalBasicProps {
   children: React.ReactNode;
 }
 
-const ModalBasic: React.FC<ModalBasicProps> = ({ show, open, onClose, onClick, title, children }) => {
+const ModalBasic: React.FC<ModalBasicProps> = ({ show, open, onClose, title, children }) => {
   return (
     <>
       <div className="mb-5">
@@ -36,7 +34,7 @@ const ModalBasic: React.FC<ModalBasicProps> = ({ show, open, onClose, onClick, t
                   <Dialog.Panel as="div" className="panel border-0 p-0 rounded-lg overflow-hidden w-full max-w-4xl my-8 text-black dark:text-white-dark">
                     <div className="flex bg-[#fbfbfb] dark:bg-[#121c2c] items-center justify-between px-5 py-3">
                       <div className="text-lg font-bold">{title}</div>
-                      <button type="button" className="text-white-dark hover:text-dark" onClick={onClick}>
+                      <button type="button" className="text-white-dark hover:text-dark" onClick={onClose}>
                         <Icon icon="ph:x-bold" width={22} />
                       </button>
                     </div>

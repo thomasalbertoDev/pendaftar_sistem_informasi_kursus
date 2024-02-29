@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import IconEye from '../../../components/Icons/IconEye';
 import IconPencil from '../../../components/Icons/IconPencil';
 import TippyDefault from '../../../components/tippys/default/TippyDefault';
 import BadgeBasicDanger from '../../../components/badges/basic/BadgeBasicDanger';
@@ -68,8 +69,8 @@ const Columns = () => {
         <>
           {item?.status_pendaftaran === 'Diproses' ? (
             <BadgeBasicWarning label="Diproses" />
-          ) : item?.status_pendaftaran === 'Diterima' ? (
-            <BadgeBasicSuccess label="Diterima" />
+          ) : item?.status_pendaftaran === 'Diverifikasi' ? (
+            <BadgeBasicSuccess label="Diverifikasi" />
           ) : (
             <BadgeBasicDanger label="Ditolak" />
           )}
@@ -80,14 +81,28 @@ const Columns = () => {
     {
       title: 'Aksi',
       accessor: 'aksi',
-      render: (item: { id_sekolah: string }) => (
+      render: (item: { id_pendaftaran: string; status_pendaftaran: string }) => (
         <>
           <div className="flex space-x-1 rtl:space-x-reverse gap-2">
-            <Link to={`/sekolah/update-sekolah/${item?.id_sekolah}`}>
-              <TippyDefault content="Update">
-                <IconPencil className="dark:text-white" />
-              </TippyDefault>
-            </Link>
+            {item?.status_pendaftaran === 'Diproses' ? (
+              <Link to={`/pendaftaran/data-pendaftaran/${item?.id_pendaftaran}`}>
+                <TippyDefault content="Lihat Status">
+                  <IconEye className="dark:text-white" />
+                </TippyDefault>
+              </Link>
+            ) : item?.status_pendaftaran === 'Diverifikasi' ? (
+              <Link to={`/pendaftaran/data-pendaftaran/${item?.id_pendaftaran}`}>
+                <TippyDefault content="Lihat Status">
+                  <IconEye className="dark:text-white" />
+                </TippyDefault>
+              </Link>
+            ) : (
+              <Link to={`/pendaftaran/update-pendaftaran/${item?.id_pendaftaran}`}>
+                <TippyDefault content="Update">
+                  <IconPencil className="dark:text-white" />
+                </TippyDefault>
+              </Link>
+            )}
           </div>
         </>
       ),
