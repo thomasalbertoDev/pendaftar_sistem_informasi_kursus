@@ -5,7 +5,7 @@ import { IRootState } from '../store';
 import { toggleSidebar } from '../store/themeConfigSlice';
 import Footer from './Footer';
 import Header from './Header';
-// import Setting from './Setting';
+import Setting from './Setting';
 import Sidebar from './sidebar/Sidebar';
 import Portals from '../components/Portals';
 
