@@ -24,6 +24,7 @@ const KursusDetail = lazy(() => import('../pages/kursus/KursusDetail'));
 // PENDAFTARAN
 const Pendaftaran = lazy(() => import('../pages/pendaftaran/Index'));
 const AjukanPendaftaran = lazy(() => import('../pages/pendaftaran/Form/FormCreate'));
+const UpdatePendaftaran = lazy(() => import('../pages/pendaftaran/Form/FormUpdate'));
 const DataPendaftaran = lazy(() => import('../pages/pendaftaran/DataPendaftaran'));
 
 // ERROR 404
@@ -82,6 +83,11 @@ const routes = [
   {
     path: '/pendaftaran/ajukan-pendaftaran',
     element: <AjukanPendaftaran />,
+  },
+
+  {
+    path: '/pendaftaran/update-pendaftaran/:id_pendaftaran',
+    element: <UpdatePendaftaran />,
   },
 
   {

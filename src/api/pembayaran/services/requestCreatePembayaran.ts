@@ -17,12 +17,17 @@ const handleError = (): boolean => {
   return false;
 };
 
+const handleErrorConflict = (): boolean => {
+  ShowToast('error', 'Bukti Pembayaran Sudah Diupload!');
+  return false;
+};
+
 export const requestCreatePembayaran = async (id_pendaftaran: string, data: Pembayaran) => {
   try {
     const alert = await Swal.fire({
       icon: 'warning',
       title: 'Apakah anda yakin?',
-      text: 'Ingin bukti pembayaran ini sudah benar?',
+      text: 'Bukti pembayaran ini sudah benar?',
       showCancelButton: true,
       confirmButtonText: 'Upload',
       padding: '2em',
@@ -37,6 +42,10 @@ export const requestCreatePembayaran = async (id_pendaftaran: string, data: Pemb
     }
   } catch (error) {
     console.log(error);
-    return handleError();
+    if ((error as any).response.status === 409) {
+      return handleErrorConflict();
+    } else {
+      return handleError();
+    }
   }
 };

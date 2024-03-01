@@ -242,7 +242,13 @@ const FormLayouts: React.FunctionComponent<FormLayoutsProps> = ({ errors, handle
                 isInputFilled={'Form Pas Foto Sudah Terisi'}
               />
 
-              {values.pas_foto && <PreviewImage image={values.pas_foto} />}
+              {values.pas_foto && (values.pas_foto as any) instanceof File ? (
+                <PreviewImage image={values.pas_foto} />
+              ) : values.pas_foto ? (
+                <div className="custom-file-container__image-preview relative">
+                  <img src={`${import.meta.env.VITE_API_URL}/${values.pas_foto}`} alt="Pas Foto" />
+                </div>
+              ) : null}
             </div>
 
             {/* Foto KK */}
@@ -259,7 +265,13 @@ const FormLayouts: React.FunctionComponent<FormLayoutsProps> = ({ errors, handle
                 isInputFilled={'Form Foto Keluarga Sudah Terisi'}
               />
 
-              {values.foto_kk && <PreviewImage image={values.foto_kk} />}
+              {values.foto_kk && (values.foto_kk as any) instanceof File ? (
+                <PreviewImage image={values.foto_kk} />
+              ) : values.foto_kk ? (
+                <div className="custom-file-container__image-preview relative">
+                  <img src={`${import.meta.env.VITE_API_URL}/${values.foto_kk}`} alt="Foto KK" />
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
