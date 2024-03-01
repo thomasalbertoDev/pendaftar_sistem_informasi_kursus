@@ -85,11 +85,7 @@ const Columns = () => {
         <>
           <div className="flex space-x-1 rtl:space-x-reverse gap-2">
             {item?.status_pendaftaran === 'Diproses' ? (
-              <Link to={`/pendaftaran/data-pendaftaran/${item?.id_pendaftaran}`}>
-                <TippyDefault content="Lihat Status">
-                  <IconEye className="dark:text-white" />
-                </TippyDefault>
-              </Link>
+              '-'
             ) : item?.status_pendaftaran === 'Diverifikasi' ? (
               <Link to={`/pendaftaran/data-pendaftaran/${item?.id_pendaftaran}`}>
                 <TippyDefault content="Lihat Status">
