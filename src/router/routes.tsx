@@ -27,6 +27,9 @@ const AjukanPendaftaran = lazy(() => import('../pages/pendaftaran/Form/FormCreat
 const UpdatePendaftaran = lazy(() => import('../pages/pendaftaran/Form/FormUpdate'));
 const DataPendaftaran = lazy(() => import('../pages/pendaftaran/DataPendaftaran'));
 
+// PEMBAYARAN
+const Pembayaran = lazy(() => import('../pages/pembayaran/Index'));
+
 // ERROR 404
 const Error404 = lazy(() => import('../pages/Error404'));
 
@@ -93,6 +96,10 @@ const routes = [
   {
     path: '/pendaftaran/data-pendaftaran/:id_pendaftaran',
     element: <DataPendaftaran />,
+  },
+  {
+    path: '/pembayaran',
+    element: <Pembayaran />,
   },
 
   // ERROR 404
