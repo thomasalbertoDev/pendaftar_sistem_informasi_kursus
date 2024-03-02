@@ -9,4 +9,9 @@ export const SidebarMenu = [
     icon: 'mdi:register',
     link: '/pendaftaran',
   },
+  {
+    title: 'Pembayaran',
+    icon: 'mdi:cash',
+    link: '/pembayaran',
+  },
 ];
