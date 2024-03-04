@@ -38,7 +38,7 @@ const Profile: React.FunctionComponent = () => {
   const [user, setUser] = useState<any>({});
 
   useEffect(() => {
-    dispatch(setPageTitle('Admin | Profile'));
+    dispatch(setPageTitle('Profile'));
 
     requestGetProfilUser().then((response: User | undefined) => {
       setUser(response?.data);
