@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setPageTitle } from '../../store/themeConfigSlice';
 import { requestGetPembayaran } from '../../api/pembayaran/services/requestGetPembayaran';
+import Table from './Table/Index';
 import ButtonIcon from '../../components/buttons/icon/ButtonIcon';
 import TippyDefault from '../../components/tippys/default/TippyDefault';
 import BreadcrumbsDefault from '../../components/breadcrumbs/BreadcrumbsDefault';
-import Table from './Table/Index';
 
 interface Pembayaran {
   bukti_pembayaran: string;
@@ -44,7 +44,7 @@ const Pembayaran: React.FunctionComponent = () => {
         ]}
       />
 
-      <div className="flex justify-end items-center mt-10">
+      <div className="flex justify-end items-center mt-5">
         <TippyDefault content="Refresh Halaman">
           <ButtonIcon icon="material-symbols:refresh" backgroundColor="btn-info" onClick={handleRefresh} />
         </TippyDefault>
